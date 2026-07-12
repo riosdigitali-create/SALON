@@ -1,0 +1,176 @@
+{
+  "brand": {
+    "name": "Le Passeport",
+    "sub": "TRAVEL",
+    "whatsapp": "5215559538285",
+    "email": "hola@lepasseporttravel.com",
+    "instagram": "lepasseporttravel"
+  },
+  "hero": {
+    "videoUrl": "",
+    "title": "Viajes que se convierten en <em>historias.</em>",
+    "subtitle": "Descubre experiencias únicas alrededor del mundo diseñadas para ti.",
+    "slides": [
+      "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=2400&q=80",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2400&q=80",
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=2400&q=80",
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2400&q=80",
+      "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2400&q=80"
+    ]
+  },
+  "manifesto": {
+    "kicker": "Le Passeport Travel",
+    "text": "No vendemos boletos. Diseñamos los días que vas a recordar el resto de tu vida.",
+    "body": "Cada itinerario nace de una conversación. Escuchamos cómo quieres sentirte, y a partir de ahí construimos el viaje: los hoteles, las mesas, los amaneceres y los silencios. Tú solo tienes que llegar."
+  },
+  "promo": {
+    "active": true,
+    "title": "Temporada Alta Anticipada",
+    "text": "Hasta 25% de descuento en salidas seleccionadas. Reserva con solo $2,500 MXN.",
+    "cta": "Quiero la promoción",
+    "endsAt": "2026-08-31T23:59:59",
+    "image": "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1800&q=80"
+  },
+  "destinations": [
+    {
+      "id": "cancun",
+      "name": "Cancún",
+      "country": "México",
+      "tag": "Todo incluido",
+      "image": "https://images.unsplash.com/photo-1552074284-5e88ef1aef18?auto=format&fit=crop&w=1600&q=80",
+      "price": 12900,
+      "oldPrice": 16900,
+      "currency": "MXN",
+      "nights": 4,
+      "rating": 4.9,
+      "promo": "-25%",
+      "activities": ["Resort frente al mar", "Isla Mujeres", "Cenotes"],
+      "blurb": "Turquesa infinito, resorts de lujo y noches que no terminan.",
+      "featured": true
+    },
+    {
+      "id": "punta-cana",
+      "name": "Punta Cana",
+      "country": "República Dominicana",
+      "tag": "Parejas",
+      "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1600&q=80",
+      "price": 21500,
+      "oldPrice": 25900,
+      "currency": "MXN",
+      "nights": 5,
+      "rating": 4.8,
+      "promo": "Vuelo incluido",
+      "activities": ["Playa Bávaro", "Catamarán privado", "Spa caribeño"],
+      "blurb": "Palmeras inclinadas sobre arena blanca. El Caribe en su versión más elegante.",
+      "featured": true
+    },
+    {
+      "id": "paris",
+      "name": "París",
+      "country": "Francia",
+      "tag": "Europa",
+      "image": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1600&q=80",
+      "price": 38900,
+      "oldPrice": 0,
+      "currency": "MXN",
+      "nights": 7,
+      "rating": 5.0,
+      "promo": "",
+      "activities": ["Louvre sin filas", "Cena en Le Marais", "Versalles privado"],
+      "blurb": "La ciudad que inventó el deseo de viajar. Otra vez, y como la primera.",
+      "featured": true
+    },
+    {
+      "id": "japon",
+      "name": "Japón",
+      "country": "Tokio · Kioto",
+      "tag": "Cultura",
+      "image": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=80",
+      "price": 62900,
+      "oldPrice": 0,
+      "currency": "MXN",
+      "nights": 10,
+      "rating": 5.0,
+      "promo": "Cupo limitado",
+      "activities": ["Ryokan tradicional", "Ceremonia del té", "Tren bala"],
+      "blurb": "Neón y silencio. Un país que se recorre despacio y se recuerda para siempre.",
+      "featured": true
+    },
+    {
+      "id": "nueva-york",
+      "name": "Nueva York",
+      "country": "Estados Unidos",
+      "tag": "Ciudad",
+      "image": "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=1600&q=80",
+      "price": 29900,
+      "oldPrice": 34900,
+      "currency": "MXN",
+      "nights": 5,
+      "rating": 4.9,
+      "promo": "-15%",
+      "activities": ["Broadway", "Top of the Rock", "Shopping 5ta Avenida"],
+      "blurb": "La ciudad que no duerme, vista desde un piso 60.",
+      "featured": true
+    },
+    {
+      "id": "dubai",
+      "name": "Dubái",
+      "country": "Emiratos Árabes",
+      "tag": "Lujo",
+      "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80",
+      "price": 58900,
+      "oldPrice": 0,
+      "currency": "MXN",
+      "nights": 6,
+      "rating": 4.9,
+      "promo": "Suite upgrade",
+      "activities": ["Burj Khalifa", "Safari en el desierto", "Yate privado"],
+      "blurb": "Donde el futuro y el desierto cenan en la misma mesa.",
+      "featured": true
+    },
+    {
+      "id": "santorini",
+      "name": "Santorini",
+      "country": "Grecia",
+      "tag": "Romance",
+      "image": "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1600&q=80",
+      "price": 49900,
+      "oldPrice": 56900,
+      "currency": "MXN",
+      "nights": 7,
+      "rating": 5.0,
+      "promo": "-12%",
+      "activities": ["Atardecer en Oía", "Caldera en velero", "Viñedos"],
+      "blurb": "Azul contra blanco, y un atardecer que la gente aplaude.",
+      "featured": true
+    },
+    {
+      "id": "los-cabos",
+      "name": "Los Cabos",
+      "country": "México",
+      "tag": "Escapada",
+      "image": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&fit=crop&w=1600&q=80",
+      "price": 15900,
+      "oldPrice": 18900,
+      "currency": "MXN",
+      "nights": 4,
+      "rating": 4.8,
+      "promo": "-16%",
+      "activities": ["El Arco", "Avistamiento de ballenas", "Golf frente al mar"],
+      "blurb": "Donde el desierto se tira al mar sin pedir permiso.",
+      "featured": true
+    }
+  ],
+  "pillars": [
+    { "title": "Asesor dedicado", "text": "Una sola persona te acompaña desde la primera idea hasta que regresas a casa." },
+    { "title": "Itinerarios a medida", "text": "Nada de paquetes en serie. Tu viaje se diseña sobre tu ritmo y tu presupuesto." },
+    { "title": "Precio protegido", "text": "Tarifas negociadas directo con hoteles y aerolíneas. Sin sorpresas al final." },
+    { "title": "Soporte 24/7", "text": "Un vuelo cancelado a las 3 a.m. deja de ser tu problema y pasa a ser el nuestro." }
+  ],
+  "testimonials": [
+    { "name": "Mariana & Diego", "trip": "Luna de miel en Santorini", "text": "Nos entregaron un itinerario que parecía escrito para nosotros. Lloramos en el atardecer de Oía. Literal." },
+    { "name": "Familia Rentería", "trip": "Orlando, 6 personas", "text": "Viajar con tres niños daba pánico. Nos resolvieron absolutamente todo, hasta las reservas de los restaurantes." },
+    { "name": "Alejandro V.", "trip": "Japón, 10 noches", "text": "Es el mejor viaje de mi vida y no exagero. Cada día estaba pensado, pero nunca se sintió apretado." }
+  ],
+  "media": []
+}
