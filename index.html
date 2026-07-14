@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BS Beauty Shop — El estilo que resalta tu belleza</title>
+<meta name="description" content="Beauty Shop. Reserva tu cita, elige a tu especialista y confirma en minutos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BS BEAUTY SHOP — Sistema visual "Tocador"
+   Paleta:  --ink #08070A · --onyx #14111A · --rose #F0A6C4
+            --rose-deep #C4547F · --nacar #F7EEF2 · --bulb #FFE7C9
+   Tipos:   Inter Tight (display, grotesca pesada) · Inter (UI)
+   Firma:   El espejo de tocador con focos que se encienden.
+   ============================================================ */
+:root{
+  --ink:#08070A; --onyx:#14111A; --onyx-2:#1C1822;
+  --rose:#F0A6C4; --rose-deep:#C4547F; --rose-soft:rgba(240,166,196,.14);
+  --nacar:#F7EEF2; --muted:#9A93A3; --bulb:#FFE7C9;
+  --line:rgba(240,166,196,.22); --line-soft:rgba(255,255,255,.08);
+  --ok:#7FD1AE; --warn:#F0C46A; --bad:#E88A8A;
+  --r:14px; --r-s:10px;
+  --shadow:0 24px 60px -20px rgba(0,0,0,.8);
+  --display:"Inter Tight","Inter",system-ui,sans-serif;
+  --ui:"Inter",system-ui,-apple-system,sans-serif;
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink); color:var(--nacar); font-family:var(--ui);
+  font-weight:400; font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  text-wrap:pretty;
+}
+body::before{ /* grano fino */
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img{max-width:100%;display:block}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:none}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:4px}
+.wrap{width:min(100% - 40px,var(--wrap));margin-inline:auto}
+.hidden{display:none !important}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+.eyebrow{
+  font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--rose);
+  font-weight:400;display:flex;align-items:center;gap:14px;
+}
+.eyebrow::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,var(--line),transparent)}
+.eyebrow.center{justify-content:center}
+.eyebrow.center::after{display:none}
+.serif-i{font-style:normal;color:var(--rose);font-weight:900;letter-spacing:-.04em}
+
+/* ---------- Botones ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 30px;border-radius:100px;font-size:12px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;transition:.35s cubic-bezier(.2,.7,.3,1);
+  border:1px solid transparent;white-space:nowrap;
+}
+.btn-primary{background:var(--rose);color:#1A0D14;box-shadow:0 10px 30px -12px rgba(240,166,196,.6)}
+.btn-primary:hover{background:var(--nacar);transform:translateY(-2px);box-shadow:0 16px 40px -14px rgba(240,166,196,.75)}
+.btn-ghost{border-color:var(--line);color:var(--nacar);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:var(--rose);background:var(--rose-soft)}
+.btn-sm{padding:9px 16px;font-size:10px;letter-spacing:.14em;border-radius:8px}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-danger{border:1px solid rgba(232,138,138,.4);color:var(--bad)}
+.btn-danger:hover{background:rgba(232,138,138,.12)}
+
+/* ---------- Nav ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;padding:18px 0;
+  transition:.4s;backdrop-filter:blur(0px);
+}
+.nav.solid{background:rgba(8,7,10,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);padding:12px 0}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
+  display:grid;place-items:center;position:relative;flex-shrink:0;
+  background:radial-gradient(circle at 50% 35%,rgba(240,166,196,.16),transparent 70%);
+}
+.brand-mark img{width:78%;height:78%;object-fit:contain;filter:drop-shadow(0 0 10px rgba(240,166,196,.35))}
+.brand-mark::before{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(240,166,196,.18)}
+.brand-name{font-family:var(--display);font-size:17px;letter-spacing:.28em;text-transform:uppercase}
+.brand-name small{display:block;font-family:var(--ui);font-size:8px;letter-spacing:.3em;color:var(--muted);margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:.3s;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--rose);transition:.35s}
+.nav-links a:hover{color:var(--nacar)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.burger{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:10px;place-items:center}
+.burger i{display:block;width:16px;height:1px;background:var(--nacar);position:relative}
+.burger i::before,.burger i::after{content:"";position:absolute;left:0;width:16px;height:1px;background:var(--nacar)}
+.burger i::before{top:-5px}.burger i::after{top:5px}
+
+/* ---------- Hero: el espejo ---------- */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;padding:120px 0 70px;overflow:hidden}
+.hero-glow{
+  position:absolute;width:900px;height:900px;border-radius:50%;top:-42%;left:50%;translate:-50% 0;
+  background:radial-gradient(circle,rgba(240,166,196,.16),transparent 62%);filter:blur(20px);pointer-events:none;
+}
+.hero-in{position:relative;z-index:2;display:grid;place-items:center;text-align:center}
+.mirror{
+  position:relative;width:min(560px,84vw);padding:74px 40px 56px;
+  border-radius:280px 280px 26px 26px;
+  background:
+    radial-gradient(120% 90% at 50% 0%,rgba(240,166,196,.12),transparent 60%),
+    linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  border:1px solid rgba(240,166,196,.3);
+  box-shadow:inset 0 0 80px rgba(240,166,196,.08),0 40px 90px -30px rgba(0,0,0,.9);
+  backdrop-filter:blur(2px);
+}
+.mirror::after{ /* reflejo diagonal */
+  content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(118deg,transparent 32%,rgba(255,255,255,.07) 45%,transparent 52%);
+}
+.bulb{
+  position:absolute;width:11px;height:11px;border-radius:50%;background:rgba(255,231,201,.18);
+  translate:-50% -50%;transition:.5s;
+}
+.bulb.on{
+  background:var(--bulb);
+  box-shadow:0 0 10px 2px rgba(255,231,201,.75),0 0 26px 8px rgba(240,166,196,.35);
+  animation:flick 5s ease-in-out infinite;
+}
+@keyframes flick{0%,100%{opacity:1}47%{opacity:.86}49%{opacity:.62}51%{opacity:.95}}
+.crown{width:60px;margin:0 auto 20px;color:var(--rose);opacity:0;animation:rise .9s .2s forwards}
+h1.hero-t{font-size:clamp(42px,7.2vw,78px);margin:14px 0 10px;font-weight:900}
+h1.hero-t em{font-style:normal;color:var(--rose);display:block;font-weight:900;letter-spacing:-.05em}
+.hero-sub{color:var(--muted);max-width:36ch;margin:0 auto 30px;font-size:15px}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-meta{display:flex;gap:30px;justify-content:center;margin-top:42px;flex-wrap:wrap}
+.hero-meta div{text-align:center}
+.hero-meta b{font-family:var(--display);font-size:26px;display:block;color:var(--nacar);font-weight:500}
+.hero-meta small{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.fade-up{opacity:0;animation:rise .9s forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.fade-up{transform:translateY(18px)}
+.d1{animation-delay:.35s}.d2{animation-delay:.5s}.d3{animation-delay:.65s}.d4{animation-delay:.8s}
+
+/* ---------- Secciones ---------- */
+section{position:relative;z-index:1;padding:110px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:52px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(30px,4vw,46px)}
+.sec-head p{color:var(--muted);max-width:44ch;font-size:15px}
+.reveal{opacity:0;transform:translateY(26px);transition:.9s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- Servicios: carta ---------- */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px}
+.chip{
+  padding:9px 18px;border:1px solid var(--line-soft);border-radius:100px;font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:.3s;
+}
+.chip.active,.chip:hover{border-color:var(--rose);color:var(--nacar);background:var(--rose-soft)}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 60px}
+.svc{
+  display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:6px 14px;text-align:left;
+  padding:22px 0;border-bottom:1px solid var(--line-soft);cursor:pointer;transition:.35s;
+}
+.svc:hover{border-color:var(--line);padding-left:8px}
+.svc-name{font-family:var(--display);font-size:21px;color:var(--nacar);transition:.3s}
+.svc:hover .svc-name{color:var(--rose)}
+.svc-dots{border-bottom:1px dotted rgba(255,255,255,.22);align-self:center;height:1px;min-width:20px}
+.svc-price{font-family:var(--display);font-size:20px;color:var(--rose);font-variant-numeric:tabular-nums;white-space:nowrap}
+.svc-desc{grid-column:1/-1;color:var(--muted);font-size:13.5px;max-width:52ch;margin-top:-2px}
+.svc-tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- Especialistas ---------- */
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.card{
+  background:linear-gradient(180deg,var(--onyx),rgba(20,17,26,.4));
+  border:1px solid var(--line-soft);border-radius:var(--r);padding:26px;transition:.4s;position:relative;overflow:hidden;
+}
+.card:hover{border-color:var(--line);transform:translateY(-4px);box-shadow:var(--shadow)}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);opacity:0;transition:.4s}
+.card:hover::before{opacity:1}
+.avatar{
+  width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin-bottom:18px;
+  font-family:var(--display);font-size:24px;color:var(--rose);
+  border:1px solid var(--line);background:radial-gradient(circle at 30% 25%,rgba(240,166,196,.18),transparent 70%);
+}
+.card h3{font-size:22px;margin-bottom:4px}
+.role{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--rose);margin-bottom:12px}
+.card p{color:var(--muted);font-size:13.5px}
+.stars{color:var(--rose);font-size:12px;letter-spacing:2px;margin-top:14px}
+
+/* ---------- Reserva (wizard) ---------- */
+#reservar{background:linear-gradient(180deg,transparent,rgba(240,166,196,.045),transparent)}
+.booking{
+  background:var(--onyx);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);
+}
+.steps{display:flex;border-bottom:1px solid var(--line-soft);overflow-x:auto;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.step{
+  flex:1;min-width:120px;padding:18px 10px;text-align:center;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line-soft);position:relative;transition:.4s;
+}
+.step:last-child{border-right:none}
+.step b{display:block;font-family:var(--display);font-size:15px;color:inherit;margin-bottom:3px;font-weight:400}
+.step.active{color:var(--nacar);background:rgba(240,166,196,.07)}
+.step.active::after{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:var(--rose)}
+.step.done{color:var(--rose)}
+.pane{padding:38px}
+.pane h3{font-size:26px;margin-bottom:6px}
+.pane .lead{color:var(--muted);font-size:14px;margin-bottom:26px}
+.pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.pick{
+  text-align:left;padding:18px;border:1px solid var(--line-soft);border-radius:var(--r-s);
+  background:rgba(255,255,255,.02);transition:.3s;display:flex;flex-direction:column;gap:4px;
+}
+.pick:hover{border-color:var(--rose);background:var(--rose-soft)}
+.pick.sel{border-color:var(--rose);background:var(--rose-soft);box-shadow:inset 0 0 0 1px var(--rose)}
+.pick strong{font-family:var(--display);font-size:18px;font-weight:400}
+.pick span{font-size:12px;color:var(--muted)}
+.pick .p{color:var(--rose);font-size:14px;font-variant-numeric:tabular-nums}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:22px;scrollbar-width:thin}
+.day{
+  min-width:70px;padding:12px 8px;border:1px solid var(--line-soft);border-radius:var(--r-s);text-align:center;transition:.3s;flex-shrink:0;
+}
+.day:hover{border-color:var(--rose)}
+.day.sel{background:var(--rose);color:#1A0D14;border-color:var(--rose)}
+.day small{display:block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
+.day b{font-family:var(--display);font-size:20px;font-weight:400;display:block;margin:2px 0}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.slot{padding:12px;border:1px solid var(--line-soft);border-radius:8px;font-size:13px;font-variant-numeric:tabular-nums;transition:.25s}
+.slot:hover:not(:disabled){border-color:var(--rose);color:var(--rose)}
+.slot.sel{background:var(--rose);color:#1A0D14;border-color:var(--rose)}
+.slot:disabled{opacity:.25;text-decoration:line-through;cursor:not-allowed}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{
+  background:rgba(255,255,255,.03);border:1px solid var(--line-soft);border-radius:var(--r-s);
+  padding:13px 15px;font-size:14px;font-weight:300;transition:.3s;width:100%;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--rose);background:rgba(240,166,196,.06)}
+select option{background:var(--onyx)}
+textarea{resize:vertical;min-height:88px}
+.radio-row{display:flex;gap:10px;flex-wrap:wrap}
+.radio{flex:1;min-width:150px;padding:14px;border:1px solid var(--line-soft);border-radius:var(--r-s);text-align:center;transition:.3s;font-size:13px}
+.radio.sel{border-color:var(--rose);background:var(--rose-soft);color:var(--rose)}
+.pane-nav{display:flex;justify-content:space-between;gap:12px;margin-top:30px;padding-top:24px;border-top:1px solid var(--line-soft)}
+.otp-box{display:flex;gap:10px;justify-content:center;margin:26px 0}
+.otp-box input{
+  width:52px;height:60px;text-align:center;font-family:var(--display);font-size:24px;padding:0;
+  font-variant-numeric:tabular-nums;
+}
+.note{
+  border:1px dashed var(--line);border-radius:var(--r-s);padding:14px 16px;font-size:13px;color:var(--muted);
+  background:var(--rose-soft);
+}
+.note b{color:var(--rose);font-weight:500;letter-spacing:.06em}
+
+/* Ticket de confirmación */
+.ticket{
+  max-width:420px;margin:0 auto;background:linear-gradient(180deg,#191521,#120F18);
+  border:1px solid var(--line);border-radius:16px;padding:34px 30px;text-align:center;position:relative;
+}
+.ticket::before,.ticket::after{
+  content:"";position:absolute;width:26px;height:26px;border-radius:50%;background:var(--onyx);
+  border:1px solid var(--line);top:55%;
+}
+.ticket::before{left:-14px;clip-path:inset(0 0 0 50%)}
+.ticket::after{right:-14px;clip-path:inset(0 50% 0 0)}
+.ticket .folio{font-family:var(--display);font-size:30px;color:var(--rose);letter-spacing:.08em;margin:8px 0 4px}
+.ticket dl{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;text-align:left;margin:24px 0;padding:22px 0;border-top:1px dashed var(--line-soft);border-bottom:1px dashed var(--line-soft)}
+.ticket dt{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);align-self:center}
+.ticket dd{font-size:14px;text-align:right}
+.check{width:56px;height:56px;margin:0 auto 12px;border-radius:50%;border:1px solid var(--rose);display:grid;place-items:center;color:var(--rose);background:var(--rose-soft)}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--line-soft);padding:60px 0 34px;position:relative;z-index:1}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:44px}
+.foot h4{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-family:var(--ui);color:var(--rose);margin-bottom:16px;font-weight:500}
+.foot p,.foot a{color:var(--muted);font-size:13.5px;display:block;margin-bottom:8px;transition:.3s}
+.foot a:hover{color:var(--rose)}
+.divider{display:flex;align-items:center;gap:16px;color:var(--rose);margin:0 0 22px}
+.divider::before,.divider::after{content:"";height:1px;flex:1;background:var(--line)}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--muted);letter-spacing:.1em}
+.foot-bottom button{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);transition:.3s}
+.foot-bottom button:hover{color:var(--rose)}
+
+/* ============================================================
+   PANEL DE ADMINISTRACIÓN
+   ============================================================ */
+.admin{position:fixed;inset:0;z-index:200;background:var(--ink);display:none;overflow:hidden}
+.admin.on{display:grid;grid-template-columns:250px 1fr}
+.gate{position:fixed;inset:0;z-index:300;background:rgba(8,7,10,.96);display:none;place-items:center;padding:20px;backdrop-filter:blur(8px)}
+.gate.on{display:grid}
+.gate-card{width:min(430px,100%);background:var(--onyx);border:1px solid var(--line);border-radius:20px;padding:40px;box-shadow:var(--shadow)}
+.gate-card h3{font-size:28px;margin:14px 0 4px}
+.gate-card .lead{color:var(--muted);font-size:13.5px;margin-bottom:26px}
+.gate-card .field{margin-bottom:14px}
+.err{color:var(--bad);font-size:12.5px;margin-top:12px;min-height:18px}
+
+.side{border-right:1px solid var(--line-soft);padding:24px 16px;display:flex;flex-direction:column;gap:6px;background:var(--onyx);overflow-y:auto}
+.side-brand{display:flex;align-items:center;gap:10px;padding:0 8px 22px;margin-bottom:10px;border-bottom:1px solid var(--line-soft)}
+.side-brand .brand-mark{width:38px;height:38px;font-size:15px}
+.side-brand b{font-family:var(--display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:400}
+.side-brand small{display:block;font-size:8px;letter-spacing:.24em;color:var(--muted)}
+.nav-item{
+  display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;font-size:13px;
+  color:var(--muted);transition:.25s;text-align:left;width:100%;
+}
+.nav-item:hover{background:rgba(255,255,255,.04);color:var(--nacar)}
+.nav-item.active{background:var(--rose-soft);color:var(--rose);box-shadow:inset 2px 0 0 var(--rose)}
+.nav-item .ic{width:18px;text-align:center;flex-shrink:0}
+.nav-item .badge{margin-left:auto;background:var(--rose);color:#1A0D14;font-size:10px;padding:1px 7px;border-radius:100px;font-weight:500}
+.side-foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--line-soft)}
+.main{overflow-y:auto;padding:30px 34px 60px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+.top h2{font-size:32px}
+.top .sub{color:var(--muted);font-size:13px}
+.view{display:none;animation:fadeIn .5s}
+.view.on{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:26px}
+.kpi{background:var(--onyx);border:1px solid var(--line-soft);border-radius:var(--r);padding:20px;position:relative;overflow:hidden}
+.kpi::after{content:"";position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;background:var(--rose-soft)}
+.kpi small{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.kpi b{display:block;font-family:var(--display);font-size:34px;font-weight:500;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.kpi span{font-size:11.5px;color:var(--muted)}
+.kpi .up{color:var(--ok)}
+.panel{background:var(--onyx);border:1px solid var(--line-soft);border-radius:var(--r);padding:24px;margin-bottom:18px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.panel-head h3{font-size:20px}
+.panel-head .hint{font-size:12px;color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;align-items:start}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{
+  text-align:left;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  font-weight:400;padding:0 14px 12px;border-bottom:1px solid var(--line-soft);white-space:nowrap;
+}
+td{padding:14px;border-bottom:1px solid rgba(255,255,255,.045);vertical-align:middle}
+tbody tr{transition:.25s}
+tbody tr:hover{background:rgba(240,166,196,.05)}
+td .who{display:flex;align-items:center;gap:10px}
+td .who .av{
+  width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;
+  font-family:var(--display);font-size:13px;color:var(--rose);border:1px solid var(--line);background:var(--rose-soft);
+}
+td .who b{font-weight:400;display:block}
+td .who small{color:var(--muted);font-size:11.5px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:100px;font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;border:1px solid;white-space:nowrap;
+}
+.pill.ok{color:var(--ok);border-color:rgba(127,209,174,.35);background:rgba(127,209,174,.1)}
+.pill.warn{color:var(--warn);border-color:rgba(240,196,106,.35);background:rgba(240,196,106,.1)}
+.pill.bad{color:var(--bad);border-color:rgba(232,138,138,.35);background:rgba(232,138,138,.1)}
+.pill.rose{color:var(--rose);border-color:var(--line);background:var(--rose-soft)}
+.pill.mute{color:var(--muted);border-color:var(--line-soft)}
+.row-actions{display:flex;gap:6px;justify-content:flex-end}
+.icon-btn{width:30px;height:30px;border-radius:8px;border:1px solid var(--line-soft);display:grid;place-items:center;font-size:12px;color:var(--muted);transition:.25s}
+.icon-btn:hover{border-color:var(--rose);color:var(--rose);background:var(--rose-soft)}
+.empty{text-align:center;padding:50px 20px;color:var(--muted)}
+.empty b{display:block;font-family:var(--display);font-size:22px;color:var(--nacar);margin:10px 0 6px;font-weight:400}
+.empty p{font-size:13.5px;max-width:38ch;margin:0 auto 18px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.toolbar input,.toolbar select{max-width:230px;padding:10px 13px;font-size:13px}
+.search{flex:1;min-width:180px;max-width:320px !important}
+
+/* Barras dashboard */
+.bars{display:flex;align-items:flex-end;gap:10px;height:150px;padding-top:10px}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%}
+.bar i{
+  display:block;width:100%;max-width:34px;border-radius:6px 6px 2px 2px;
+  background:linear-gradient(180deg,var(--rose),rgba(240,166,196,.15));min-height:3px;transition:height .8s cubic-bezier(.2,.7,.3,1);
+}
+.bar small{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* Expediente / documentos */
+.docs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.doc{
+  border:1px solid var(--line-soft);border-radius:var(--r-s);padding:14px;background:rgba(255,255,255,.02);
+  display:flex;flex-direction:column;gap:8px;transition:.3s;position:relative;
+}
+.doc:hover{border-color:var(--line)}
+.doc .thumb{
+  height:82px;border-radius:6px;background:var(--onyx-2);display:grid;place-items:center;overflow:hidden;
+  font-size:22px;color:var(--rose);border:1px solid var(--line-soft);
+}
+.doc .thumb img{width:100%;height:100%;object-fit:cover}
+.doc b{font-size:12px;font-weight:400;word-break:break-word;line-height:1.35}
+.doc small{font-size:10.5px;color:var(--muted)}
+.doc-actions{display:flex;gap:6px;margin-top:2px}
+.drop{
+  border:1px dashed var(--line);border-radius:var(--r-s);padding:26px;text-align:center;color:var(--muted);
+  font-size:13px;transition:.3s;cursor:pointer;background:rgba(240,166,196,.03);
+}
+.drop:hover,.drop.over{border-color:var(--rose);background:var(--rose-soft);color:var(--rose)}
+
+/* Consola de actualizaciones */
+.console{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px;line-height:1.7}
+.console textarea{
+  font-family:inherit;font-size:12.5px;min-height:190px;background:#0C0A10;border-color:var(--line-soft);
+  color:#D9CFE0;white-space:pre;overflow-wrap:normal;overflow-x:auto;
+}
+.log{
+  background:#0C0A10;border:1px solid var(--line-soft);border-radius:var(--r-s);padding:14px;max-height:230px;
+  overflow-y:auto;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.8;
+}
+.log div{border-bottom:1px solid rgba(255,255,255,.04);padding:3px 0}
+.log .t{color:var(--muted);margin-right:8px}
+.log .ok{color:var(--ok)}.log .er{color:var(--bad)}.log .in{color:var(--rose)}
+
+/* Cerebro / asistente */
+.chat{display:flex;flex-direction:column;height:min(560px,64vh)}
+.chat-log{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding:4px 4px 16px}
+.msg{max-width:78%;padding:13px 17px;border-radius:16px;font-size:14px;line-height:1.6;white-space:pre-wrap}
+.msg.me{align-self:flex-end;background:var(--rose);color:#1A0D14;border-bottom-right-radius:4px}
+.msg.bot{align-self:flex-start;background:var(--onyx-2);border:1px solid var(--line-soft);border-bottom-left-radius:4px}
+.msg.bot b{color:var(--rose);font-weight:500}
+.chat-in{display:flex;gap:10px;padding-top:14px;border-top:1px solid var(--line-soft)}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.quick button{font-size:11px;padding:7px 13px;border:1px solid var(--line-soft);border-radius:100px;color:var(--muted);transition:.25s}
+.quick button:hover{border-color:var(--rose);color:var(--rose)}
+.dots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--rose);margin-right:4px;animation:bounce 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+
+/* Modal */
+.modal{position:fixed;inset:0;z-index:400;background:rgba(8,7,10,.86);backdrop-filter:blur(8px);display:none;place-items:center;padding:20px;overflow-y:auto}
+.modal.on{display:grid}
+.modal-card{width:min(620px,100%);background:var(--onyx);border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:var(--shadow);max-height:90vh;overflow-y:auto;margin:auto}
+.modal-card h3{font-size:24px;margin-bottom:4px}
+.modal-card .lead{color:var(--muted);font-size:13.5px;margin-bottom:24px}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line-soft)}
+.close-x{position:absolute;top:18px;right:18px}
+
+/* Toast */
+.toasts{position:fixed;bottom:24px;right:24px;z-index:500;display:flex;flex-direction:column;gap:10px}
+.toast{
+  background:var(--onyx);border:1px solid var(--line);border-left:3px solid var(--rose);border-radius:10px;
+  padding:14px 20px;font-size:13.5px;box-shadow:var(--shadow);animation:slideIn .4s;max-width:330px;
+}
+.toast.bad{border-left-color:var(--bad)}
+.toast.ok{border-left-color:var(--ok)}
+@keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+
+/* ---------- Responsive ---------- */
+@media(max-width:900px){
+  .menu-grid{grid-template-columns:1fr;gap:0}
+  .grid-2{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .burger{display:grid}
+  .nav-links.open{
+    display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+    background:rgba(8,7,10,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);padding:10px 0;
+  }
+  .nav-links.open a{padding:14px 24px;width:100%}
+  .admin.on{grid-template-columns:1fr}
+  .side{
+    position:fixed;left:0;top:0;bottom:0;width:250px;z-index:10;transform:translateX(-100%);transition:.35s;
+  }
+  .side.open{transform:none;box-shadow:30px 0 60px rgba(0,0,0,.6)}
+  .main{padding:20px 18px 60px}
+}
+@media(max-width:640px){
+  section{padding:76px 0}
+  .pane{padding:24px 20px}
+  .form-grid{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  .hero-meta{gap:20px}
+  .mirror{padding:60px 22px 42px;border-radius:200px 200px 22px 22px}
+  .otp-box input{width:44px;height:54px;font-size:20px}
+  .toasts{left:16px;right:16px;bottom:16px}
+  .toast{max-width:none}
+  table{font-size:12.5px}
+  td,th{padding:10px 8px}
+  .gate-card{padding:28px 22px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  .fade-up,.reveal{opacity:1;transform:none}
+}
+
+/* === Tipografía Inter Tight — pesos y tracking (override) === */
+.brand-name{font-weight:800;letter-spacing:.14em}
+.brand-name small{font-weight:500}
+.hero-meta b,.svc-name,.svc-price,.step b,.pick strong,.day b,.ticket .folio,.side-brand b,.kpi b,.empty b{
+  font-weight:800;letter-spacing:-.02em}
+.side-brand b{letter-spacing:.12em}
+.ticket .folio{letter-spacing:.04em}
+.step b,.pick strong,.day b,.empty b{font-weight:700}
+h1{letter-spacing:-.045em}
+
+/* === Galería === */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.gal-item{position:relative;margin:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line-soft);background:var(--onyx)}
+.gal-item img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.9) contrast(1.02);transition:transform .6s cubic-bezier(.2,.8,.2,1),filter .4s}
+.gal-item:hover img{transform:scale(1.045);filter:saturate(1.05)}
+.gal-item figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:26px 16px 14px;
+  font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-.01em;color:var(--nacar);
+  background:linear-gradient(transparent,rgba(8,7,10,.85))}
+.gal-item:nth-child(1),.gal-item:nth-child(6){grid-row:span 1}
+@media(max-width:900px){.gal{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.gal{grid-template-columns:1fr}}
+
+/* === Logo === */
+.foot .brand-mark{width:52px;height:52px}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ SITIO PÚBLICO ══════════════ -->
+<div id="site">
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand">
+      <div class="brand-mark"><img src="logo-bs-mark.png" alt="Beauty Shop"></div>
+      <div class="brand-name">Beauty Shop<small id="brandTag">El estilo que resalta tu belleza</small></div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#equipo">Especialistas</a>
+      <a href="#galeria">Galería</a>
+      <a href="#reservar">Reservar</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#reservar" class="btn btn-primary btn-sm">Agendar cita</a>
+      <button class="burger" id="burger" aria-label="Abrir menú"><i></i></button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="wrap hero-in">
+    <div class="mirror" id="mirror">
+      <svg class="crown" viewBox="0 0 100 62" fill="currentColor" aria-hidden="true">
+        <path d="M50 0l7 13 12-8-3 15 15-4-9 13 16 3-14 8 14 8H2l14-8-14-8 16-3-9-13 15 4-3-15 12 8z"/>
+        <rect x="2" y="52" width="96" height="7" rx="3.5"/>
+      </svg>
+      <p class="eyebrow center fade-up d1">Beauty Shop · Guadalajara</p>
+      <h1 class="hero-t fade-up d2">Tu cita, <em>impecable.</em></h1>
+      <p class="hero-sub fade-up d3">Elige el servicio, la especialista y la hora. Te confirmamos con un código a tu correo o celular en menos de un minuto.</p>
+      <div class="hero-actions fade-up d4">
+        <a href="#reservar" class="btn btn-primary">Reservar ahora</a>
+        <a href="#servicios" class="btn btn-ghost">Ver la carta</a>
+      </div>
+    </div>
+    <div class="hero-meta fade-up d4">
+      <div><b id="mStaff">4</b><small>Especialistas</small></div>
+      <div><b id="mSvc">12</b><small>Servicios</small></div>
+      <div><b>4.9</b><small>Calificación</small></div>
+      <div><b id="mCli">0</b><small>Clientas</small></div>
+    </div>
+  </div>
+</header>
+
+<!-- Servicios: carta -->
+<section id="servicios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">La carta</p>
+        <h2 style="margin-top:14px">Servicios y <span class="serif-i">precios</span></h2>
+      </div>
+      <p>Toca cualquier servicio para llevarlo directo a tu reserva. Los precios ya incluyen materiales.</p>
+    </div>
+    <div class="filters reveal" id="filters"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<!-- Equipo -->
+<section id="equipo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Las manos</p>
+        <h2 style="margin-top:14px">Quién te <span class="serif-i">atiende</span></h2>
+      </div>
+      <p>Cada especialista tiene su agenda propia. Puedes elegir con quién quieres tu cita.</p>
+    </div>
+    <div class="team reveal" id="teamGrid"></div>
+  </div>
+</section>
+
+<!-- Galería -->
+<section id="galeria">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">El lugar</p>
+        <h2 style="margin-top:14px">Así se ve <span class="serif-i">por dentro</span></h2>
+      </div>
+      <p>Un espacio pensado para que llegues, te sientes y salgas sintiéndote otra.</p>
+    </div>
+    <div class="gal reveal">
+      <figure class="gal-item"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=70" alt="Interior del salón" loading="lazy" width="900" height="1100"><figcaption>Interior del salón</figcaption></figure>
+      <figure class="gal-item"><img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?auto=format&fit=crop&w=900&q=70" alt="Corte con estilista" loading="lazy" width="900" height="1100"><figcaption>Corte con estilista</figcaption></figure>
+      <figure class="gal-item"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=900&q=70" alt="Secado y peinado" loading="lazy" width="900" height="1100"><figcaption>Secado y peinado</figcaption></figure>
+      <figure class="gal-item"><img src="https://images.unsplash.com/photo-1626379501846-0df4067b8bb9?auto=format&fit=crop&w=900&q=70" alt="Estación de tocador" loading="lazy" width="900" height="1100"><figcaption>Estación de tocador</figcaption></figure>
+      <figure class="gal-item"><img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=900&q=70" alt="El equipo" loading="lazy" width="900" height="1100"><figcaption>El equipo</figcaption></figure>
+      <figure class="gal-item"><img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=900&q=70" alt="Ondas y styling" loading="lazy" width="900" height="1100"><figcaption>Ondas y styling</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- Reserva -->
+<section id="reservar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Tu cita</p>
+        <h2 style="margin-top:14px">Reserva en <span class="serif-i">cinco pasos</span></h2>
+      </div>
+      <p>Verificamos tu identidad con un código de 6 dígitos. Así nadie agenda a tu nombre.</p>
+    </div>
+
+    <div class="booking reveal">
+      <div class="steps" id="steps">
+        <div class="step active" data-s="1"><b>01</b>Servicio</div>
+        <div class="step" data-s="2"><b>02</b>Especialista</div>
+        <div class="step" data-s="3"><b>03</b>Día y hora</div>
+        <div class="step" data-s="4"><b>04</b>Tus datos</div>
+        <div class="step" data-s="5"><b>05</b>Verificación</div>
+      </div>
+
+      <!-- Paso 1 -->
+      <div class="pane" data-p="1">
+        <h3>¿Qué te vas a hacer?</h3>
+        <p class="lead">Elige un servicio para empezar.</p>
+        <div class="pick-grid" id="svcPick"></div>
+        <div class="pane-nav">
+          <span></span>
+          <button class="btn btn-primary" data-next="2" disabled id="n1">Continuar</button>
+        </div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="pane hidden" data-p="2">
+        <h3>¿Con quién?</h3>
+        <p class="lead">Solo aparecen las especialistas que dan este servicio.</p>
+        <div class="pick-grid" id="staffPick"></div>
+        <div class="pane-nav">
+          <button class="btn btn-ghost" data-back="1">Regresar</button>
+          <button class="btn btn-primary" data-next="3" disabled id="n2">Continuar</button>
+        </div>
+      </div>
+
+      <!-- Paso 3 -->
+      <div class="pane hidden" data-p="3">
+        <h3>Día y hora</h3>
+        <p class="lead" id="slotLead">Los horarios ocupados aparecen tachados.</p>
+        <div class="days" id="days"></div>
+        <div class="slots" id="slots"></div>
+        <div class="pane-nav">
+          <button class="btn btn-ghost" data-back="2">Regresar</button>
+          <button class="btn btn-primary" data-next="4" disabled id="n3">Continuar</button>
+        </div>
+      </div>
+
+      <!-- Paso 4 -->
+      <div class="pane hidden" data-p="4">
+        <h3>Tus datos</h3>
+        <p class="lead">Con esto creamos tu expediente. Puedes pedir que lo borremos cuando quieras.</p>
+        <div class="form-grid">
+          <div class="field"><label for="cName">Nombre completo</label><input id="cName" placeholder="Ana Sofía Ramírez" autocomplete="name"></div>
+          <div class="field"><label for="cPhone">Celular (10 dígitos)</label><input id="cPhone" placeholder="33 1234 5678" inputmode="numeric" autocomplete="tel"></div>
+          <div class="field full"><label for="cMail">Correo electrónico</label><input id="cMail" type="email" placeholder="ana@correo.com" autocomplete="email"></div>
+          <div class="field full">
+            <label>¿A dónde te mandamos el código?</label>
+            <div class="radio-row" id="chanRow">
+              <button class="radio sel" data-chan="sms">Mensaje de texto</button>
+              <button class="radio" data-chan="email">Correo electrónico</button>
+            </div>
+          </div>
+          <div class="field full"><label for="cNote">Alguna indicación (opcional)</label><textarea id="cNote" placeholder="Alergias, referencia de color, si llegas con alguien..."></textarea></div>
+        </div>
+        <div class="pane-nav">
+          <button class="btn btn-ghost" data-back="3">Regresar</button>
+          <button class="btn btn-primary" id="sendCode">Enviar código</button>
+        </div>
+      </div>
+
+      <!-- Paso 5 -->
+      <div class="pane hidden" data-p="5">
+        <div id="otpStage">
+          <h3>Confirma que eres tú</h3>
+          <p class="lead" id="otpLead">Escribe el código de 6 dígitos.</p>
+          <div class="otp-box" id="otpBox">
+            <input maxlength="1" inputmode="numeric" aria-label="Dígito 1">
+            <input maxlength="1" inputmode="numeric" aria-label="Dígito 2">
+            <input maxlength="1" inputmode="numeric" aria-label="Dígito 3">
+            <input maxlength="1" inputmode="numeric" aria-label="Dígito 4">
+            <input maxlength="1" inputmode="numeric" aria-label="Dígito 5">
+            <input maxlength="1" inputmode="numeric" aria-label="Dígito 6">
+          </div>
+          <p class="note" id="demoNote"></p>
+          <p class="err" id="otpErr"></p>
+          <div class="pane-nav">
+            <button class="btn btn-ghost" data-back="4">Cambiar datos</button>
+            <div style="display:flex;gap:10px">
+              <button class="btn btn-ghost" id="resend">Reenviar</button>
+              <button class="btn btn-primary" id="verify">Confirmar cita</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="doneStage" class="hidden">
+          <div class="ticket">
+            <div class="check">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <p class="eyebrow center" style="justify-content:center">Cita confirmada</p>
+            <div class="folio" id="dFolio">BS-0000</div>
+            <p style="color:var(--muted);font-size:13px">Guarda este folio. Con él te encontramos en recepción.</p>
+            <dl>
+              <dt>Servicio</dt><dd id="dSvc">—</dd>
+              <dt>Especialista</dt><dd id="dStaff">—</dd>
+              <dt>Cuándo</dt><dd id="dWhen">—</dd>
+              <dt>Total</dt><dd id="dTotal">—</dd>
+              <dt>Pago</dt><dd><span class="pill warn">Pendiente en sucursal</span></dd>
+            </dl>
+            <p style="font-size:12.5px;color:var(--muted);margin-bottom:20px">El pago en línea se activa en cuanto conectemos la pasarela. Por ahora liquidas al llegar.</p>
+            <button class="btn btn-ghost btn-sm" id="newBooking">Agendar otra cita</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand" style="margin-bottom:18px">
+          <div class="brand-mark"><img src="logo-bs-mark.png" alt="Beauty Shop"></div>
+          <div class="brand-name">Beauty Shop</div>
+        </div>
+        <p style="max-width:34ch">El estilo que resalta tu belleza. Reserva en línea, expediente digital y confirmación verificada.</p>
+      </div>
+      <div>
+        <h4>Visítanos</h4>
+        <p id="fAddr">Av. Chapultepec 480, Guadalajara</p>
+        <p id="fHours">Lun a Sáb · 10:00 – 20:00</p>
+        <a href="#" id="fPhone">33 1234 5678</a>
+      </div>
+      <div>
+        <h4>Atajos</h4>
+        <a href="#servicios">Carta de servicios</a>
+        <a href="#equipo">Especialistas</a>
+        <a href="#reservar">Agendar cita</a>
+      </div>
+    </div>
+    <div class="divider">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5.4-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 10c0 5.6-8 11-8 11z"/></svg>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> BS Beauty Shop · Todos los derechos reservados</span>
+      <button id="adminLink">Acceso al panel</button>
+    </div>
+  </div>
+</footer>
+</div>
+
+<!-- ══════════════ ACCESO AL PANEL ══════════════ -->
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="brand-mark" style="width:52px;height:52px;font-size:21px"><span>B</span><span>S</span></div>
+    <h3>Panel de administración</h3>
+    <p class="lead">Necesitas correo, contraseña y el código maestro del negocio.</p>
+    <div class="field"><label for="gMail">Correo</label><input id="gMail" type="email" value="admin@beautyshop.mx" autocomplete="username"></div>
+    <div class="field"><label for="gPass">Contraseña</label><input id="gPass" type="password" value="" autocomplete="current-password" placeholder="••••••••"></div>
+    <div class="field"><label for="gCode">Código maestro</label><input id="gCode" type="password" placeholder="6 dígitos" inputmode="numeric" maxlength="8"></div>
+    <p class="err" id="gErr"></p>
+    <div style="display:flex;gap:10px;margin-top:20px">
+      <button class="btn btn-ghost" id="gCancel" style="flex:1">Volver al sitio</button>
+      <button class="btn btn-primary" id="gEnter" style="flex:1.4">Entrar</button>
+    </div>
+    <p class="note" style="margin-top:18px;font-size:12px">
+      <b>Demo:</b> admin@beautyshop.mx · contraseña <b>bs2026</b> · código maestro <b>481516</b>. Cámbialos en Ajustes.
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════ PANEL ══════════════ -->
+<div class="admin" id="admin">
+  <aside class="side" id="side">
+    <div class="side-brand">
+      <div class="brand-mark"><img src="logo-bs-mark.png" alt="Beauty Shop"></div>
+      <div><b>Beauty Shop</b><small>Panel unificado</small></div>
+    </div>
+    <button class="nav-item active" data-v="dash"><span class="ic">◆</span>Resumen</button>
+    <button class="nav-item" data-v="citas"><span class="ic">▤</span>Agenda<span class="badge hidden" id="bCitas">0</span></button>
+    <button class="nav-item" data-v="clientes"><span class="ic">✦</span>Clientas</button>
+    <button class="nav-item" data-v="empleados"><span class="ic">✧</span>Personal</button>
+    <button class="nav-item" data-v="servicios"><span class="ic">✂</span>Servicios</button>
+    <button class="nav-item" data-v="verif"><span class="ic">◉</span>Verificación<span class="badge hidden" id="bVerif">0</span></button>
+    <button class="nav-item" data-v="cerebro"><span class="ic">✺</span>Cerebro BS</button>
+    <button class="nav-item" data-v="updates"><span class="ic">⌘</span>Actualizaciones</button>
+    <button class="nav-item" data-v="ajustes"><span class="ic">⚙</span>Ajustes</button>
+    <div class="side-foot">
+      <button class="nav-item" id="goSite"><span class="ic">↗</span>Ver el sitio</button>
+      <button class="nav-item" id="logout"><span class="ic">⏻</span>Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="top">
+      <div style="display:flex;align-items:center;gap:14px">
+        <button class="icon-btn" id="sideToggle" style="display:none">≡</button>
+        <div>
+          <h2 id="vTitle">Resumen</h2>
+          <p class="sub" id="vSub">Cómo va el negocio hoy</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <span class="pill rose" id="dbBadge">Datos locales</span>
+        <span class="pill mute" id="today"></span>
+      </div>
+    </div>
+
+    <!-- Resumen -->
+    <section class="view on" id="v-dash">
+      <div class="kpis" id="kpis"></div>
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-head"><h3>Citas de los próximos 7 días</h3><span class="hint">Confirmadas y por atender</span></div>
+          <div class="bars" id="bars"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Siguientes citas</h3></div>
+          <div id="nextList"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Actividad reciente</h3><span class="hint">Todo queda registrado</span></div>
+        <div class="log" id="feed"></div>
+      </div>
+    </section>
+
+    <!-- Agenda -->
+    <section class="view" id="v-citas">
+      <div class="toolbar">
+        <input class="search" id="qCitas" placeholder="Buscar por folio, clienta o servicio">
+        <select id="fCitas">
+          <option value="">Todos los estados</option>
+          <option value="confirmada">Confirmada</option>
+          <option value="atendida">Atendida</option>
+          <option value="cancelada">Cancelada</option>
+        </select>
+        <select id="fCitasDia">
+          <option value="">Cualquier día</option>
+          <option value="hoy">Hoy</option>
+          <option value="semana">Esta semana</option>
+        </select>
+        <button class="btn btn-ghost btn-sm" id="addCita">+ Cita manual</button>
+      </div>
+      <div class="panel" style="padding:16px 8px"><div id="tCitas"></div></div>
+    </section>
+
+    <!-- Clientas -->
+    <section class="view" id="v-clientes">
+      <div class="toolbar">
+        <input class="search" id="qCli" placeholder="Buscar por nombre, correo o celular">
+        <select id="fCli">
+          <option value="">Todas</option>
+          <option value="ver">Verificadas</option>
+          <option value="nover">Sin verificar</option>
+        </select>
+        <button class="btn btn-primary btn-sm" id="addCli">+ Alta de clienta</button>
+      </div>
+      <div class="panel" style="padding:16px 8px"><div id="tCli"></div></div>
+    </section>
+
+    <!-- Personal -->
+    <section class="view" id="v-empleados">
+      <div class="toolbar">
+        <input class="search" id="qEmp" placeholder="Buscar por nombre o puesto">
+        <button class="btn btn-primary btn-sm" id="addEmp">+ Alta de personal</button>
+      </div>
+      <div class="panel" style="padding:16px 8px"><div id="tEmp"></div></div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="view" id="v-servicios">
+      <div class="toolbar">
+        <input class="search" id="qSvc" placeholder="Buscar servicio">
+        <button class="btn btn-primary btn-sm" id="addSvc">+ Nuevo servicio</button>
+      </div>
+      <div class="panel" style="padding:16px 8px"><div id="tSvc"></div></div>
+    </section>
+
+    <!-- Verificación -->
+    <section class="view" id="v-verif">
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Solicitudes de verificación</h3>
+          <span class="hint">Código de 6 dígitos, vence a los 10 minutos</span>
+        </div>
+        <div id="tVerif"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Cómo se envía el código</h3></div>
+        <p style="color:var(--muted);font-size:13.5px;max-width:70ch;margin-bottom:14px">
+          Hoy el sistema genera y valida el código en el navegador (modo demo: lo verás en pantalla).
+          Para enviarlo de verdad por SMS o correo, pega tu webhook de Make en Ajustes: el sistema hará un POST con
+          <code style="color:var(--rose)">{ canal, destino, codigo, nombre }</code> y tu escenario lo entrega por Twilio, WhatsApp o el correo que uses.
+        </p>
+        <div class="field" style="max-width:520px">
+          <label for="hookTest">Probar webhook con un código de prueba</label>
+          <div style="display:flex;gap:10px"><input id="hookTest" placeholder="https://hook.us1.make.com/..."><button class="btn btn-ghost btn-sm" id="hookGo">Probar</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cerebro -->
+    <section class="view" id="v-cerebro">
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Cerebro BS</h3>
+          <span class="hint" id="brainMode">Motor local · lee tu base de datos</span>
+        </div>
+        <div class="quick" id="quick">
+          <button>¿Cómo vamos hoy?</button>
+          <button>¿Qué servicio deja más dinero?</button>
+          <button>¿Quién tiene huecos mañana?</button>
+          <button>Dame ideas para llenar la semana</button>
+        </div>
+        <div class="chat">
+          <div class="chat-log" id="chatLog"></div>
+          <div class="chat-in">
+            <input id="chatIn" placeholder="Pregúntale lo que sea sobre tu negocio">
+            <button class="btn btn-primary btn-sm" id="chatGo">Preguntar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Actualizaciones -->
+    <section class="view" id="v-updates">
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Consola de actualizaciones</h3>
+          <span class="hint">Pega un bloque de código y aplícalo en vivo</span>
+        </div>
+        <p style="color:var(--muted);font-size:13.5px;max-width:78ch;margin-bottom:16px">
+          Escribe instrucciones en JSON y el sistema las ejecuta contra la base de datos: crear, editar o borrar servicios,
+          personal, precios y textos del sitio. Sin tocar el archivo, sin volver a subir nada.
+        </p>
+        <div class="quick">
+          <button data-recipe="precio">Subir 10% los precios</button>
+          <button data-recipe="servicio">Agregar un servicio</button>
+          <button data-recipe="texto">Cambiar el título del sitio</button>
+          <button data-recipe="horario">Cambiar el horario</button>
+        </div>
+        <div class="field console">
+          <label for="code">Instrucciones</label>
+          <textarea id="code" spellcheck="false"></textarea>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+          <button class="btn btn-primary btn-sm" id="runCode">Aplicar cambios</button>
+          <button class="btn btn-ghost btn-sm" id="dryCode">Solo simular</button>
+          <button class="btn btn-ghost btn-sm" id="helpCode">Ver comandos</button>
+        </div>
+        <div class="log" id="codeLog" style="margin-top:18px"></div>
+      </div>
+    </section>
+
+    <!-- Ajustes -->
+    <section class="view" id="v-ajustes">
+      <div class="grid-2">
+        <div>
+          <div class="panel">
+            <div class="panel-head"><h3>Datos del negocio</h3></div>
+            <div class="form-grid">
+              <div class="field full"><label for="sName">Nombre</label><input id="sName"></div>
+              <div class="field full"><label for="sTag">Frase</label><input id="sTag"></div>
+              <div class="field full"><label for="sAddr">Dirección</label><input id="sAddr"></div>
+              <div class="field"><label for="sPhone">Teléfono</label><input id="sPhone"></div>
+              <div class="field"><label for="sHours">Horario visible</label><input id="sHours"></div>
+              <div class="field"><label for="sOpen">Abre (24h)</label><input id="sOpen" type="number" min="6" max="22"></div>
+              <div class="field"><label for="sClose">Cierra (24h)</label><input id="sClose" type="number" min="8" max="23"></div>
+              <div class="field full"><label for="sHook">Webhook de envío (Make / Zapier)</label><input id="sHook" placeholder="Opcional. Si está vacío, el código se muestra en pantalla."></div>
+            </div>
+            <button class="btn btn-primary btn-sm" id="saveSettings" style="margin-top:20px">Guardar cambios</button>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>Acceso</h3></div>
+            <div class="form-grid">
+              <div class="field"><label for="sPass">Nueva contraseña</label><input id="sPass" type="password" placeholder="Déjalo vacío para no cambiarla"></div>
+              <div class="field"><label for="sCode">Nuevo código maestro</label><input id="sCode" placeholder="6 dígitos" maxlength="8" inputmode="numeric"></div>
+            </div>
+            <button class="btn btn-primary btn-sm" id="saveAuth" style="margin-top:20px">Actualizar acceso</button>
+          </div>
+        </div>
+        <div>
+          <div class="panel">
+            <div class="panel-head"><h3>Base de datos</h3><span class="hint" id="dbWhere">—</span></div>
+            <p style="color:var(--muted);font-size:13.5px;margin-bottom:16px">
+              Todo vive en el navegador: cero mensualidades. Descarga un respaldo cuando quieras y restáuralo en cualquier equipo.
+            </p>
+            <div id="dbStats" style="margin-bottom:18px"></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn btn-primary btn-sm" id="expDb">Descargar respaldo</button>
+              <button class="btn btn-ghost btn-sm" id="impDb">Restaurar respaldo</button>
+              <input type="file" id="impFile" accept="application/json" class="hidden">
+            </div>
+            <hr style="border:none;border-top:1px solid var(--line-soft);margin:22px 0">
+            <button class="btn btn-danger btn-sm" id="wipeDb">Borrar todos los datos</button>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3>Pagos</h3><span class="pill warn">Sin conectar</span></div>
+            <p style="color:var(--muted);font-size:13.5px">
+              La cita se guarda con el pago en estado pendiente. Cuando decidas la pasarela (Stripe, Mercado Pago o Conekta),
+              se conecta en el paso 5 de la reserva y en la Agenda sin tocar nada más: el gancho ya está puesto en
+              <code style="color:var(--rose)">BS.pay.charge()</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="modal"><div class="modal-card" id="modalCard" style="position:relative"></div></div>
+<div class="toasts" id="toasts"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   BS BEAUTY SHOP — Sistema unicanal en un solo archivo
+   1. Almacenamiento  2. Datos semilla  3. Sitio  4. Reserva
+   5. Panel  6. Cerebro  7. Consola de actualizaciones
+   ═══════════════════════════════════════════════════════════════ */
+const BS = { db:null, session:null, ui:{}, pay:{} };
+
+/* ---------- 1. Almacenamiento (sin mensualidades) ---------------
+   Prioridad: storage del artefacto → localStorage → memoria.
+   Los archivos pesados se guardan en llaves aparte.            */
+const Store = (() => {
+  let mode = 'memoria', mem = {};
+  const has = k => Object.prototype.hasOwnProperty.call(mem, k);
+
+  async function init(){
+    if (window.storage && typeof window.storage.get === 'function') {
+      try { await window.storage.list('bs:'); mode = 'nube del artefacto'; return mode; } catch(e){}
+    }
+    try {
+      localStorage.setItem('__bs', '1'); localStorage.removeItem('__bs');
+      mode = 'navegador (localStorage)';
+    } catch(e) { mode = 'memoria'; }
+    return mode;
+  }
+  async function get(k){
+    if (mode.includes('artefacto')) { try { const r = await window.storage.get(k); return r ? JSON.parse(r.value) : null; } catch(e){ return null; } }
+    if (mode.includes('navegador')) { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; }
+    return has(k) ? mem[k] : null;
+  }
+  async function set(k, v){
+    if (mode.includes('artefacto')) { await window.storage.set(k, JSON.stringify(v)); return true; }
+    if (mode.includes('navegador')) { localStorage.setItem(k, JSON.stringify(v)); return true; }
+    mem[k] = v; return true;
+  }
+  async function del(k){
+    if (mode.includes('artefacto')) { try { await window.storage.delete(k); } catch(e){} return; }
+    if (mode.includes('navegador')) { localStorage.removeItem(k); return; }
+    delete mem[k];
+  }
+  return { init, get, set, del, where: () => mode };
+})();
+
+const DB_KEY = 'bs:db';
+const save   = () => Store.set(DB_KEY, BS.db);
+
+/* ---------- Utilidades ---------- */
+const $  = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const uid = p => p + '_' + Math.random().toString(36).slice(2,9);
+const money = n => '$' + Number(n||0).toLocaleString('es-MX') + ' MXN';
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const initials = n => (n||'?').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+const todayISO = () => new Date().toISOString().slice(0,10);
+const DIAS = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+const fmtDate = iso => { const d = new Date(iso+'T12:00:00'); return `${DIAS[d.getDay()]} ${d.getDate()} ${MESES[d.getMonth()]}`; };
+const fmtHour = h => String(Math.floor(h)).padStart(2,'0') + ':' + (h % 1 ? '30' : '00');
+const nowStamp = () => new Date().toLocaleString('es-MX', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+
+async function hash(txt){
+  if (window.crypto?.subtle) {
+    try {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('bs·' + txt));
+      return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+    } catch(e){}
+  }
+  let h = 5381; for (const c of ('bs·'+txt)) h = ((h*33) ^ c.charCodeAt(0)) >>> 0;
+  return 'f' + h.toString(16);
+}
+
+function toast(msg, kind=''){
+  const t = document.createElement('div');
+  t.className = 'toast ' + kind; t.textContent = msg;
+  $('#toasts').appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(20px)'; t.style.transition = '.4s'; }, 3200);
+  setTimeout(() => t.remove(), 3700);
+}
+function log(action, detail=''){
+  BS.db.feed.unshift({ at: nowStamp(), action, detail });
+  BS.db.feed = BS.db.feed.slice(0, 60);
+}
+function openModal(html){ $('#modalCard').innerHTML = html; $('#modal').classList.add('on'); }
+function closeModal(){ $('#modal').classList.remove('on'); }
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ---------- 2. Datos semilla ---------- */
+function seed(){
+  const svc = (nom, cat, min, precio, desc) => ({ id: uid('s'), nom, cat, min, precio, desc, activo: true });
+  const services = [
+    svc('Balayage de autor','Color',180,2400,'Decoloración a mano alzada, matiz y tratamiento de sellado.'),
+    svc('Color raíz + brillo','Color',90,950,'Retoque de raíz con tinte sin amoniaco y baño de brillo.'),
+    svc('Corte y peinado','Cabello',60,550,'Diagnóstico, corte a medida y peinado de salida.'),
+    svc('Keratina orgánica','Cabello',150,1900,'Alisado progresivo sin formol. Dura hasta 4 meses.'),
+    svc('Peinado de evento','Cabello',75,850,'Recogido o suelto trabajado, con prueba de accesorios.'),
+    svc('Manicure rusa','Uñas',75,480,'Cutícula al detalle, esmaltado semipermanente incluido.'),
+    svc('Uñas acrílicas','Uñas',120,900,'Construcción, forma a elección y diseño de dos uñas.'),
+    svc('Pedicure spa','Uñas',60,520,'Exfoliación, masaje y esmaltado semipermanente.'),
+    svc('Laminado de cejas','Mirada',50,650,'Alineado, tinte y laminado. Se ven pobladas 6 semanas.'),
+    svc('Extensiones de pestañas','Mirada',120,1100,'Pelo a pelo o volumen ruso, sin dañar la pestaña natural.'),
+    svc('Facial hidratante','Piel',70,780,'Limpieza profunda, extracción y mascarilla de ácido hialurónico.'),
+    svc('Maquillaje social','Piel',60,900,'Larga duración, incluye pestañas postizas.')
+  ];
+  const pick = names => names.map(n => services.find(s => s.nom === n).id);
+  const staff = [
+    { id: uid('e'), nom:'Valeria Ochoa', puesto:'Directora de color', bio:'12 años en rubios. Formada en Londres.', servicios: pick(['Balayage de autor','Color raíz + brillo','Corte y peinado','Keratina orgánica']), dias:[1,2,3,4,5,6], activo:true, tel:'3311110001', mail:'valeria@beautyshop.mx', verificado:true },
+    { id: uid('e'), nom:'Renata Solís', puesto:'Estilista senior', bio:'Cortes con movimiento y peinados de novia.', servicios: pick(['Corte y peinado','Peinado de evento','Keratina orgánica','Maquillaje social']), dias:[2,3,4,5,6], activo:true, tel:'3311110002', mail:'renata@beautyshop.mx', verificado:true },
+    { id: uid('e'), nom:'Camila Bernal', puesto:'Nail artist', bio:'Técnica rusa certificada. Diseño a mano.', servicios: pick(['Manicure rusa','Uñas acrílicas','Pedicure spa']), dias:[1,2,3,4,5], activo:true, tel:'3311110003', mail:'camila@beautyshop.mx', verificado:false },
+    { id: uid('e'), nom:'Ximena Ruiz', puesto:'Especialista en mirada y piel', bio:'Lash & brow artist, cosmiatra.', servicios: pick(['Laminado de cejas','Extensiones de pestañas','Facial hidratante','Maquillaje social']), dias:[1,3,4,5,6], activo:true, tel:'3311110004', mail:'ximena@beautyshop.mx', verificado:true }
+  ];
+  return {
+    v: 1,
+    settings: {
+      nombre:'BS Beauty Shop', tagline:'El estilo que resalta tu belleza',
+      dir:'Av. Chapultepec 480, Guadalajara', tel:'33 1234 5678',
+      horario:'Lun a Sáb · 10:00 – 20:00', abre: 10, cierra: 20, hook: '',
+      titulo:'Tu cita, impecable.'
+    },
+    admin: { mail:'admin@beautyshop.mx', pass:null, code:'481516' },
+    services, staff,
+    clients: [], appointments: [], verifications: [], docs: [], feed: [],
+    seq: 1000
+  };
+}
+
+/* ---------- 3. Arranque ---------- */
+async function boot(){
+  const where = await Store.init();
+  BS.db = await Store.get(DB_KEY);
+  if (!BS.db || !BS.db.services) {
+    BS.db = seed();
+    BS.db.admin.pass = await hash('bs2026');
+    log('Sistema iniciado', 'Base de datos creada con datos de ejemplo');
+    await save();
+  }
+  if (!BS.db.admin.pass) { BS.db.admin.pass = await hash('bs2026'); await save(); }
+  $('#dbBadge').textContent = where.includes('memoria') ? 'Datos en memoria' : 'Datos guardados';
+  $('#dbWhere').textContent = where;
+  renderSite();
+  buildBulbs();
+  $('#year').textContent = new Date().getFullYear();
+  $('#today').textContent = new Date().toLocaleDateString('es-MX', { weekday:'long', day:'numeric', month:'long' });
+  if (location.hash === '#panel') openGate();
+}
+
+/* Focos del espejo */
+function buildBulbs(){
+  const m = $('#mirror'); if (!m) return;
+  const n = 22, frag = document.createDocumentFragment();
+  for (let i = 0; i < n; i++){
+    const t = i / (n - 1), a = Math.PI * (1 - t); // de izquierda a derecha por el arco
+    const b = document.createElement('i');
+    b.className = 'bulb';
+    b.style.left = (50 - Math.cos(a) * 50) + '%';
+    b.style.top  = (57 - Math.sin(a) * 56) + '%';
+    frag.appendChild(b);
+  }
+  m.appendChild(frag);
+  const bulbs = $$('.bulb', m);
+  bulbs.forEach((b, i) => setTimeout(() => b.classList.add('on'), 220 + i * 55));
+}
+</script>
+
+<script>
+/* ═══════════ 4. SITIO PÚBLICO ═══════════ */
+BS.book = { svc:null, staff:null, date:null, time:null, chan:'sms' };
+
+function renderSite(){
+  const st = BS.db.settings;
+  document.title = st.nombre + ' — ' + st.tagline;
+  $('#brandTag').textContent = st.tagline;
+  $('#fAddr').textContent = st.dir;
+  $('#fHours').textContent = st.horario;
+  $('#fPhone').textContent = st.tel;
+  const h1 = $('.hero-t');
+  const [a, ...b] = st.titulo.split(',');
+  h1.innerHTML = b.length ? esc(a) + ',<em>' + esc(b.join(',').trim()) + '</em>' : esc(st.titulo);
+  $('#mStaff').textContent = BS.db.staff.filter(s => s.activo).length;
+  $('#mSvc').textContent = BS.db.services.filter(s => s.activo).length;
+  $('#mCli').textContent = BS.db.clients.length || 120;
+  renderMenu('Todo');
+  renderTeam();
+  renderSvcPick();
+}
+
+function renderMenu(cat){
+  const cats = ['Todo', ...new Set(BS.db.services.filter(s=>s.activo).map(s => s.cat))];
+  $('#filters').innerHTML = cats.map(c =>
+    `<button class="chip ${c===cat?'active':''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
+  const list = BS.db.services.filter(s => s.activo && (cat==='Todo' || s.cat===cat));
+  $('#menuGrid').innerHTML = list.map(s => `
+    <button class="svc" data-svc="${s.id}">
+      <span class="svc-name">${esc(s.nom)}</span>
+      <span class="svc-price">${money(s.precio)}</span>
+      <span class="svc-desc">${esc(s.desc)}</span>
+      <span class="svc-tag" style="grid-column:1/-1">${s.min} min · ${esc(s.cat)}</span>
+    </button>`).join('');
+  $$('#filters .chip').forEach(c => c.onclick = () => renderMenu(c.dataset.cat));
+  $$('#menuGrid .svc').forEach(el => el.onclick = () => {
+    pickService(el.dataset.svc);
+    $('#reservar').scrollIntoView({ behavior:'smooth' });
+  });
+}
+
+function renderTeam(){
+  $('#teamGrid').innerHTML = BS.db.staff.filter(s=>s.activo).map(s => `
+    <article class="card">
+      <div class="avatar">${initials(s.nom)}</div>
+      <h3>${esc(s.nom)}</h3>
+      <p class="role">${esc(s.puesto)}</p>
+      <p>${esc(s.bio)}</p>
+      <p class="stars">★★★★★</p>
+    </article>`).join('');
+}
+
+/* ---- Paso 1: servicio ---- */
+function renderSvcPick(){
+  $('#svcPick').innerHTML = BS.db.services.filter(s=>s.activo).map(s => `
+    <button class="pick ${BS.book.svc===s.id?'sel':''}" data-svc="${s.id}">
+      <strong>${esc(s.nom)}</strong>
+      <span>${s.min} min · ${esc(s.cat)}</span>
+      <span class="p">${money(s.precio)}</span>
+    </button>`).join('');
+  $$('#svcPick .pick').forEach(b => b.onclick = () => pickService(b.dataset.svc));
+}
+function pickService(id){
+  BS.book.svc = id; BS.book.staff = null; BS.book.time = null;
+  renderSvcPick(); $('#n1').disabled = false; step(1);
+}
+
+/* ---- Paso 2: especialista ---- */
+function renderStaffPick(){
+  const list = BS.db.staff.filter(s => s.activo && s.servicios.includes(BS.book.svc));
+  $('#staffPick').innerHTML = list.length ? list.map(s => `
+    <button class="pick ${BS.book.staff===s.id?'sel':''}" data-st="${s.id}">
+      <strong>${esc(s.nom)}</strong>
+      <span>${esc(s.puesto)}</span>
+      <span class="p">Trabaja ${s.dias.map(d=>DIAS[d]).join(' · ')}</span>
+    </button>`).join('') : `<p class="note">Ninguna especialista tiene este servicio asignado. Elige otro o asígnalo desde el panel.</p>`;
+  $$('#staffPick .pick').forEach(b => b.onclick = () => {
+    BS.book.staff = b.dataset.st; BS.book.time = null;
+    renderStaffPick(); $('#n2').disabled = false;
+  });
+}
+
+/* ---- Paso 3: día y hora ---- */
+function renderDays(){
+  const days = [];
+  for (let i = 0; i < 14; i++){
+    const d = new Date(); d.setDate(d.getDate() + i);
+    days.push(d);
+  }
+  const st = BS.db.staff.find(s => s.id === BS.book.staff);
+  $('#days').innerHTML = days.map(d => {
+    const iso = d.toISOString().slice(0,10);
+    const works = st.dias.includes(d.getDay());
+    return `<button class="day ${BS.book.date===iso?'sel':''}" data-d="${iso}" ${works?'':'disabled style="opacity:.25"'}>
+      <small>${DIAS[d.getDay()]}</small><b>${d.getDate()}</b><small>${MESES[d.getMonth()]}</small></button>`;
+  }).join('');
+  $$('#days .day').forEach(b => b.onclick = () => {
+    if (b.disabled) return;
+    BS.book.date = b.dataset.d; BS.book.time = null;
+    renderDays(); renderSlots(); $('#n3').disabled = true;
+  });
+  if (!BS.book.date) { const first = $('#days .day:not([disabled])'); if (first) first.click(); }
+  else renderSlots();
+}
+function busy(staffId, iso, h, dur){
+  const end = h + dur/60;
+  return BS.db.appointments.some(a => {
+    if (a.staff !== staffId || a.fecha !== iso || a.estado === 'cancelada') return false;
+    const s2 = a.hora, e2 = a.hora + a.min/60;
+    return h < e2 && s2 < end;
+  });
+}
+function renderSlots(){
+  const svc = BS.db.services.find(s => s.id === BS.book.svc);
+  const { abre, cierra } = BS.db.settings;
+  const now = new Date(), isToday = BS.book.date === todayISO();
+  const nowH = now.getHours() + now.getMinutes()/60;
+  let out = '';
+  for (let h = abre; h + svc.min/60 <= cierra; h += 0.5){
+    const taken = busy(BS.book.staff, BS.book.date, h, svc.min);
+    const past  = isToday && h < nowH + 1;
+    out += `<button class="slot ${BS.book.time===h?'sel':''}" data-h="${h}" ${taken||past?'disabled':''}>${fmtHour(h)}</button>`;
+  }
+  $('#slots').innerHTML = out || '<p class="note">No hay horarios disponibles ese día.</p>';
+  $('#slotLead').textContent = `${svc.nom} · ${svc.min} minutos · los horarios ocupados aparecen tachados.`;
+  $$('#slots .slot').forEach(b => b.onclick = () => {
+    BS.book.time = +b.dataset.h; renderSlots(); $('#n3').disabled = false;
+  });
+}
+
+/* ---- Navegación del wizard ---- */
+function step(n){
+  $$('.pane').forEach(p => p.classList.toggle('hidden', +p.dataset.p !== n));
+  $$('.step').forEach(s => {
+    const i = +s.dataset.s;
+    s.classList.toggle('active', i === n);
+    s.classList.toggle('done', i < n);
+  });
+  if (n === 2) renderStaffPick();
+  if (n === 3) renderDays();
+}
+$$('[data-next]').forEach(b => b.onclick = () => step(+b.dataset.next));
+$$('[data-back]').forEach(b => b.onclick = () => step(+b.dataset.back));
+$$('#chanRow .radio').forEach(b => b.onclick = () => {
+  $$('#chanRow .radio').forEach(x => x.classList.remove('sel'));
+  b.classList.add('sel'); BS.book.chan = b.dataset.chan;
+});
+
+/* ---- Paso 4 → 5: verificación de identidad ---- */
+const validMail = v => /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v);
+const validTel  = v => v.replace(/\D/g,'').length === 10;
+
+async function sendCode(){
+  const nom = $('#cName').value.trim(), tel = $('#cPhone').value.trim(), mail = $('#cMail').value.trim();
+  if (nom.length < 4) return toast('Escribe tu nombre completo.', 'bad');
+  if (!validTel(tel)) return toast('El celular debe tener 10 dígitos.', 'bad');
+  if (!validMail(mail)) return toast('Revisa tu correo electrónico.', 'bad');
+
+  const code = String(Math.floor(100000 + Math.random()*900000));
+  const chan = BS.book.chan;
+  const destino = chan === 'sms' ? tel : mail;
+
+  BS.db.verifications = BS.db.verifications.filter(v => v.destino !== destino || v.estado !== 'pendiente');
+  const v = { id: uid('v'), nom, tel, mail, chan, destino, code, estado:'pendiente',
+              creado: Date.now(), vence: Date.now() + 10*60*1000 };
+  BS.db.verifications.unshift(v);
+  BS.book.pendingV = v.id;
+  log('Código enviado', `${nom} · ${chan === 'sms' ? 'SMS a ' + tel : 'correo a ' + mail}`);
+  await save();
+
+  let entregado = false;
+  const hook = BS.db.settings.hook;
+  if (hook) {
+    try {
+      await fetch(hook, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ canal: chan, destino, codigo: code, nombre: nom }) });
+      entregado = true;
+    } catch(e){ entregado = false; }
+  }
+  $('#otpLead').textContent = chan === 'sms'
+    ? `Te mandamos un código de 6 dígitos al ${tel}.`
+    : `Te mandamos un código de 6 dígitos a ${mail}.`;
+  $('#demoNote').innerHTML = entregado
+    ? `<b>Enviado.</b> Si no llega en un minuto, toca Reenviar.`
+    : `<b>Modo demo:</b> tu código es <b style="letter-spacing:.3em">${code}</b>. Conecta un webhook en Ajustes para enviarlo de verdad por SMS o correo.`;
+  $('#otpErr').textContent = '';
+  $$('#otpBox input').forEach(i => i.value = '');
+  step(5);
+  $('#otpBox input').focus();
+  toast('Código generado. Revísalo para confirmar.');
+}
+
+$('#sendCode').onclick = sendCode;
+$('#resend').onclick = sendCode;
+
+$$('#otpBox input').forEach((inp, i, all) => {
+  inp.oninput = () => {
+    inp.value = inp.value.replace(/\D/g,'');
+    if (inp.value && i < all.length-1) all[i+1].focus();
+    if (all.every(x => x.value)) $('#verify').focus();
+  };
+  inp.onkeydown = e => { if (e.key === 'Backspace' && !inp.value && i) all[i-1].focus(); };
+  inp.onpaste = e => {
+    const t = (e.clipboardData.getData('text')||'').replace(/\D/g,'').slice(0,6);
+    if (t.length === 6) { e.preventDefault(); all.forEach((x,k) => x.value = t[k]); $('#verify').focus(); }
+  };
+});
+
+$('#verify').onclick = async () => {
+  const typed = $$('#otpBox input').map(i => i.value).join('');
+  const v = BS.db.verifications.find(x => x.id === BS.book.pendingV);
+  if (!v) return toast('Vuelve a pedir tu código.', 'bad');
+  if (Date.now() > v.vence) { v.estado = 'vencido'; await save(); return ($('#otpErr').textContent = 'El código venció. Toca Reenviar.'); }
+  if (typed.length < 6) return ($('#otpErr').textContent = 'Faltan dígitos.');
+  if (typed !== v.code) { $('#otpErr').textContent = 'Ese código no coincide. Revísalo.'; return; }
+
+  v.estado = 'verificado'; v.verificadoEn = nowStamp();
+
+  let cli = BS.db.clients.find(c => c.mail === v.mail || c.tel === v.tel);
+  if (!cli) {
+    cli = { id: uid('c'), nom: v.nom, tel: v.tel, mail: v.mail, verificado: true, canal: v.chan,
+            alta: todayISO(), notas: $('#cNote').value.trim(), visitas: 0 };
+    BS.db.clients.push(cli);
+    log('Alta de clienta', `${cli.nom} · verificada por ${v.chan === 'sms' ? 'SMS' : 'correo'}`);
+  } else {
+    cli.verificado = true; cli.nom = v.nom;
+    if ($('#cNote').value.trim()) cli.notas = $('#cNote').value.trim();
+  }
+
+  const svc = BS.db.services.find(s => s.id === BS.book.svc);
+  const st  = BS.db.staff.find(s => s.id === BS.book.staff);
+  const folio = 'BS-' + (++BS.db.seq);
+  const cita = { id: uid('a'), folio, cliente: cli.id, staff: st.id, servicio: svc.id,
+                 fecha: BS.book.date, hora: BS.book.time, min: svc.min, precio: svc.precio,
+                 estado:'confirmada', pago:'pendiente', creada: nowStamp(),
+                 nota: $('#cNote').value.trim() };
+  BS.db.appointments.push(cita);
+  cli.visitas++;
+  log('Cita confirmada', `${folio} · ${cli.nom} · ${svc.nom} · ${fmtDate(cita.fecha)} ${fmtHour(cita.hora)}`);
+  await save();
+
+  $('#dFolio').textContent = folio;
+  $('#dSvc').textContent = svc.nom;
+  $('#dStaff').textContent = st.nom;
+  $('#dWhen').textContent = `${fmtDate(cita.fecha)} · ${fmtHour(cita.hora)} h`;
+  $('#dTotal').textContent = money(svc.precio);
+  $('#otpStage').classList.add('hidden');
+  $('#doneStage').classList.remove('hidden');
+  toast('¡Listo! Tu cita quedó confirmada.', 'ok');
+  renderSite();
+  if (BS.session) refreshAdmin();
+};
+
+$('#newBooking').onclick = () => {
+  BS.book = { svc:null, staff:null, date:null, time:null, chan:'sms' };
+  ['cName','cPhone','cMail','cNote'].forEach(id => $('#'+id).value = '');
+  $('#n1').disabled = $('#n2').disabled = $('#n3').disabled = true;
+  $('#otpStage').classList.remove('hidden');
+  $('#doneStage').classList.add('hidden');
+  renderSvcPick(); step(1);
+  $('#reservar').scrollIntoView({ behavior:'smooth' });
+};
+
+/* Gancho de pagos: aquí entra la pasarela cuando la conectes */
+BS.pay.charge = async (cita) => ({ ok:false, motivo:'Pasarela sin conectar. La cita queda con pago pendiente.' });
+
+/* ---- Navegación general ---- */
+const nav = $('#nav');
+addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 40));
+$('#burger').onclick = () => $('#navLinks').classList.toggle('open');
+$$('#navLinks a').forEach(a => a.onclick = () => $('#navLinks').classList.remove('open'));
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold:.12 });
+$$('.reveal').forEach(el => io.observe(el));
+</script>
+
+<script>
+/* ═══════════ 5. PANEL DE ADMINISTRACIÓN ═══════════ */
+function openGate(){ $('#gate').classList.add('on'); $('#gPass').focus(); }
+$('#adminLink').onclick = openGate;
+$('#gCancel').onclick = () => { $('#gate').classList.remove('on'); $('#gErr').textContent=''; };
+
+$('#gEnter').onclick = async () => {
+  const mail = $('#gMail').value.trim().toLowerCase();
+  const pass = await hash($('#gPass').value);
+  const code = $('#gCode').value.trim();
+  const A = BS.db.admin;
+  if (mail !== A.mail.toLowerCase() || pass !== A.pass) return ($('#gErr').textContent = 'Correo o contraseña incorrectos.');
+  if (code !== A.code) return ($('#gErr').textContent = 'El código maestro no coincide.');
+  BS.session = { mail, at: nowStamp() };
+  $('#gErr').textContent = ''; $('#gPass').value = ''; $('#gCode').value = '';
+  $('#gate').classList.remove('on');
+  $('#site').classList.add('hidden');
+  $('#admin').classList.add('on');
+  log('Inicio de sesión', mail); await save();
+  refreshAdmin();
+};
+$('#gate').addEventListener('keydown', e => { if (e.key === 'Enter') $('#gEnter').click(); });
+
+$('#logout').onclick = () => { BS.session = null; $('#admin').classList.remove('on'); $('#site').classList.remove('hidden'); };
+$('#goSite').onclick = () => { $('#admin').classList.remove('on'); $('#site').classList.remove('hidden'); scrollTo(0,0); };
+$('#sideToggle').onclick = () => $('#side').classList.toggle('open');
+
+const VIEWS = {
+  dash:['Resumen','Cómo va el negocio hoy'],
+  citas:['Agenda','Todas las citas del salón'],
+  clientes:['Clientas','Expediente y verificación de identidad'],
+  empleados:['Personal','Altas, servicios y documentos'],
+  servicios:['Servicios','La carta que ve tu clienta'],
+  verif:['Verificación','Códigos enviados y confirmados'],
+  cerebro:['Cerebro BS','Pregúntale a tus propios datos'],
+  updates:['Actualizaciones','Cambia el sistema con código'],
+  ajustes:['Ajustes','Negocio, acceso y respaldos']
+};
+$$('.nav-item[data-v]').forEach(b => b.onclick = () => {
+  const v = b.dataset.v;
+  $$('.nav-item[data-v]').forEach(x => x.classList.toggle('active', x === b));
+  $$('.view').forEach(s => s.classList.toggle('on', s.id === 'v-' + v));
+  $('#vTitle').textContent = VIEWS[v][0];
+  $('#vSub').textContent = VIEWS[v][1];
+  $('#side').classList.remove('open');
+  $('#main').scrollTop = 0;
+  if (v === 'cerebro' && !$('#chatLog').children.length) brainWelcome();
+});
+
+function refreshAdmin(){
+  renderKPIs(); renderBars(); renderNext(); renderFeed();
+  renderCitas(); renderClientes(); renderEmpleados(); renderServicios(); renderVerif();
+  fillSettings(); renderDbStats();
+  const pend = BS.db.verifications.filter(v => v.estado === 'pendiente' && Date.now() < v.vence).length;
+  $('#bVerif').textContent = pend; $('#bVerif').classList.toggle('hidden', !pend);
+  const hoy = BS.db.appointments.filter(a => a.fecha === todayISO() && a.estado === 'confirmada').length;
+  $('#bCitas').textContent = hoy; $('#bCitas').classList.toggle('hidden', !hoy);
+  if (innerWidth <= 900) $('#sideToggle').style.display = 'grid';
+}
+
+const svcOf = id => BS.db.services.find(s => s.id === id) || { nom:'—', precio:0, min:0 };
+const staffOf = id => BS.db.staff.find(s => s.id === id) || { nom:'—' };
+const cliOf = id => BS.db.clients.find(c => c.id === id) || { nom:'—', tel:'', mail:'' };
+
+/* ---- Resumen ---- */
+function renderKPIs(){
+  const A = BS.db.appointments;
+  const hoy = A.filter(a => a.fecha === todayISO() && a.estado !== 'cancelada');
+  const mes = A.filter(a => a.fecha.slice(0,7) === todayISO().slice(0,7) && a.estado !== 'cancelada');
+  const ingreso = mes.reduce((s,a) => s + a.precio, 0);
+  const porCobrar = A.filter(a => a.pago === 'pendiente' && a.estado !== 'cancelada').reduce((s,a)=>s+a.precio,0);
+  const ver = BS.db.clients.filter(c => c.verificado).length;
+  const tasa = BS.db.clients.length ? Math.round(ver / BS.db.clients.length * 100) : 0;
+  const kpi = (t,v,s,cls='') => `<div class="kpi"><small>${t}</small><b>${v}</b><span class="${cls}">${s}</span></div>`;
+  $('#kpis').innerHTML =
+    kpi('Citas hoy', hoy.length, hoy.length ? 'Primera a las ' + fmtHour(Math.min(...hoy.map(a=>a.hora))) : 'Agenda libre') +
+    kpi('Ingreso del mes', money(ingreso).replace(' MXN',''), mes.length + ' citas', 'up') +
+    kpi('Por cobrar', money(porCobrar).replace(' MXN',''), 'Pago pendiente en sucursal') +
+    kpi('Clientas', BS.db.clients.length, tasa + '% con identidad verificada');
+}
+function renderBars(){
+  const days = [...Array(7)].map((_,i) => { const d = new Date(); d.setDate(d.getDate()+i); return d; });
+  const counts = days.map(d => {
+    const iso = d.toISOString().slice(0,10);
+    return BS.db.appointments.filter(a => a.fecha === iso && a.estado !== 'cancelada').length;
+  });
+  const max = Math.max(1, ...counts);
+  $('#bars').innerHTML = days.map((d,i) =>
+    `<div class="bar" title="${counts[i]} citas"><i style="height:${Math.round(counts[i]/max*100)}%"></i><small>${DIAS[d.getDay()]}</small></div>`).join('');
+}
+function renderNext(){
+  const now = todayISO();
+  const next = BS.db.appointments
+    .filter(a => a.fecha >= now && a.estado === 'confirmada')
+    .sort((a,b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora)).slice(0,5);
+  $('#nextList').innerHTML = next.length ? next.map(a => `
+    <div style="display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05)">
+      <div class="av" style="width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--rose-soft);color:var(--rose);font-family:var(--display);flex-shrink:0">${initials(cliOf(a.cliente).nom)}</div>
+      <div style="flex:1;min-width:0">
+        <b style="font-weight:400;display:block">${esc(cliOf(a.cliente).nom)}</b>
+        <small style="color:var(--muted)">${esc(svcOf(a.servicio).nom)} · ${esc(staffOf(a.staff).nom)}</small>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <b style="font-family:var(--display);font-weight:800;color:var(--rose);display:block">${fmtHour(a.hora)}</b>
+        <small style="color:var(--muted);font-size:11px">${fmtDate(a.fecha)}</small>
+      </div>
+    </div>`).join('') : `<div class="empty"><b>Sin citas próximas</b><p>Cuando alguien reserve en el sitio, aparecerá aquí.</p></div>`;
+}
+function renderFeed(){
+  $('#feed').innerHTML = BS.db.feed.length
+    ? BS.db.feed.map(f => `<div><span class="t">${f.at}</span><span class="in">${esc(f.action)}</span> ${esc(f.detail)}</div>`).join('')
+    : '<div style="color:var(--muted)">Sin movimientos todavía.</div>';
+}
+
+/* ---- Agenda ---- */
+function renderCitas(){
+  const q = $('#qCitas').value.toLowerCase();
+  const f = $('#fCitas').value, fd = $('#fCitasDia').value;
+  const wkEnd = new Date(); wkEnd.setDate(wkEnd.getDate()+7);
+  let list = [...BS.db.appointments].sort((a,b) => (b.fecha+String(b.hora)).localeCompare(a.fecha+String(a.hora)));
+  list = list.filter(a => {
+    const cli = cliOf(a.cliente), svc = svcOf(a.servicio);
+    const txt = (a.folio + cli.nom + svc.nom + staffOf(a.staff).nom).toLowerCase();
+    if (q && !txt.includes(q)) return false;
+    if (f && a.estado !== f) return false;
+    if (fd === 'hoy' && a.fecha !== todayISO()) return false;
+    if (fd === 'semana' && !(a.fecha >= todayISO() && a.fecha <= wkEnd.toISOString().slice(0,10))) return false;
+    return true;
+  });
+  if (!list.length) return ($('#tCitas').innerHTML = `<div class="empty"><b>Nada por aquí</b><p>No hay citas con ese filtro. Puedes crear una cita manual para clientas que llegan sin reservar.</p><button class="btn btn-ghost btn-sm" onclick="document.getElementById('addCita').click()">+ Cita manual</button></div>`);
+  $('#tCitas').innerHTML = `<table><thead><tr>
+    <th>Folio</th><th>Clienta</th><th>Servicio</th><th>Especialista</th><th>Cuándo</th><th>Total</th><th>Pago</th><th>Estado</th><th></th></tr></thead><tbody>` +
+    list.map(a => {
+      const cli = cliOf(a.cliente), svc = svcOf(a.servicio);
+      const est = { confirmada:'rose', atendida:'ok', cancelada:'bad' }[a.estado];
+      return `<tr>
+        <td style="font-variant-numeric:tabular-nums;color:var(--rose)">${a.folio}</td>
+        <td><div class="who"><div class="av">${initials(cli.nom)}</div><div><b>${esc(cli.nom)}</b><small>${esc(cli.tel)}</small></div></div></td>
+        <td>${esc(svc.nom)}<br><small style="color:var(--muted)">${a.min} min</small></td>
+        <td>${esc(staffOf(a.staff).nom)}</td>
+        <td>${fmtDate(a.fecha)}<br><small style="color:var(--muted)">${fmtHour(a.hora)} h</small></td>
+        <td style="font-variant-numeric:tabular-nums">${money(a.precio)}</td>
+        <td><span class="pill ${a.pago==='pagado'?'ok':'warn'}">${a.pago}</span></td>
+        <td><span class="pill ${est}">${a.estado}</span></td>
+        <td><div class="row-actions">
+          <button class="icon-btn" title="Marcar pagado" onclick="setPago('${a.id}')">$</button>
+          <button class="icon-btn" title="Marcar atendida" onclick="setEstado('${a.id}','atendida')">✓</button>
+          <button class="icon-btn" title="Cancelar" onclick="setEstado('${a.id}','cancelada')">✕</button>
+        </div></td></tr>`;
+    }).join('') + '</tbody></table>';
+}
+window.setPago = async id => {
+  const a = BS.db.appointments.find(x => x.id === id);
+  a.pago = a.pago === 'pagado' ? 'pendiente' : 'pagado';
+  log('Pago actualizado', `${a.folio} · ${a.pago}`); await save();
+  renderCitas(); renderKPIs(); renderFeed();
+  toast(`${a.folio}: pago ${a.pago}.`, 'ok');
+};
+window.setEstado = async (id, e) => {
+  const a = BS.db.appointments.find(x => x.id === id);
+  a.estado = a.estado === e ? 'confirmada' : e;
+  log('Cita ' + a.estado, a.folio); await save();
+  refreshAdmin(); toast(`${a.folio}: ${a.estado}.`);
+};
+['qCitas','fCitas','fCitasDia'].forEach(id => $('#'+id).oninput = renderCitas);
+
+$('#addCita').onclick = () => {
+  const cli = BS.db.clients, svc = BS.db.services.filter(s=>s.activo), st = BS.db.staff.filter(s=>s.activo);
+  if (!cli.length) return toast('Primero da de alta una clienta.', 'bad');
+  openModal(`
+    <h3>Cita manual</h3>
+    <p class="lead">Para quien llega sin reservar o agenda por teléfono.</p>
+    <div class="form-grid">
+      <div class="field full"><label>Clienta</label><select id="mCli">${cli.map(c=>`<option value="${c.id}">${esc(c.nom)} · ${esc(c.tel)}</option>`).join('')}</select></div>
+      <div class="field"><label>Servicio</label><select id="mSvcSel">${svc.map(s=>`<option value="${s.id}">${esc(s.nom)} · ${money(s.precio)}</option>`).join('')}</select></div>
+      <div class="field"><label>Especialista</label><select id="mStaffSel">${st.map(s=>`<option value="${s.id}">${esc(s.nom)}</option>`).join('')}</select></div>
+      <div class="field"><label>Fecha</label><input type="date" id="mFecha" value="${todayISO()}"></div>
+      <div class="field"><label>Hora</label><input type="time" id="mHora" value="12:00" step="1800"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="mSave">Guardar cita</button>
+    </div>`);
+  $('#mSave').onclick = async () => {
+    const s = svcOf($('#mSvcSel').value);
+    const [H,M] = $('#mHora').value.split(':').map(Number);
+    const cita = { id: uid('a'), folio: 'BS-' + (++BS.db.seq), cliente: $('#mCli').value,
+      staff: $('#mStaffSel').value, servicio: s.id, fecha: $('#mFecha').value, hora: H + (M>=30?0.5:0),
+      min: s.min, precio: s.precio, estado:'confirmada', pago:'pendiente', creada: nowStamp(), nota:'Alta manual' };
+    BS.db.appointments.push(cita);
+    log('Cita manual', `${cita.folio} · ${cliOf(cita.cliente).nom}`); await save();
+    closeModal(); refreshAdmin(); toast('Cita creada: ' + cita.folio, 'ok');
+  };
+};
+
+/* ---- Clientas ---- */
+function renderClientes(){
+  const q = $('#qCli').value.toLowerCase(), f = $('#fCli').value;
+  const list = BS.db.clients.filter(c => {
+    if (q && !(c.nom + c.mail + c.tel).toLowerCase().includes(q)) return false;
+    if (f === 'ver' && !c.verificado) return false;
+    if (f === 'nover' && c.verificado) return false;
+    return true;
+  });
+  if (!list.length) return ($('#tCli').innerHTML = `<div class="empty"><b>Sin clientas todavía</b><p>Las que reserven en el sitio entran solas, ya verificadas. También puedes darlas de alta a mano.</p><button class="btn btn-primary btn-sm" onclick="document.getElementById('addCli').click()">+ Alta de clienta</button></div>`);
+  $('#tCli').innerHTML = `<table><thead><tr><th>Clienta</th><th>Contacto</th><th>Identidad</th><th>Visitas</th><th>Expediente</th><th>Alta</th><th></th></tr></thead><tbody>` +
+    list.map(c => {
+      const docs = BS.db.docs.filter(d => d.owner === c.id).length;
+      return `<tr>
+        <td><div class="who"><div class="av">${initials(c.nom)}</div><div><b>${esc(c.nom)}</b><small>${esc(c.notas||'Sin notas')}</small></div></div></td>
+        <td>${esc(c.tel)}<br><small style="color:var(--muted)">${esc(c.mail)}</small></td>
+        <td><span class="pill ${c.verificado?'ok':'warn'}">${c.verificado ? 'Verificada' : 'Sin verificar'}</span></td>
+        <td style="font-variant-numeric:tabular-nums">${c.visitas||0}</td>
+        <td><span class="pill mute">${docs} documento${docs===1?'':'s'}</span></td>
+        <td><small style="color:var(--muted)">${fmtDate(c.alta)}</small></td>
+        <td><div class="row-actions">
+          <button class="icon-btn" title="Expediente" onclick="openDocs('${c.id}','cliente')">📁</button>
+          <button class="icon-btn" title="Editar" onclick="editCli('${c.id}')">✎</button>
+          <button class="icon-btn" title="Eliminar" onclick="delCli('${c.id}')">✕</button>
+        </div></td></tr>`;
+    }).join('') + '</tbody></table>';
+}
+['qCli','fCli'].forEach(id => $('#'+id).oninput = renderClientes);
+
+function cliForm(c){
+  return `<div class="form-grid">
+    <div class="field full"><label>Nombre completo</label><input id="fNom" value="${esc(c?.nom||'')}"></div>
+    <div class="field"><label>Celular</label><input id="fTel" value="${esc(c?.tel||'')}" inputmode="numeric"></div>
+    <div class="field"><label>Correo</label><input id="fMail" type="email" value="${esc(c?.mail||'')}"></div>
+    <div class="field full"><label>Notas del expediente</label><textarea id="fNotas">${esc(c?.notas||'')}</textarea></div>
+    <div class="field full"><label>Identidad</label>
+      <div class="radio-row">
+        <button class="radio ${c?.verificado?'sel':''}" data-ver="1">Verificada</button>
+        <button class="radio ${c && !c.verificado ? 'sel' : (c?'':'sel')}" data-ver="0">Sin verificar</button>
+      </div>
+    </div>
+  </div>`;
+}
+$('#addCli').onclick = () => {
+  openModal(`<h3>Alta de clienta</h3><p class="lead">Queda en el expediente al instante.</p>${cliForm(null)}
+    <div class="modal-actions"><button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancelar</button>
+    <button class="btn btn-primary btn-sm" id="cSave">Guardar clienta</button></div>`);
+  wireVer();
+  $('#cSave').onclick = async () => {
+    const nom = $('#fNom').value.trim();
+    if (nom.length < 4) return toast('Escribe el nombre completo.', 'bad');
+    BS.db.clients.push({ id: uid('c'), nom, tel: $('#fTel').value.trim(), mail: $('#fMail').value.trim(),
+      notas: $('#fNotas').value.trim(), verificado: modalVer(), canal:'manual', alta: todayISO(), visitas: 0 });
+    log('Alta de clienta', nom + ' · alta manual'); await save();
+    closeModal(); refreshAdmin(); toast('Clienta registrada.', 'ok');
+  };
+};
+window.editCli = id => {
+  const c = BS.db.clients.find(x => x.id === id);
+  openModal(`<h3>${esc(c.nom)}</h3><p class="lead">Editar expediente</p>${cliForm(c)}
+    <div class="modal-actions"><button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancelar</button>
+    <button class="btn btn-primary btn-sm" id="cSave">Guardar cambios</button></div>`);
+  wireVer();
+  $('#cSave').onclick = async () => {
+    Object.assign(c, { nom: $('#fNom').value.trim(), tel: $('#fTel').value.trim(), mail: $('#fMail').value.trim(),
+      notas: $('#fNotas').value.trim(), verificado: modalVer() });
+    log('Clienta editada', c.nom); await save();
+    closeModal(); refreshAdmin(); toast('Cambios guardados.', 'ok');
+  };
+};
+window.delCli = async id => {
+  const c = BS.db.clients.find(x => x.id === id);
+  if (!confirm(`¿Eliminar a ${c.nom}? También se borran sus documentos. Sus citas quedan en el historial.`)) return;
+  for (const d of BS.db.docs.filter(d => d.owner === id)) await Store.del('bs:doc:' + d.id);
+  BS.db.docs = BS.db.docs.filter(d => d.owner !== id);
+  BS.db.clients = BS.db.clients.filter(x => x.id !== id);
+  log('Clienta eliminada', c.nom); await save();
+  refreshAdmin(); toast('Clienta eliminada.');
+};
+function wireVer(){ $$('#modalCard .radio[data-ver]').forEach(b => b.onclick = () => {
+  $$('#modalCard .radio[data-ver]').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); }); }
+const modalVer = () => $('#modalCard .radio[data-ver].sel')?.dataset.ver === '1';
+</script>
+
+<script>
+/* ---- Personal ---- */
+function renderEmpleados(){
+  const q = $('#qEmp').value.toLowerCase();
+  const list = BS.db.staff.filter(s => (s.nom + s.puesto).toLowerCase().includes(q));
+  if (!list.length) return ($('#tEmp').innerHTML = `<div class="empty"><b>Sin personal</b><p>Da de alta a tu equipo para que aparezca en el sitio y tenga agenda propia.</p></div>`);
+  $('#tEmp').innerHTML = `<table><thead><tr><th>Persona</th><th>Contacto</th><th>Servicios</th><th>Días</th><th>Documentos</th><th>Estado</th><th></th></tr></thead><tbody>` +
+    list.map(s => {
+      const docs = BS.db.docs.filter(d => d.owner === s.id).length;
+      const citas = BS.db.appointments.filter(a => a.staff === s.id && a.estado !== 'cancelada').length;
+      return `<tr>
+        <td><div class="who"><div class="av">${initials(s.nom)}</div><div><b>${esc(s.nom)}</b><small>${esc(s.puesto)} · ${citas} citas</small></div></div></td>
+        <td>${esc(s.tel||'—')}<br><small style="color:var(--muted)">${esc(s.mail||'')}</small></td>
+        <td><span class="pill mute">${s.servicios.length} asignados</span></td>
+        <td><small style="color:var(--muted)">${s.dias.map(d=>DIAS[d]).join(' ')}</small></td>
+        <td><span class="pill ${docs?'ok':'warn'}">${docs} en expediente</span></td>
+        <td><span class="pill ${s.activo?'ok':'mute'}">${s.activo?'Activa':'Inactiva'}</span></td>
+        <td><div class="row-actions">
+          <button class="icon-btn" title="Expediente" onclick="openDocs('${s.id}','personal')">📁</button>
+          <button class="icon-btn" title="Editar" onclick="editEmp('${s.id}')">✎</button>
+          <button class="icon-btn" title="Eliminar" onclick="delEmp('${s.id}')">✕</button>
+        </div></td></tr>`;
+    }).join('') + '</tbody></table>';
+}
+$('#qEmp').oninput = renderEmpleados;
+
+function empForm(e){
+  return `<div class="form-grid">
+    <div class="field"><label>Nombre</label><input id="eNom" value="${esc(e?.nom||'')}"></div>
+    <div class="field"><label>Puesto</label><input id="ePuesto" value="${esc(e?.puesto||'')}" placeholder="Estilista senior"></div>
+    <div class="field"><label>Celular</label><input id="eTel" value="${esc(e?.tel||'')}"></div>
+    <div class="field"><label>Correo</label><input id="eMail" value="${esc(e?.mail||'')}"></div>
+    <div class="field full"><label>Presentación (se ve en el sitio)</label><textarea id="eBio">${esc(e?.bio||'')}</textarea></div>
+    <div class="field full"><label>Servicios que da</label>
+      <div class="radio-row" style="gap:6px" id="eSvcs">
+        ${BS.db.services.map(s => `<button class="radio ${e?.servicios?.includes(s.id)?'sel':''}" data-s="${s.id}" style="min-width:auto;flex:none;font-size:12px;padding:8px 12px">${esc(s.nom)}</button>`).join('')}
+      </div>
+    </div>
+    <div class="field full"><label>Días que trabaja</label>
+      <div class="radio-row" style="gap:6px" id="eDias">
+        ${DIAS.map((d,i) => `<button class="radio ${e ? (e.dias.includes(i)?'sel':'') : (i>0&&i<7?'sel':'')}" data-d="${i}" style="min-width:auto;flex:none;padding:8px 14px">${d}</button>`).join('')}
+      </div>
+    </div>
+    <div class="field full"><label>Estado</label>
+      <div class="radio-row" id="eAct">
+        <button class="radio ${!e || e.activo ? 'sel':''}" data-a="1">Activa</button>
+        <button class="radio ${e && !e.activo ? 'sel':''}" data-a="0">Inactiva</button>
+      </div>
+    </div></div>`;
+}
+function wireEmp(){
+  $$('#eSvcs .radio, #eDias .radio').forEach(b => b.onclick = () => b.classList.toggle('sel'));
+  $$('#eAct .radio').forEach(b => b.onclick = () => { $$('#eAct .radio').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); });
+}
+const empVals = () => ({
+  nom: $('#eNom').value.trim(), puesto: $('#ePuesto').value.trim(), tel: $('#eTel').value.trim(),
+  mail: $('#eMail').value.trim(), bio: $('#eBio').value.trim(),
+  servicios: $$('#eSvcs .radio.sel').map(b => b.dataset.s),
+  dias: $$('#eDias .radio.sel').map(b => +b.dataset.d),
+  activo: $('#eAct .radio.sel')?.dataset.a === '1'
+});
+$('#addEmp').onclick = () => {
+  openModal(`<h3>Alta de personal</h3><p class="lead">Se le crea agenda propia y expediente documental.</p>${empForm(null)}
+    <div class="modal-actions"><button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancelar</button>
+    <button class="btn btn-primary btn-sm" id="eSave">Guardar persona</button></div>`);
+  wireEmp();
+  $('#eSave').onclick = async () => {
+    const v = empVals();
+    if (v.nom.length < 4) return toast('Escribe el nombre completo.', 'bad');
+    if (!v.servicios.length) return toast('Asigna al menos un servicio.', 'bad');
+    BS.db.staff.push({ id: uid('e'), ...v, verificado:false });
+    log('Alta de personal', v.nom + ' · ' + v.puesto); await save();
+    closeModal(); refreshAdmin(); renderSite(); toast('Persona registrada.', 'ok');
+  };
+};
+window.editEmp = id => {
+  const e = BS.db.staff.find(x => x.id === id);
+  openModal(`<h3>${esc(e.nom)}</h3><p class="lead">Editar ficha</p>${empForm(e)}
+    <div class="modal-actions"><button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancelar</button>
+    <button class="btn btn-primary btn-sm" id="eSave">Guardar cambios</button></div>`);
+  wireEmp();
+  $('#eSave').onclick = async () => {
+    Object.assign(e, empVals());
+    log('Personal editado', e.nom); await save();
+    closeModal(); refreshAdmin(); renderSite(); toast('Cambios guardados.', 'ok');
+  };
+};
+window.delEmp = async id => {
+  const e = BS.db.staff.find(x => x.id === id);
+  if (!confirm(`¿Eliminar a ${e.nom}? Se borran sus documentos y sale del sitio.`)) return;
+  for (const d of BS.db.docs.filter(d => d.owner === id)) await Store.del('bs:doc:' + d.id);
+  BS.db.docs = BS.db.docs.filter(d => d.owner !== id);
+  BS.db.staff = BS.db.staff.filter(x => x.id !== id);
+  log('Personal eliminado', e.nom); await save();
+  refreshAdmin(); renderSite(); toast('Persona eliminada.');
+};
+
+/* ---- Servicios ---- */
+function renderServicios(){
+  const q = $('#qSvc').value.toLowerCase();
+  const list = BS.db.services.filter(s => (s.nom + s.cat).toLowerCase().includes(q));
+  $('#tSvc').innerHTML = `<table><thead><tr><th>Servicio</th><th>Categoría</th><th>Duración</th><th>Precio</th><th>Veces agendado</th><th>En el sitio</th><th></th></tr></thead><tbody>` +
+    list.map(s => {
+      const n = BS.db.appointments.filter(a => a.servicio === s.id && a.estado !== 'cancelada').length;
+      return `<tr>
+        <td><b style="font-weight:400">${esc(s.nom)}</b><br><small style="color:var(--muted)">${esc(s.desc)}</small></td>
+        <td><span class="pill mute">${esc(s.cat)}</span></td>
+        <td style="font-variant-numeric:tabular-nums">${s.min} min</td>
+        <td style="font-variant-numeric:tabular-nums;color:var(--rose)">${money(s.precio)}</td>
+        <td style="font-variant-numeric:tabular-nums">${n}</td>
+        <td><span class="pill ${s.activo?'ok':'mute'}">${s.activo?'Visible':'Oculto'}</span></td>
+        <td><div class="row-actions">
+          <button class="icon-btn" title="Editar" onclick="editSvc('${s.id}')">✎</button>
+          <button class="icon-btn" title="Mostrar u ocultar" onclick="toggleSvc('${s.id}')">◐</button>
+          <button class="icon-btn" title="Eliminar" onclick="delSvc('${s.id}')">✕</button>
+        </div></td></tr>`;
+    }).join('') + '</tbody></table>';
+}
+$('#qSvc').oninput = renderServicios;
+function svcForm(s){
+  const cats = [...new Set(BS.db.services.map(x => x.cat))];
+  return `<div class="form-grid">
+    <div class="field full"><label>Nombre</label><input id="vNom" value="${esc(s?.nom||'')}"></div>
+    <div class="field"><label>Categoría</label><input id="vCat" list="cats" value="${esc(s?.cat||'')}"><datalist id="cats">${cats.map(c=>`<option value="${esc(c)}">`).join('')}</datalist></div>
+    <div class="field"><label>Duración (minutos)</label><input id="vMin" type="number" min="15" step="15" value="${s?.min||60}"></div>
+    <div class="field"><label>Precio (MXN)</label><input id="vPre" type="number" min="0" step="10" value="${s?.precio||0}"></div>
+    <div class="field"><label>Visibilidad</label>
+      <div class="radio-row" id="vAct">
+        <button class="radio ${!s || s.activo ? 'sel':''}" data-a="1">Visible</button>
+        <button class="radio ${s && !s.activo ? 'sel':''}" data-a="0">Oculto</button>
+      </div></div>
+    <div class="field full"><label>Descripción</label><textarea id="vDesc">${esc(s?.desc||'')}</textarea></div>
+  </div>`;
+}
+const svcVals = () => ({ nom: $('#vNom').value.trim(), cat: $('#vCat').value.trim() || 'Otros',
+  min: +$('#vMin').value, precio: +$('#vPre').value, desc: $('#vDesc').value.trim(),
+  activo: $('#vAct .radio.sel')?.dataset.a === '1' });
+function wireSvc(){ $$('#vAct .radio').forEach(b => b.onclick = () => { $$('#vAct .radio').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); }); }
+$('#addSvc').onclick = () => {
+  openModal(`<h3>Nuevo servicio</h3><p class="lead">Aparece en la carta y en la reserva.</p>${svcForm(null)}
+    <div class="modal-actions"><button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancelar</button>
+    <button class="btn btn-primary btn-sm" id="vSave">Guardar servicio</button></div>`);
+  wireSvc();
+  $('#vSave').onclick = async () => {
+    const v = svcVals();
+    if (!v.nom || !v.precio) return toast('Falta el nombre o el precio.', 'bad');
+    BS.db.services.push({ id: uid('s'), ...v });
+    log('Servicio creado', v.nom + ' · ' + money(v.precio)); await save();
+    closeModal(); refreshAdmin(); renderSite(); toast('Servicio publicado.', 'ok');
+  };
+};
+window.editSvc = id => {
+  const s = BS.db.services.find(x => x.id === id);
+  openModal(`<h3>${esc(s.nom)}</h3><p class="lead">Editar servicio</p>${svcForm(s)}
+    <div class="modal-actions"><button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancelar</button>
+    <button class="btn btn-primary btn-sm" id="vSave">Guardar cambios</button></div>`);
+  wireSvc();
+  $('#vSave').onclick = async () => {
+    Object.assign(s, svcVals());
+    log('Servicio editado', s.nom); await save();
+    closeModal(); refreshAdmin(); renderSite(); toast('Cambios guardados.', 'ok');
+  };
+};
+window.toggleSvc = async id => {
+  const s = BS.db.services.find(x => x.id === id); s.activo = !s.activo;
+  log('Servicio ' + (s.activo?'visible':'oculto'), s.nom); await save();
+  renderServicios(); renderSite();
+};
+window.delSvc = async id => {
+  const s = BS.db.services.find(x => x.id === id);
+  if (!confirm(`¿Eliminar "${s.nom}"? Las citas ya hechas conservan su registro.`)) return;
+  BS.db.services = BS.db.services.filter(x => x.id !== id);
+  BS.db.staff.forEach(e => e.servicios = e.servicios.filter(x => x !== id));
+  log('Servicio eliminado', s.nom); await save();
+  refreshAdmin(); renderSite(); toast('Servicio eliminado.');
+};
+
+/* ---- Verificación ---- */
+function renderVerif(){
+  const list = BS.db.verifications.slice(0, 40);
+  if (!list.length) return ($('#tVerif').innerHTML = `<div class="empty"><b>Sin solicitudes</b><p>Cada vez que alguien reserve, aquí verás el código enviado y si lo confirmó.</p></div>`);
+  $('#tVerif').innerHTML = `<table><thead><tr><th>Persona</th><th>Canal</th><th>Destino</th><th>Código</th><th>Estado</th><th>Enviado</th></tr></thead><tbody>` +
+    list.map(v => {
+      const vencido = v.estado === 'pendiente' && Date.now() > v.vence;
+      const est = vencido ? 'vencido' : v.estado;
+      const cls = { verificado:'ok', pendiente:'warn', vencido:'bad' }[est];
+      return `<tr>
+        <td><div class="who"><div class="av">${initials(v.nom)}</div><div><b>${esc(v.nom)}</b><small>${esc(v.mail)}</small></div></div></td>
+        <td><span class="pill mute">${v.chan === 'sms' ? 'Mensaje de texto' : 'Correo'}</span></td>
+        <td>${esc(v.destino)}</td>
+        <td style="font-family:ui-monospace,monospace;letter-spacing:.2em;color:${est==='verificado'?'var(--ok)':'var(--rose)'}">${est==='verificado'?'••••••':v.code}</td>
+        <td><span class="pill ${cls}">${est}</span></td>
+        <td><small style="color:var(--muted)">${new Date(v.creado).toLocaleString('es-MX',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</small></td>
+      </tr>`;
+    }).join('') + '</tbody></table>';
+}
+$('#hookGo').onclick = async () => {
+  const url = $('#hookTest').value.trim();
+  if (!/^https?:\/\//.test(url)) return toast('Pega una URL válida del webhook.', 'bad');
+  try {
+    await fetch(url, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ canal:'sms', destino:'3300000000', codigo:'123456', nombre:'Prueba BS' }) });
+    toast('Petición enviada. Revisa tu escenario en Make.', 'ok');
+  } catch(e) { toast('No se pudo llamar al webhook.', 'bad'); }
+};
+
+/* ---- Expediente documental ---- */
+const MAXF = 1.6 * 1024 * 1024;
+const kb = n => n > 1024*1024 ? (n/1024/1024).toFixed(1) + ' MB' : Math.round(n/1024) + ' KB';
+
+window.openDocs = async (ownerId, tipo) => {
+  const owner = tipo === 'cliente' ? cliOf(ownerId) : staffOf(ownerId);
+  openModal(`
+    <h3>Expediente · ${esc(owner.nom)}</h3>
+    <p class="lead">Identificación, consentimientos, contratos, certificados. Se guardan dentro de tu base de datos.</p>
+    <div class="drop" id="drop">
+      Arrastra aquí los archivos o toca para elegirlos<br>
+      <small style="opacity:.7">Imágenes y PDF · hasta 1.6 MB por archivo (las fotos se optimizan solas)</small>
+    </div>
+    <input type="file" id="docFile" multiple accept="image/*,application/pdf" class="hidden">
+    <div class="field" style="margin-top:16px"><label>Etiqueta del siguiente archivo</label>
+      <select id="docTag">
+        ${(tipo==='cliente'
+          ? ['Identificación oficial','Consentimiento informado','Historial de alergias','Prueba de parche','Comprobante de pago','Otro']
+          : ['Identificación oficial','Contrato','Certificado o diploma','CURP / RFC','Comprobante de domicilio','Otro']
+        ).map(t => `<option>${t}</option>`).join('')}
+      </select>
+    </div>
+    <div style="margin-top:22px"><div class="docs" id="docList"></div></div>
+    <div class="modal-actions"><button class="btn btn-ghost btn-sm" onclick="closeModal()">Cerrar</button></div>`);
+
+  const list = () => {
+    const docs = BS.db.docs.filter(d => d.owner === ownerId);
+    $('#docList').innerHTML = docs.length ? docs.map(d => `
+      <div class="doc">
+        <div class="thumb" id="th_${d.id}">${d.mime.startsWith('image') ? '' : '📄'}</div>
+        <b>${esc(d.nom)}</b>
+        <small>${esc(d.tag)} · ${kb(d.size)}</small>
+        <div class="doc-actions">
+          <button class="icon-btn" title="Ver" onclick="viewDoc('${d.id}')">👁</button>
+          <button class="icon-btn" title="Descargar" onclick="dlDoc('${d.id}')">⤓</button>
+          <button class="icon-btn" title="Eliminar" onclick="rmDoc('${d.id}','${ownerId}','${tipo}')">✕</button>
+        </div>
+      </div>`).join('') : `<p style="color:var(--muted);font-size:13px">Todavía no hay documentos en este expediente.</p>`;
+    docs.filter(d => d.mime.startsWith('image')).forEach(async d => {
+      const blob = await Store.get('bs:doc:' + d.id);
+      const el = $('#th_' + d.id); if (el && blob) el.innerHTML = `<img src="${blob}" alt="${esc(d.nom)}">`;
+    });
+  };
+  list();
+
+  const drop = $('#drop'), inp = $('#docFile');
+  drop.onclick = () => inp.click();
+  drop.ondragover = e => { e.preventDefault(); drop.classList.add('over'); };
+  drop.ondragleave = () => drop.classList.remove('over');
+  drop.ondrop = e => { e.preventDefault(); drop.classList.remove('over'); take(e.dataTransfer.files); };
+  inp.onchange = () => take(inp.files);
+
+  async function take(files){
+    for (const f of files){
+      try {
+        const data = f.type.startsWith('image') ? await shrink(f) : await readB64(f);
+        const size = Math.round(data.length * 0.75);
+        if (size > MAXF) { toast(`"${f.name}" pesa demasiado (${kb(size)}).`, 'bad'); continue; }
+        const doc = { id: uid('d'), owner: ownerId, tipo, nom: f.name, mime: f.type || 'application/octet-stream',
+                      size, tag: $('#docTag').value, at: nowStamp() };
+        await Store.set('bs:doc:' + doc.id, data);
+        BS.db.docs.push(doc);
+        log('Documento agregado', `${owner.nom} · ${doc.tag} · ${f.name}`);
+      } catch(err) { toast('No se pudo guardar ' + f.name, 'bad'); }
+    }
+    await save(); list(); refreshAdmin(); toast('Expediente actualizado.', 'ok');
+  }
+};
+const readB64 = f => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(f); });
+async function shrink(file){
+  const src = await readB64(file);
+  return new Promise(res => {
+    const img = new Image();
+    img.onload = () => {
+      const max = 1400, sc = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.width * sc); c.height = Math.round(img.height * sc);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      res(c.toDataURL('image/jpeg', 0.72));
+    };
+    img.onerror = () => res(src);
+    img.src = src;
+  });
+}
+window.viewDoc = async id => {
+  const d = BS.db.docs.find(x => x.id === id);
+  const data = await Store.get('bs:doc:' + id);
+  if (!data) return toast('El archivo no está disponible.', 'bad');
+  const w = window.open('');
+  if (!w) return toast('Permite las ventanas emergentes para verlo.', 'bad');
+  w.document.write(d.mime.startsWith('image')
+    ? `<title>${esc(d.nom)}</title><body style="margin:0;background:#08070A;display:grid;place-items:center;height:100vh"><img src="${data}" style="max-width:100%;max-height:100%">`
+    : `<title>${esc(d.nom)}</title><body style="margin:0"><iframe src="${data}" style="width:100%;height:100vh;border:0"></iframe>`);
+};
+window.dlDoc = async id => {
+  const d = BS.db.docs.find(x => x.id === id);
+  const data = await Store.get('bs:doc:' + id);
+  const a = document.createElement('a'); a.href = data; a.download = d.nom; a.click();
+};
+window.rmDoc = async (id, owner, tipo) => {
+  if (!confirm('¿Eliminar este documento del expediente?')) return;
+  await Store.del('bs:doc:' + id);
+  BS.db.docs = BS.db.docs.filter(d => d.id !== id);
+  log('Documento eliminado', id); await save();
+  closeModal(); openDocs(owner, tipo); refreshAdmin();
+};
+</script>
+
+<script>
+/* ---- Ajustes ---- */
+function fillSettings(){
+  const s = BS.db.settings;
+  $('#sName').value = s.nombre; $('#sTag').value = s.tagline; $('#sAddr').value = s.dir;
+  $('#sPhone').value = s.tel; $('#sHours').value = s.horario;
+  $('#sOpen').value = s.abre; $('#sClose').value = s.cierra; $('#sHook').value = s.hook || '';
+}
+$('#saveSettings').onclick = async () => {
+  const s = BS.db.settings;
+  Object.assign(s, {
+    nombre: $('#sName').value.trim(), tagline: $('#sTag').value.trim(), dir: $('#sAddr').value.trim(),
+    tel: $('#sPhone').value.trim(), horario: $('#sHours').value.trim(),
+    abre: Math.max(6, Math.min(22, +$('#sOpen').value)), cierra: Math.max(8, Math.min(23, +$('#sClose').value)),
+    hook: $('#sHook').value.trim()
+  });
+  if (s.cierra <= s.abre) { s.cierra = s.abre + 8; $('#sClose').value = s.cierra; }
+  log('Ajustes guardados', s.nombre); await save();
+  renderSite(); toast('Datos del negocio actualizados.', 'ok');
+};
+$('#saveAuth').onclick = async () => {
+  const p = $('#sPass').value, c = $('#sCode').value.trim();
+  if (!p && !c) return toast('No cambiaste nada.', 'bad');
+  if (p) { if (p.length < 6) return toast('La contraseña necesita 6 caracteres o más.', 'bad'); BS.db.admin.pass = await hash(p); }
+  if (c) { if (!/^\d{4,8}$/.test(c)) return toast('El código maestro debe ser de 4 a 8 dígitos.', 'bad'); BS.db.admin.code = c; }
+  $('#sPass').value = ''; $('#sCode').value = '';
+  log('Acceso actualizado', BS.db.admin.mail); await save();
+  toast('Acceso actualizado. Úsalo la próxima vez que entres.', 'ok');
+};
+function renderDbStats(){
+  const d = BS.db;
+  const rows = [['Servicios', d.services.length], ['Personal', d.staff.length], ['Clientas', d.clients.length],
+                ['Citas', d.appointments.length], ['Documentos', d.docs.length], ['Verificaciones', d.verifications.length]];
+  $('#dbStats').innerHTML = rows.map(([k,v]) =>
+    `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13.5px">
+      <span style="color:var(--muted)">${k}</span><b style="font-family:var(--display);color:var(--rose);font-weight:800">${v}</b></div>`).join('');
+}
+$('#expDb').onclick = async () => {
+  const docs = {};
+  for (const d of BS.db.docs) docs['bs:doc:' + d.id] = await Store.get('bs:doc:' + d.id);
+  const blob = new Blob([JSON.stringify({ db: BS.db, docs }, null, 2)], { type:'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `respaldo-beautyshop-${todayISO()}.json`; a.click();
+  toast('Respaldo descargado.', 'ok');
+};
+$('#impDb').onclick = () => $('#impFile').click();
+$('#impFile').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return;
+  if (!confirm('Al restaurar se reemplazan todos los datos actuales. ¿Seguimos?')) return;
+  try {
+    const j = JSON.parse(await f.text());
+    if (!j.db?.services) throw new Error('formato');
+    BS.db = j.db;
+    for (const [k, v] of Object.entries(j.docs || {})) await Store.set(k, v);
+    log('Respaldo restaurado', f.name); await save();
+    refreshAdmin(); renderSite(); toast('Respaldo restaurado.', 'ok');
+  } catch(err) { toast('Ese archivo no es un respaldo válido.', 'bad'); }
+  e.target.value = '';
+};
+$('#wipeDb').onclick = async () => {
+  if (!confirm('Se borra TODO: citas, clientas, personal, servicios y documentos. ¿Seguro?')) return;
+  if (!confirm('Última confirmación. Esto no se puede deshacer.')) return;
+  for (const d of BS.db.docs) await Store.del('bs:doc:' + d.id);
+  const pass = BS.db.admin.pass, code = BS.db.admin.code;
+  BS.db = seed(); BS.db.admin.pass = pass; BS.db.admin.code = code;
+  log('Base de datos reiniciada', 'Datos de ejemplo restaurados'); await save();
+  refreshAdmin(); renderSite(); toast('Todo quedó como recién instalado.');
+};
+
+/* ═══════════ 7. CONSOLA DE ACTUALIZACIONES ═══════════ */
+const RECIPES = {
+  precio: `[
+  { "accion": "precio.ajustar", "porcentaje": 10, "categoria": "Color" }
+]`,
+  servicio: `[
+  { "accion": "servicio.crear",
+    "nom": "Ritual de brillo japonés",
+    "cat": "Cabello",
+    "min": 90,
+    "precio": 1350,
+    "desc": "Tratamiento de queratina líquida con sellado de cutícula." }
+]`,
+  texto: `[
+  { "accion": "sitio.textos",
+    "titulo": "Tu cita, impecable.",
+    "tagline": "El estilo que resalta tu belleza" }
+]`,
+  horario: `[
+  { "accion": "horario.set", "abre": 9, "cierra": 21 }
+]`
+};
+$$('#v-updates .quick button[data-recipe]').forEach(b => b.onclick = () => {
+  $('#code').value = RECIPES[b.dataset.recipe]; clog('Receta cargada: ' + b.textContent, 'in');
+});
+function clog(msg, cls=''){
+  const d = document.createElement('div');
+  d.innerHTML = `<span class="t">${new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}</span><span class="${cls}">${esc(msg)}</span>`;
+  $('#codeLog').prepend(d);
+}
+$('#helpCode').onclick = () => openModal(`
+  <h3>Comandos disponibles</h3>
+  <p class="lead">Escribe una lista en JSON. Se ejecutan en orden, de arriba hacia abajo.</p>
+  <div class="log console" style="max-height:none">
+<div><span class="in">servicio.crear</span> nom, cat, min, precio, desc</div>
+<div><span class="in">servicio.editar</span> nom (o id) + los campos a cambiar</div>
+<div><span class="in">servicio.borrar</span> nom</div>
+<div><span class="in">precio.ajustar</span> porcentaje, categoria (opcional)</div>
+<div><span class="in">personal.crear</span> nom, puesto, bio, servicios: ["nombre del servicio"], dias: [1,2,3]</div>
+<div><span class="in">personal.editar</span> nom + campos a cambiar</div>
+<div><span class="in">personal.borrar</span> nom</div>
+<div><span class="in">sitio.textos</span> titulo, tagline, dir, tel, horario</div>
+<div><span class="in">horario.set</span> abre, cierra (formato 24h)</div>
+<div><span class="in">cita.estado</span> folio, estado: confirmada | atendida | cancelada</div>
+<div><span class="in">cita.pago</span> folio, pago: pagado | pendiente</div>
+  </div>
+  <p class="note" style="margin-top:16px">Toca <b>Solo simular</b> para ver qué pasaría sin tocar la base de datos.</p>
+  <div class="modal-actions"><button class="btn btn-primary btn-sm" onclick="closeModal()">Entendido</button></div>`);
+
+const findSvc = k => BS.db.services.find(s => s.id === k || s.nom.toLowerCase() === String(k||'').toLowerCase());
+const findEmp = k => BS.db.staff.find(s => s.id === k || s.nom.toLowerCase() === String(k||'').toLowerCase());
+
+async function runCode(dry){
+  let cmds;
+  try {
+    cmds = JSON.parse($('#code').value);
+    if (!Array.isArray(cmds)) cmds = [cmds];
+  } catch(e) { return clog('El JSON tiene un error de sintaxis: ' + e.message, 'er'); }
+
+  const snapshot = JSON.stringify(BS.db);
+  let n = 0;
+  for (const c of cmds){
+    try {
+      switch (c.accion) {
+        case 'servicio.crear': {
+          if (!c.nom || !c.precio) throw new Error('faltan nom o precio');
+          BS.db.services.push({ id: uid('s'), nom:c.nom, cat:c.cat||'Otros', min:+c.min||60, precio:+c.precio, desc:c.desc||'', activo: c.activo !== false });
+          clog(`Servicio creado: ${c.nom} · ${money(c.precio)}`, 'ok'); n++; break;
+        }
+        case 'servicio.editar': {
+          const s = findSvc(c.nom || c.id); if (!s) throw new Error('no encontré el servicio ' + (c.nom||c.id));
+          ['cat','desc'].forEach(k => { if (c[k] !== undefined) s[k] = c[k]; });
+          if (c.nuevoNombre) s.nom = c.nuevoNombre;
+          if (c.min !== undefined) s.min = +c.min;
+          if (c.precio !== undefined) s.precio = +c.precio;
+          if (c.activo !== undefined) s.activo = !!c.activo;
+          clog(`Servicio actualizado: ${s.nom}`, 'ok'); n++; break;
+        }
+        case 'servicio.borrar': {
+          const s = findSvc(c.nom); if (!s) throw new Error('no encontré ' + c.nom);
+          BS.db.services = BS.db.services.filter(x => x.id !== s.id);
+          BS.db.staff.forEach(e => e.servicios = e.servicios.filter(x => x !== s.id));
+          clog(`Servicio eliminado: ${s.nom}`, 'ok'); n++; break;
+        }
+        case 'precio.ajustar': {
+          const p = +c.porcentaje; if (!p) throw new Error('falta porcentaje');
+          const afect = BS.db.services.filter(s => !c.categoria || s.cat.toLowerCase() === String(c.categoria).toLowerCase());
+          if (!afect.length) throw new Error('ningún servicio en esa categoría');
+          afect.forEach(s => s.precio = Math.round(s.precio * (1 + p/100) / 10) * 10);
+          clog(`Precios ${p > 0 ? '+' : ''}${p}% en ${afect.length} servicio(s)${c.categoria ? ' de ' + c.categoria : ''}`, 'ok'); n++; break;
+        }
+        case 'personal.crear': {
+          if (!c.nom) throw new Error('falta nom');
+          const ids = (c.servicios||[]).map(x => findSvc(x)?.id).filter(Boolean);
+          BS.db.staff.push({ id: uid('e'), nom:c.nom, puesto:c.puesto||'Estilista', bio:c.bio||'', tel:c.tel||'', mail:c.mail||'',
+            servicios: ids, dias: c.dias || [1,2,3,4,5,6], activo:true, verificado:false });
+          clog(`Personal dado de alta: ${c.nom} (${ids.length} servicios)`, 'ok'); n++; break;
+        }
+        case 'personal.editar': {
+          const e = findEmp(c.nom); if (!e) throw new Error('no encontré a ' + c.nom);
+          ['puesto','bio','tel','mail'].forEach(k => { if (c[k] !== undefined) e[k] = c[k]; });
+          if (c.servicios) e.servicios = c.servicios.map(x => findSvc(x)?.id).filter(Boolean);
+          if (c.dias) e.dias = c.dias;
+          if (c.activo !== undefined) e.activo = !!c.activo;
+          clog(`Personal actualizado: ${e.nom}`, 'ok'); n++; break;
+        }
+        case 'personal.borrar': {
+          const e = findEmp(c.nom); if (!e) throw new Error('no encontré a ' + c.nom);
+          BS.db.staff = BS.db.staff.filter(x => x.id !== e.id);
+          clog(`Personal eliminado: ${e.nom}`, 'ok'); n++; break;
+        }
+        case 'sitio.textos': {
+          ['titulo','tagline','dir','tel','horario','nombre'].forEach(k => { if (c[k] !== undefined) BS.db.settings[k] = c[k]; });
+          clog('Textos del sitio actualizados', 'ok'); n++; break;
+        }
+        case 'horario.set': {
+          if (c.abre !== undefined) BS.db.settings.abre = +c.abre;
+          if (c.cierra !== undefined) BS.db.settings.cierra = +c.cierra;
+          clog(`Horario: ${BS.db.settings.abre}:00 a ${BS.db.settings.cierra}:00`, 'ok'); n++; break;
+        }
+        case 'cita.estado': case 'cita.pago': {
+          const a = BS.db.appointments.find(x => x.folio === c.folio); if (!a) throw new Error('no encontré el folio ' + c.folio);
+          if (c.accion === 'cita.estado') a.estado = c.estado; else a.pago = c.pago;
+          clog(`${a.folio}: ${c.estado || c.pago}`, 'ok'); n++; break;
+        }
+        default: throw new Error('comando desconocido "' + c.accion + '"');
+      }
+    } catch(err) { clog('Error en ' + (c.accion || '?') + ': ' + err.message, 'er'); }
+  }
+  if (dry) {
+    BS.db = JSON.parse(snapshot);
+    clog(`Simulación terminada. ${n} cambio(s) se aplicarían. No se guardó nada.`, 'in');
+    return;
+  }
+  log('Actualización por código', n + ' cambio(s) aplicados');
+  await save(); refreshAdmin(); renderSite();
+  clog(`${n} cambio(s) aplicados y guardados.`, 'in');
+  toast(n ? `${n} cambio(s) en vivo.` : 'No se aplicó ningún cambio.', n ? 'ok' : 'bad');
+}
+$('#runCode').onclick = () => runCode(false);
+$('#dryCode').onclick = () => runCode(true);
+</script>
+
+<script>
+/* ═══════════ 6. CEREBRO BS ═══════════
+   Primero intenta razonar con Claude. Si no hay conexión,
+   el motor local responde leyendo tu propia base de datos. */
+let BRAIN_REMOTE = null;
+
+function snapshotDB(){
+  const A = BS.db.appointments.filter(a => a.estado !== 'cancelada');
+  const hoy = A.filter(a => a.fecha === todayISO());
+  const porServicio = {};
+  A.forEach(a => {
+    const n = svcOf(a.servicio).nom;
+    porServicio[n] = porServicio[n] || { citas:0, ingreso:0 };
+    porServicio[n].citas++; porServicio[n].ingreso += a.precio;
+  });
+  const porStaff = {};
+  A.forEach(a => { const n = staffOf(a.staff).nom; porStaff[n] = (porStaff[n]||0) + 1; });
+  return {
+    negocio: BS.db.settings.nombre, horario: `${BS.db.settings.abre}:00-${BS.db.settings.cierra}:00`,
+    hoy: todayISO(), citasHoy: hoy.length, ingresoHoy: hoy.reduce((s,a)=>s+a.precio,0),
+    citasTotales: A.length, ingresoTotal: A.reduce((s,a)=>s+a.precio,0),
+    porCobrar: A.filter(a=>a.pago==='pendiente').reduce((s,a)=>s+a.precio,0),
+    clientas: BS.db.clients.length, verificadas: BS.db.clients.filter(c=>c.verificado).length,
+    servicios: BS.db.services.map(s => ({ nom:s.nom, precio:s.precio, min:s.min, cat:s.cat })),
+    equipo: BS.db.staff.map(s => ({ nom:s.nom, puesto:s.puesto, dias:s.dias.map(d=>DIAS[d]) })),
+    desempenoServicios: porServicio, citasPorEspecialista: porStaff,
+    proximas: A.filter(a => a.fecha >= todayISO()).slice(0,10).map(a =>
+      ({ folio:a.folio, fecha:a.fecha, hora:fmtHour(a.hora), clienta:cliOf(a.cliente).nom, servicio:svcOf(a.servicio).nom, con:staffOf(a.staff).nom }))
+  };
+}
+
+function brainLocal(q){
+  const t = q.toLowerCase(), d = snapshotDB();
+  const A = BS.db.appointments.filter(a => a.estado !== 'cancelada');
+
+  if (/hoy|vamos|resumen|cómo va|como va/.test(t)) {
+    const hoy = A.filter(a => a.fecha === todayISO()).sort((a,b)=>a.hora-b.hora);
+    if (!hoy.length) return `Hoy la agenda está libre.\n\nTienes **${d.clientas} clientas** registradas y **${money(d.porCobrar)}** por cobrar de citas anteriores. Buen día para mandar un recordatorio a las que no vienen desde hace un mes.`;
+    return `Hoy tienes **${hoy.length} cita(s)** por **${money(hoy.reduce((s,a)=>s+a.precio,0))}**.\n\n` +
+      hoy.map(a => `• ${fmtHour(a.hora)} — ${cliOf(a.cliente).nom} · ${svcOf(a.servicio).nom} con ${staffOf(a.staff).nom}`).join('\n') +
+      `\n\nPor cobrar en total: **${money(d.porCobrar)}**.`;
+  }
+  if (/dinero|ingres|gana|rentab|más deja|mas deja|vende/.test(t)) {
+    const rank = Object.entries(d.desempenoServicios).sort((a,b) => b[1].ingreso - a[1].ingreso).slice(0,5);
+    if (!rank.length) return 'Todavía no hay citas suficientes para sacar conclusiones. En cuanto entren las primeras, aquí verás qué servicio deja más.';
+    return `Tus servicios por ingreso:\n\n` + rank.map(([n,v],i) =>
+      `${i+1}. **${n}** — ${money(v.ingreso)} en ${v.citas} cita(s)`).join('\n') +
+      `\n\nOjo con el ingreso por hora: un servicio caro pero muy largo puede rendir menos que uno corto que puedes repetir tres veces.`;
+  }
+  if (/hueco|libre|disponib|mañana|espacio/.test(t)) {
+    const m = new Date(); m.setDate(m.getDate()+1);
+    const iso = m.toISOString().slice(0,10);
+    const libres = BS.db.staff.filter(s => s.activo && s.dias.includes(m.getDay())).map(s => {
+      const ocupadas = A.filter(a => a.staff === s.id && a.fecha === iso).length;
+      const capacidad = Math.floor((BS.db.settings.cierra - BS.db.settings.abre) / 1.5);
+      return `• **${s.nom}** — ${Math.max(0, capacidad - ocupadas)} espacio(s) libres de ${capacidad}`;
+    });
+    return libres.length
+      ? `Mañana ${fmtDate(iso)} trabajan:\n\n${libres.join('\n')}\n\nSi quieres llenarlo, lo que mejor funciona es escribirle a quien canceló la última vez.`
+      : `Mañana ${fmtDate(iso)} no trabaja nadie según los días asignados en Personal.`;
+  }
+  if (/idea|promo|llenar|estrateg|vender más|vender mas|marketing/.test(t)) {
+    const flojos = BS.db.services.filter(s => s.activo)
+      .map(s => ({ s, n: A.filter(a => a.servicio === s.id).length }))
+      .sort((a,b) => a.n - b.n).slice(0,3);
+    const sinVisita = BS.db.clients.filter(c => (c.visitas||0) <= 1).length;
+    return `Tres movimientos con lo que ya tienes:\n\n` +
+      `1. **Empuja lo que no se mueve.** ${flojos.map(f => f.s.nom).join(', ')} casi no se agenda. Ponles paquete con tu servicio estrella.\n` +
+      `2. **Rescata clientas de una sola visita.** Tienes ${sinVisita}. Un mensaje con 15% en su segunda cita cuesta cero.\n` +
+      `3. **Sube el ticket, no el precio.** Ofrece laminado de cejas mientras el tinte reposa: son 50 minutos que ya estabas pagando.`;
+  }
+  if (/verific|identidad|código|codigo/.test(t)) {
+    const pend = BS.db.verifications.filter(v => v.estado === 'pendiente').length;
+    return `De ${d.clientas} clientas, **${d.verificadas} tienen identidad verificada** (${d.clientas ? Math.round(d.verificadas/d.clientas*100) : 0}%). Hay ${pend} código(s) sin confirmar.\n\nEl código se genera aquí mismo y vence a los 10 minutos. Para que salga por SMS o correo de verdad, pon tu webhook en Ajustes.`;
+  }
+  if (/clienta|quién|quien|viene/.test(t)) {
+    const prox = d.proximas.slice(0,5);
+    return prox.length
+      ? `Las siguientes en llegar:\n\n` + prox.map(p => `• ${fmtDate(p.fecha)} ${p.hora} — **${p.clienta}** · ${p.servicio} con ${p.con} (${p.folio})`).join('\n')
+      : 'No hay citas próximas en la agenda.';
+  }
+  return `Puedo leer todo lo que hay en tu base: citas, ingresos, clientas, expedientes y agenda del equipo.\n\n` +
+    `Ahorita tienes **${d.citasHoy} cita(s) hoy**, **${d.clientas} clientas** y **${money(d.porCobrar)}** por cobrar.\n\n` +
+    `Pregúntame cosas como "¿qué servicio deja más dinero?", "¿quién tiene huecos mañana?" o "dame ideas para llenar la semana".`;
+}
+
+async function brainRemote(q){
+  const ctx = snapshotDB();
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      model:'claude-sonnet-4-6', max_tokens:1000,
+      messages:[{ role:'user', content:
+`Eres el cerebro de ${ctx.negocio}, un salón de belleza en Guadalajara. Hablas español mexicano, directo y cálido, sin rodeos ni disclaimers. Respondes en máximo 150 palabras, con datos concretos de la base de datos y una recomendación accionable. Usa **negritas** solo en números o nombres clave. Nunca inventes datos que no estén aquí.
+
+Base de datos (JSON):
+${JSON.stringify(ctx)}
+
+Pregunta de la dueña: ${q}` }]
+    })
+  });
+  if (!r.ok) throw new Error('sin conexión');
+  const data = await r.json();
+  const txt = (data.content||[]).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
+  if (!txt) throw new Error('sin respuesta');
+  return txt;
+}
+
+function bubble(text, who){
+  const d = document.createElement('div');
+  d.className = 'msg ' + who;
+  d.innerHTML = who === 'bot' ? esc(text).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') : esc(text);
+  $('#chatLog').appendChild(d);
+  $('#chatLog').scrollTop = 1e6;
+  return d;
+}
+function brainWelcome(){
+  bubble(brainLocal('resumen'), 'bot');
+}
+async function ask(q){
+  if (!q.trim()) return;
+  bubble(q, 'me');
+  $('#chatIn').value = '';
+  const wait = bubble('', 'bot');
+  wait.innerHTML = '<span class="dots"><span></span><span></span><span></span></span>';
+  let txt, modo;
+  if (BRAIN_REMOTE !== false) {
+    try { txt = await brainRemote(q); modo = 'Claude + tus datos'; BRAIN_REMOTE = true; }
+    catch(e) { BRAIN_REMOTE = false; }
+  }
+  if (!txt) { txt = brainLocal(q); modo = 'Motor local · lee tu base de datos'; }
+  wait.innerHTML = esc(txt).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+  $('#brainMode').textContent = modo;
+  $('#chatLog').scrollTop = 1e6;
+}
+$('#chatGo').onclick = () => ask($('#chatIn').value);
+$('#chatIn').onkeydown = e => { if (e.key === 'Enter') ask($('#chatIn').value); };
+$$('#quick button').forEach(b => b.onclick = () => ask(b.textContent));
+
+/* ═══════════ ARRANQUE ═══════════ */
+boot();
+</script>
+</body>
+</html>
