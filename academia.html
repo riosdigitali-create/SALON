@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Academia BS — Forma tu carrera en belleza</title>
+<meta name="description" content="Academia Beauty Shop: cursos, diplomados y certificación profesional en belleza. Aula virtual, mentoría y comunidad de egresadas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════
+   ACADEMIA BS — capa "Maison Noir · Escuela"
+   Mismo sistema visual del sitio principal.
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --black:#0A0A0A; --black-2:#0E0D0E; --black-3:#141315;
+  --ivory:#F7F4F0; --gold:#D4B98C; --gold-hi:#EBD8B4; --gold-deep:#A8905F;
+  --smoke:#B8B8B8; --muted:#8E8880;
+  --line:rgba(247,244,240,.11); --line-soft:rgba(247,244,240,.055);
+  --glass:rgba(255,255,255,.04); --glass-line:rgba(255,255,255,.10);
+  --ok:#7FBF9B; --warn:#D9B36B; --bad:#E08174; --info:#8FB3D9; --plum:#B99BD1;
+  --ui:"Montserrat",system-ui,-apple-system,sans-serif;
+  --display:"Montserrat",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --wrap:1240px; --r:4px;
+  --shadow:0 44px 100px -46px rgba(0,0,0,.92);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--black);color:var(--ivory);font-family:var(--ui);
+  font-weight:300;font-size:15px;line-height:1.7;letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;text-wrap:pretty;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.045;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;letter-spacing:-.015em;line-height:1.12;text-wrap:balance}
+::selection{background:var(--gold);color:#0A0A0A}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:#0A0A0A}
+::-webkit-scrollbar-thumb{background:#2A2724;border-radius:9px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold-deep)}
+:focus-visible{outline:1.5px solid var(--gold);outline-offset:3px}
+.wrap{width:min(100% - 44px,var(--wrap));margin-inline:auto}
+.hide{display:none !important}
+
+.eb{
+  font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+  display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;
+}
+.eb::before{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.eb.c{justify-content:center}
+.eb.c::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.ital{font-style:italic;color:var(--gold)}
+.lead{color:var(--smoke);font-size:16px;line-height:1.85;max-width:62ch}
+.mut{color:var(--muted)}
+.sec{padding:110px 0;position:relative;z-index:1}
+.sec-h{text-align:center;max-width:660px;margin:0 auto 60px}
+.sec-h h2{font-size:clamp(30px,4vw,46px);margin-bottom:18px}
+.sec-h p{color:var(--smoke);font-size:15.5px}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  padding:17px 34px;border-radius:var(--r);font-size:10.5px;font-weight:500;
+  letter-spacing:.24em;text-transform:uppercase;border:1px solid transparent;
+  transition:.5s var(--ease);white-space:nowrap;
+}
+.gold{background:var(--gold);color:#0A0A0A;border-color:var(--gold)}
+.gold:hover{background:var(--gold-hi);border-color:var(--gold-hi);transform:translateY(-2px);box-shadow:0 20px 44px -18px rgba(212,185,140,.5)}
+.out{border-color:rgba(247,244,240,.26);color:var(--ivory)}
+.out:hover{border-color:var(--gold);color:var(--gold);background:rgba(212,185,140,.06);transform:translateY(-2px)}
+.sm{padding:12px 22px;font-size:9.5px;letter-spacing:.2em}
+.btn svg{width:15px;height:15px}
+
+.chip{
+  display:inline-flex;align-items:center;gap:7px;padding:5px 13px;border-radius:100px;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  border:1px solid var(--line);background:var(--glass);color:var(--smoke);white-space:nowrap;
+}
+.chip .d{width:5px;height:5px;border-radius:50%;background:currentColor}
+.chip.g{color:var(--gold);border-color:rgba(212,185,140,.34);background:rgba(212,185,140,.09)}
+.chip.ok{color:var(--ok);border-color:rgba(127,191,155,.3);background:rgba(127,191,155,.09)}
+.chip.pl{color:var(--plum);border-color:rgba(185,155,209,.3);background:rgba(185,155,209,.09)}
+.chip.in{color:var(--info);border-color:rgba(143,179,217,.3);background:rgba(143,179,217,.09)}
+
+.rev{opacity:0;transform:translateY(38px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.rev.in{opacity:1;transform:none}
+.rev[data-d="1"]{transition-delay:.08s}.rev[data-d="2"]{transition-delay:.16s}
+.rev[data-d="3"]{transition-delay:.24s}.rev[data-d="4"]{transition-delay:.32s}
+.rev[data-d="5"]{transition-delay:.4s}.rev[data-d="6"]{transition-delay:.48s}
+
+/* ─── NAV ─────────────────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;padding:22px 0;
+  border-bottom:1px solid transparent;transition:.6s var(--ease);
+}
+.nav.solid{padding:14px 0;background:rgba(10,10,10,.82);backdrop-filter:blur(20px) saturate(1.3);border-color:var(--line-soft)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:13px}
+.brand img{width:40px;height:40px;object-fit:contain;filter:brightness(0) invert(1) sepia(1) saturate(3) brightness(.92)}
+.brand b{font-family:var(--display);font-size:15px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;display:block}
+.brand small{display:block;font-size:8px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-top:3px}
+.links{display:flex;align-items:center;gap:32px}
+.links a{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--smoke);transition:.4s;position:relative}
+.links a::after{content:"";position:absolute;left:0;bottom:-7px;height:1px;width:0;background:var(--gold);transition:.45s var(--ease)}
+.links a:hover{color:var(--ivory)}
+.links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.burger{display:none;width:40px;height:40px;place-items:center}
+.burger i,.burger i::before,.burger i::after{display:block;width:22px;height:1px;background:var(--ivory);transition:.4s}
+.burger i{position:relative}
+.burger i::before,.burger i::after{content:"";position:absolute;left:0}
+.burger i::before{top:-7px}.burger i::after{top:7px}
+
+/* ─── HERO ────────────────────────────────────────────────── */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.45) brightness(.4) contrast(1.08);transform:scale(1.05);animation:zoom 28s ease-in-out infinite alternate}
+@keyframes zoom{to{transform:scale(1.15)}}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(10,10,10,.72),rgba(10,10,10,.55) 40%,rgba(10,10,10,.96)),
+             radial-gradient(circle at 50% 30%,rgba(212,185,140,.14),transparent 55%);
+}
+.hero-in{text-align:center;padding:130px 0 60px;max-width:900px}
+.hero h1{font-size:clamp(42px,6.4vw,80px);margin-bottom:24px}
+.hero h1 em{display:block;font-style:italic;color:var(--gold)}
+.hero .lead{margin:0 auto 40px;font-size:clamp(15px,1.6vw,18px);color:rgba(247,244,240,.82);max-width:56ch}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.hero-stats{display:flex;justify-content:center;gap:52px;flex-wrap:wrap;padding-top:38px;border-top:1px solid var(--line-soft)}
+.hero-stats div{text-align:center}
+.hero-stats b{display:block;font-family:var(--display);font-size:clamp(26px,3vw,36px);font-weight:400;color:var(--gold)}
+.hero-stats small{font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+
+/* ─── RUTA ────────────────────────────────────────────────── */
+.ruta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.ruta-i{padding:36px 30px;border-right:1px solid var(--line);position:relative;transition:.6s var(--ease)}
+.ruta-i:last-child{border-right:none}
+.ruta-i:hover{background:rgba(212,185,140,.05)}
+.ruta-i .n{font-family:var(--display);font-size:44px;color:rgba(212,185,140,.24);line-height:1;margin-bottom:18px;transition:.6s var(--ease)}
+.ruta-i:hover .n{color:var(--gold)}
+.ruta-i h3{font-size:20px;margin-bottom:10px}
+.ruta-i p{font-size:13px;color:var(--smoke);line-height:1.75;margin-bottom:16px}
+.ruta-i .meta{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ─── CURSOS ──────────────────────────────────────────────── */
+.filtros{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:44px}
+.filtros button{
+  padding:10px 20px;border:1px solid var(--line);border-radius:100px;
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:.45s var(--ease);
+}
+.filtros button:hover{border-color:rgba(212,185,140,.45);color:var(--ivory)}
+.filtros button.on{background:var(--gold);border-color:var(--gold);color:#0A0A0A}
+.cursos{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.curso{
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--black-2);
+  transition:.65s var(--ease);display:flex;flex-direction:column;cursor:pointer;
+}
+.curso:hover{transform:translateY(-8px);border-color:rgba(212,185,140,.4);box-shadow:0 40px 80px -40px rgba(0,0,0,.95)}
+.curso-img{position:relative;aspect-ratio:16/10;overflow:hidden}
+.curso-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) brightness(.72);transition:.9s var(--ease)}
+.curso:hover .curso-img img{transform:scale(1.07);filter:grayscale(0) brightness(.85)}
+.curso-img .tag{position:absolute;top:14px;left:14px;z-index:2}
+.curso-img .dur{position:absolute;bottom:14px;right:14px;z-index:2;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory);background:rgba(10,10,10,.72);padding:5px 11px;border-radius:100px;backdrop-filter:blur(6px)}
+.curso-b{padding:24px;display:flex;flex-direction:column;flex:1;gap:12px}
+.curso-b h3{font-size:21px}
+.curso-b .d{font-size:13px;color:var(--smoke);line-height:1.75;flex:1}
+.curso-meta{display:flex;gap:8px;flex-wrap:wrap}
+.curso-f{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line-soft)}
+.curso-f .p{font-family:var(--display);font-size:25px;color:var(--ivory)}
+.curso-f .p small{display:block;font-family:var(--ui);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.curso-f .go{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:8px}
+.curso-f .go svg{width:14px;height:14px;transition:.5s var(--ease)}
+.curso:hover .curso-f .go svg{transform:translateX(5px)}
+.curso-prof{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--muted)}
+.curso-prof img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+
+/* ─── MODALIDADES ─────────────────────────────────────────── */
+.mods{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.mod{padding:36px 30px;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(165deg,rgba(255,255,255,.04),rgba(255,255,255,.012));transition:.6s var(--ease)}
+.mod:hover{transform:translateY(-6px);border-color:rgba(212,185,140,.36)}
+.mod .ic{width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(212,185,140,.3);border-radius:var(--r);color:var(--gold);margin-bottom:22px}
+.mod .ic svg{width:21px;height:21px}
+.mod h3{font-size:21px;margin-bottom:10px}
+.mod p{font-size:13.5px;color:var(--smoke);line-height:1.8}
+.mod ul{list-style:none;margin-top:18px;display:grid;gap:9px}
+.mod li{display:flex;gap:10px;font-size:12.5px;color:var(--smoke)}
+.mod li svg{width:14px;height:14px;color:var(--gold);flex-shrink:0;margin-top:4px}
+
+/* ─── INSTRUCTORAS ────────────────────────────────────────── */
+.profes{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.profe{text-align:center;transition:.6s var(--ease)}
+.profe .ph{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:var(--r);margin-bottom:18px;border:1px solid var(--line)}
+.profe .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.78);transition:.9s var(--ease)}
+.profe:hover .ph img{filter:grayscale(0) brightness(.95);transform:scale(1.05)}
+.profe h3{font-size:18px;margin-bottom:5px}
+.profe small{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.profe p{font-size:12.5px;color:var(--muted);line-height:1.7}
+
+/* ─── COMUNIDAD ───────────────────────────────────────────── */
+.comu{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.comu-l ul{list-style:none;display:grid;gap:20px;margin-top:34px}
+.comu-l li{display:flex;gap:16px}
+.comu-l li .ic{width:42px;height:42px;flex-shrink:0;display:grid;place-items:center;border:1px solid rgba(212,185,140,.28);border-radius:var(--r);color:var(--gold)}
+.comu-l li .ic svg{width:18px;height:18px}
+.comu-l li b{display:block;font-family:var(--display);font-size:17px;font-weight:400;margin-bottom:4px}
+.comu-l li p{font-size:13px;color:var(--smoke);line-height:1.75}
+.comu-r{position:relative}
+.mock{
+  border:1px solid var(--glass-line);border-radius:8px;overflow:hidden;
+  background:linear-gradient(180deg,#141315,#0B0A0B);box-shadow:var(--shadow);
+}
+.mock-h{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line-soft);background:rgba(255,255,255,.03)}
+.mock-h .dots{display:flex;gap:5px}
+.mock-h .dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.14)}
+.mock-h span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.mock-b{padding:20px}
+.mock-msg{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line-soft)}
+.mock-msg:last-child{border-bottom:none}
+.mock-msg img,.mock-msg .avt{width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid var(--line)}
+.mock-msg .avt{display:grid;place-items:center;background:rgba(212,185,140,.14);color:var(--gold);font-size:12px}
+.mock-msg b{display:block;font-size:12.5px;font-weight:500;margin-bottom:2px}
+.mock-msg p{font-size:12.5px;color:var(--smoke);line-height:1.6}
+.mock-msg time{font-size:10px;color:#5F5A55}
+
+/* ─── PLANES ──────────────────────────────────────────────── */
+.planes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.plan{padding:38px 32px;border:1px solid var(--line);border-radius:var(--r);background:var(--black-2);transition:.6s var(--ease);position:relative}
+.plan:hover{transform:translateY(-6px);border-color:rgba(212,185,140,.36)}
+.plan.pop{border-color:var(--gold);background:linear-gradient(170deg,rgba(212,185,140,.12),rgba(212,185,140,.02))}
+.plan.pop::before{
+  content:"Más elegido";position:absolute;top:-11px;left:50%;translate:-50% 0;
+  padding:5px 16px;background:var(--gold);color:#0A0A0A;font-size:9px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;border-radius:100px;
+}
+.plan h3{font-size:22px;margin-bottom:6px}
+.plan .sub{font-size:12.5px;color:var(--muted);margin-bottom:24px}
+.plan .price{font-family:var(--display);font-size:44px;line-height:1;margin-bottom:6px}
+.plan .price small{font-family:var(--ui);font-size:12px;color:var(--muted);letter-spacing:.02em}
+.plan .per{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+.plan ul{list-style:none;display:grid;gap:12px;margin-bottom:30px}
+.plan li{display:flex;gap:11px;font-size:13px;color:var(--smoke)}
+.plan li svg{width:14px;height:14px;color:var(--gold);flex-shrink:0;margin-top:4px}
+
+/* ─── TESTIMONIOS ─────────────────────────────────────────── */
+.testis{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testi{padding:32px 28px;border:1px solid var(--line);border-radius:var(--r);background:var(--black-2);transition:.6s var(--ease)}
+.testi:hover{border-color:rgba(212,185,140,.3);transform:translateY(-5px)}
+.testi .stars{display:flex;gap:3px;margin-bottom:18px;color:var(--gold)}
+.testi .stars svg{width:14px;height:14px;fill:currentColor}
+.testi q{display:block;font-family:var(--display);font-style:italic;font-size:17px;line-height:1.6;color:var(--ivory);margin-bottom:22px}
+.testi .who{display:flex;align-items:center;gap:12px}
+.testi .who img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+.testi .who b{display:block;font-size:13px;font-weight:500}
+.testi .who small{font-size:11px;color:var(--muted)}
+
+/* ─── FAQ ─────────────────────────────────────────────────── */
+.faq{max-width:820px;margin:0 auto}
+.faq-i{border-bottom:1px solid var(--line-soft)}
+.faq-q{display:flex;align-items:center;gap:18px;width:100%;padding:24px 0;text-align:left;transition:.4s}
+.faq-q:hover{color:var(--gold)}
+.faq-q b{flex:1;font-family:var(--display);font-size:18px;font-weight:400}
+.faq-q .pm{width:16px;height:16px;flex-shrink:0;position:relative}
+.faq-q .pm::before,.faq-q .pm::after{content:"";position:absolute;background:var(--gold);transition:.45s var(--ease)}
+.faq-q .pm::before{top:7.5px;left:0;width:16px;height:1px}
+.faq-q .pm::after{left:7.5px;top:0;width:1px;height:16px}
+.faq-i.on .pm::after{transform:rotate(90deg);opacity:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .6s var(--ease)}
+.faq-a p{padding:0 0 24px;color:var(--smoke);font-size:14px;line-height:1.85;max-width:70ch}
+
+/* ─── CTA final ───────────────────────────────────────────── */
+.cta-f{position:relative;padding:110px 0;text-align:center;overflow:hidden;border-top:1px solid var(--line-soft)}
+.cta-f::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(212,185,140,.13),transparent 62%)}
+.cta-f>*{position:relative}
+.cta-f h2{font-size:clamp(32px,4.6vw,54px);margin-bottom:20px}
+
+/* ─── FOOTER ──────────────────────────────────────────────── */
+footer{padding:80px 0 34px;border-top:1px solid var(--line-soft);background:#070707;position:relative;z-index:1}
+.foot-g{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:56px}
+.foot-g h4{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-family:var(--ui);font-weight:500}
+.foot-g p,.foot-g a{display:block;font-size:13px;color:var(--smoke);margin-bottom:10px;transition:.4s;font-weight:300}
+.foot-g a:hover{color:var(--gold)}
+.foot-b{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:28px;border-top:1px solid var(--line-soft);font-size:11px;color:#6E6A66;flex-wrap:wrap}
+
+/* ─── AULA VIRTUAL ────────────────────────────────────────── */
+.scrim{position:fixed;inset:0;z-index:950;background:rgba(6,5,6,.78);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:.5s var(--ease)}
+.scrim.on{opacity:1;visibility:visible}
+.sheet{
+  position:fixed;inset:0;z-index:960;background:linear-gradient(180deg,#0D0C0D,#0A0A0A);
+  overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(24px);transition:.6s var(--ease);
+}
+.sheet.on{opacity:1;visibility:visible;transform:none}
+.sheet-top{
+  position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:16px;padding:16px 30px;
+  border-bottom:1px solid var(--line-soft);background:rgba(10,10,10,.85);backdrop-filter:blur(18px);
+}
+.sheet-top b{font-family:var(--display);font-size:18px;font-weight:400;flex:1}
+.close-x{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--line);border-radius:var(--r);color:var(--smoke);transition:.4s}
+.close-x:hover{border-color:var(--gold);color:var(--gold)}
+.close-x svg{width:16px;height:16px}
+.aula{display:grid;grid-template-columns:320px 1fr;gap:0;min-height:calc(100vh - 73px)}
+.aula-side{border-right:1px solid var(--line-soft);padding:26px 22px;background:rgba(255,255,255,.015)}
+.aula-main{padding:30px 34px}
+.prog-card{padding:20px;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(160deg,rgba(212,185,140,.1),rgba(212,185,140,.015));margin-bottom:24px}
+.prog-card .t{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.prog-card img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+.prog-card b{display:block;font-size:13.5px;font-weight:500}
+.prog-card small{font-size:11px;color:var(--gold);letter-spacing:.1em}
+.bar{height:6px;border-radius:100px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold-deep),var(--gold-hi));transition:width 1.2s var(--ease)}
+.lec{
+  display:flex;align-items:center;gap:12px;padding:12px 13px;border-radius:var(--r);
+  width:100%;text-align:left;transition:.35s var(--ease);margin-bottom:3px;color:var(--smoke);
+}
+.lec:hover{background:var(--glass);color:var(--ivory)}
+.lec.on{background:rgba(212,185,140,.12);color:var(--gold)}
+.lec .n{width:24px;height:24px;flex-shrink:0;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;font-size:10.5px}
+.lec.done .n{background:rgba(127,191,155,.16);border-color:rgba(127,191,155,.4);color:var(--ok)}
+.lec.on .n{border-color:var(--gold)}
+.lec .t{flex:1;min-width:0}
+.lec b{display:block;font-size:12.5px;font-weight:400}
+.lec small{font-size:10.5px;color:var(--muted)}
+.player{
+  position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);margin-bottom:26px;
+  display:grid;place-items:center;background:#000;
+}
+.player img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.4) grayscale(.3)}
+.player .play{
+  position:relative;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(212,185,140,.92);color:#0A0A0A;transition:.5s var(--ease);
+}
+.player .play:hover{transform:scale(1.08);background:var(--gold-hi)}
+.player .play svg{width:26px;height:26px;fill:currentColor;margin-left:4px}
+.player .pl-b{position:absolute;left:0;right:0;bottom:0;padding:16px 20px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.recursos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.rec{display:flex;align-items:center;gap:11px;padding:15px;border:1px solid var(--line);border-radius:var(--r);transition:.45s var(--ease);background:rgba(255,255,255,.02)}
+.rec:hover{border-color:rgba(212,185,140,.4);transform:translateY(-3px)}
+.rec svg{width:17px;height:17px;color:var(--gold);flex-shrink:0}
+.rec b{display:block;font-size:12.5px;font-weight:500}
+.rec small{font-size:10.5px;color:var(--muted)}
+.tabs{display:flex;gap:4px;padding:4px;background:rgba(255,255,255,.03);border:1px solid var(--line-soft);border-radius:var(--r);margin-bottom:24px}
+.tabs button{flex:1;padding:11px;border-radius:3px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:.35s var(--ease)}
+.tabs button.on{background:rgba(212,185,140,.13);color:var(--gold)}
+.badge-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.badge{padding:20px 14px;text-align:center;border:1px solid var(--line);border-radius:var(--r);background:rgba(255,255,255,.02);transition:.5s var(--ease)}
+.badge.off{opacity:.32}
+.badge:hover{transform:translateY(-4px);border-color:rgba(212,185,140,.34)}
+.badge .ic{width:44px;height:44px;margin:0 auto 12px;display:grid;place-items:center;border-radius:50%;background:rgba(212,185,140,.14);color:var(--gold)}
+.badge .ic svg{width:19px;height:19px}
+.badge b{display:block;font-size:12px;font-weight:500;margin-bottom:3px}
+.badge small{font-size:10.5px;color:var(--muted)}
+.cert{
+  position:relative;padding:42px 38px;border:1px solid rgba(212,185,140,.35);border-radius:var(--r);
+  background:linear-gradient(150deg,rgba(212,185,140,.1),rgba(212,185,140,.015));text-align:center;
+}
+.cert::before,.cert::after{content:"";position:absolute;width:44px;height:44px;border:1px solid var(--gold);opacity:.5}
+.cert::before{top:12px;left:12px;border-right:none;border-bottom:none}
+.cert::after{bottom:12px;right:12px;border-left:none;border-top:none}
+.cert .eb{margin-bottom:14px}
+.cert h3{font-size:28px;margin-bottom:8px}
+.cert .nm{font-family:var(--display);font-style:italic;font-size:26px;color:var(--gold);margin:18px 0 6px}
+.cert .ln{width:200px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:14px auto}
+
+/* ─── Toast ───────────────────────────────────────────────── */
+#toasts{position:fixed;bottom:26px;right:26px;z-index:990;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.toast{
+  display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:var(--r);
+  background:rgba(20,19,20,.96);border:1px solid var(--line);backdrop-filter:blur(14px);
+  box-shadow:var(--shadow);font-size:13px;animation:tIn .5s var(--ease) both;max-width:340px;
+}
+.toast svg{width:16px;height:16px;color:var(--gold);flex-shrink:0}
+.toast.out{animation:tOut .4s var(--ease) forwards}
+@keyframes tIn{from{opacity:0;transform:translateX(40px)}}
+@keyframes tOut{to{opacity:0;transform:translateX(40px)}}
+
+/* ─── Modal ───────────────────────────────────────────────── */
+#modal{position:fixed;inset:0;z-index:970;display:grid;place-items:center;padding:24px;background:rgba(6,5,6,.8);backdrop-filter:blur(7px);opacity:0;visibility:hidden;transition:.45s var(--ease)}
+#modal.on{opacity:1;visibility:visible}
+.modal-c{width:min(520px,100%);max-height:88vh;overflow-y:auto;background:linear-gradient(180deg,#141315,#0C0B0C);border:1px solid var(--line);border-radius:var(--r);padding:34px;transform:translateY(20px) scale(.98);transition:.5s var(--ease);box-shadow:var(--shadow)}
+#modal.on .modal-c{transform:none}
+.modal-c h3{font-size:26px;margin-bottom:8px}
+.modal-c>.sub{color:var(--muted);font-size:13px;margin-bottom:26px}
+.field{display:block;margin-bottom:16px}
+.field span{display:block;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.field input,.field select,.field textarea{
+  width:100%;padding:14px 16px;background:rgba(255,255,255,.035);border:1px solid var(--line);
+  border-radius:var(--r);font-size:14px;font-weight:300;transition:.4s var(--ease);
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);background:rgba(212,185,140,.05)}
+.field select option{background:#171518}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media(max-width:1100px){
+  .ruta{grid-template-columns:repeat(2,1fr)}
+  .ruta-i:nth-child(2n){border-right:none}
+  .ruta-i:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .cursos,.mods,.planes,.testis{grid-template-columns:repeat(2,1fr)}
+  .profes{grid-template-columns:repeat(2,1fr)}
+  .comu{grid-template-columns:1fr;gap:44px}
+  .aula{grid-template-columns:1fr}
+  .aula-side{border-right:none;border-bottom:1px solid var(--line-soft)}
+}
+@media(max-width:820px){
+  .sec{padding:80px 0}
+  .links{
+    display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;align-items:stretch;
+    background:rgba(12,11,12,.97);backdrop-filter:blur(20px);border-top:1px solid var(--line-soft);padding:10px 0;
+  }
+  .links.open{display:flex}
+  .links a{padding:15px 24px}
+  .burger{display:grid}
+  .nav{background:rgba(10,10,10,.86);backdrop-filter:blur(18px)}
+  .cursos,.mods,.planes,.testis,.profes,.ruta{grid-template-columns:1fr}
+  .ruta-i{border-right:none;border-bottom:1px solid var(--line)}
+  .hero-stats{gap:32px}
+  .recursos,.badge-g{grid-template-columns:repeat(2,1fr)}
+  .foot-g{grid-template-columns:1fr 1fr;gap:32px}
+  .aula-main{padding:22px 18px}
+  .sheet-top{padding:14px 18px}
+  .nav-cta .btn span{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+
+/* ─── Ritmo tipográfico Montserrat ──────────────────────────
+   Contraste por grosor: títulos ligeros y anchos, etiquetas pesadas.
+   ─────────────────────────────────────────────────────────── */
+h1,h2,h3,h4{font-family:var(--display);letter-spacing:-.03em}
+.hero h1{font-weight:200;letter-spacing:-.045em}
+.hero h1 em{font-weight:600;font-style:normal;letter-spacing:-.04em}
+.sec-h h2,.cta-f h2,.comu-l h2{font-weight:200;letter-spacing:-.038em}
+.ital{font-style:normal;font-weight:600}
+.eb{font-weight:600}
+.ruta-i .n{font-weight:800;letter-spacing:-.04em}
+.ruta-i h3,.mod h3,.plan h3,.profe h3{font-weight:600;letter-spacing:-.02em}
+.curso-b h3{font-weight:500;letter-spacing:-.025em}
+.curso-f .p,.plan .price{font-weight:300;letter-spacing:-.04em}
+.plan .price small{font-weight:500}
+.hero-stats b{font-weight:300;letter-spacing:-.035em}
+.testi q{font-style:normal;font-weight:300;letter-spacing:-.015em}
+.faq-q b{font-weight:500;letter-spacing:-.02em}
+.brand b{font-weight:700}
+.btn{font-weight:600}
+.chip{font-weight:600}
+.cert h3{font-weight:300}
+.cert .nm{font-style:normal;font-weight:600;letter-spacing:-.02em}
+.mock-msg b,.prog-card b{font-weight:600}
+.sheet-top b,.modal-c h3{font-weight:500;letter-spacing:-.025em}
+.badge b,.rec b,.lec b{font-weight:500}
+.foot-g h4{font-weight:700}
+
+/* ─── Onboarding guiado ─────────────────────────────────── */
+.wiz{width:min(560px,100%);max-height:90vh;overflow-y:auto}
+.wiz-top{margin-bottom:28px}
+.wiz-bar{height:4px;border-radius:100px;background:rgba(255,255,255,.09);overflow:hidden;margin-bottom:16px}
+.wiz-bar i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold-deep),var(--gold-hi));transition:width .7s var(--ease)}
+.wiz-steps{display:flex;gap:8px}
+.wiz-steps div{flex:1;text-align:center;transition:.4s var(--ease)}
+.wiz-steps .n{
+  width:30px;height:30px;margin:0 auto 8px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--line);font-size:12px;font-weight:600;color:var(--muted);transition:.45s var(--ease);
+}
+.wiz-steps small{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;display:block}
+.wiz-steps .on .n{border-color:var(--gold);background:rgba(212,185,140,.14);color:var(--gold)}
+.wiz-steps .ok .n{background:var(--gold);border-color:var(--gold);color:#0A0A0A}
+.wiz-steps .on small,.wiz-steps .ok small{color:var(--gold)}
+.wiz-art{
+  width:84px;height:84px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle,rgba(212,185,140,.2),rgba(212,185,140,.03));border:1px solid rgba(212,185,140,.3);color:var(--gold);
+}
+.wiz-art svg{width:34px;height:34px}
+.wiz h3{font-size:27px;font-weight:300;letter-spacing:-.03em;text-align:center;margin-bottom:10px}
+.wiz>.d{text-align:center;color:var(--smoke);font-size:14px;margin-bottom:28px;max-width:42ch;margin-inline:auto}
+.gbtn{
+  display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:15px;
+  border:1px solid var(--line);border-radius:var(--r);background:rgba(255,255,255,.05);
+  font-size:14px;font-weight:500;transition:.4s var(--ease);
+}
+.gbtn:hover{background:rgba(255,255,255,.09);border-color:rgba(247,244,240,.26);transform:translateY(-1px)}
+.gbtn svg{width:18px;height:18px}
+.divisor{display:flex;align-items:center;gap:14px;margin:22px 0;color:#5C5751;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;font-weight:600}
+.divisor::before,.divisor::after{content:"";flex:1;height:1px;background:var(--line)}
+.opt{
+  display:flex;align-items:center;gap:14px;width:100%;padding:16px 18px;text-align:left;
+  border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;transition:.45s var(--ease);background:rgba(255,255,255,.02);
+}
+.opt:hover{border-color:rgba(212,185,140,.45);transform:translateY(-2px)}
+.opt.on{border-color:var(--gold);background:rgba(212,185,140,.09)}
+.opt .ic{width:40px;height:40px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;background:rgba(212,185,140,.13);color:var(--gold)}
+.opt .ic svg{width:18px;height:18px}
+.opt .t{flex:1}
+.opt b{display:block;font-size:14px;font-weight:600;margin-bottom:2px}
+.opt small{font-size:12px;color:var(--muted)}
+.opt .pr{font-weight:300;font-size:19px;letter-spacing:-.03em}
+.wiz-nav{display:flex;gap:10px;margin-top:26px}
+.done-ring{width:96px;height:96px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;background:rgba(127,191,155,.12);border:1px solid rgba(127,191,155,.4);color:var(--ok);animation:pop .6s var(--ease)}
+.done-ring svg{width:40px;height:40px;stroke-width:1.6}
+@keyframes pop{from{transform:scale(.7);opacity:0}}
+.next-card{
+  display:flex;align-items:center;gap:16px;padding:20px;border:1px solid rgba(212,185,140,.3);border-radius:var(--r);
+  background:linear-gradient(140deg,rgba(212,185,140,.13),rgba(212,185,140,.02));margin-bottom:24px;
+}
+.next-card .ic{width:48px;height:48px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;background:rgba(212,185,140,.18);color:var(--gold)}
+.next-card .ic svg{width:21px;height:21px}
+.next-card b{display:block;font-size:16px;font-weight:600;margin-bottom:3px}
+.next-card small{font-size:12.5px;color:var(--smoke)}
+.lock{position:relative}
+.lock::after{
+  content:"";position:absolute;inset:0;background:rgba(10,10,10,.6);backdrop-filter:blur(2px);border-radius:var(--r);
+}
+.lec.blq{opacity:.45}
+.lec.blq .n{border-style:dashed}
+.live{
+  display:flex;align-items:center;gap:16px;padding:20px 22px;border-radius:var(--r);margin-bottom:24px;
+  border:1px solid rgba(224,129,116,.4);background:linear-gradient(140deg,rgba(224,129,116,.12),rgba(224,129,116,.02));
+}
+.live .pulse{width:11px;height:11px;border-radius:50%;background:var(--bad);flex-shrink:0;position:relative}
+.live .pulse::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--bad);animation:halo 2s ease-out infinite}
+@keyframes halo{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+.live .t{flex:1;min-width:0}
+.live b{display:block;font-size:15px;font-weight:600;margin-bottom:3px}
+.live small{font-size:12.5px;color:var(--smoke)}
+@media(max-width:640px){
+  .wiz-steps small{display:none}
+  .live{flex-wrap:wrap}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CAPA A · SIN DESBORDAMIENTO HORIZONTAL
+   Evita que la pantalla "baile" de lado en celular.
+   ══════════════════════════════════════════════════════════════ */
+html{overflow-x:hidden;overflow-x:clip}
+body{overflow-x:hidden;overflow-x:clip;max-width:100%;position:relative}
+/* La causa nº1 de desbordes: los hijos de grid/flex se niegan a encoger */
+*,*::before,*::after{min-width:0}
+/* Nada de medios más anchos que su contenedor */
+img,video,iframe,embed,object{max-width:100%}
+img,video{height:auto}
+/* Palabras y enlaces largos que empujan el ancho */
+p,li,td,th,h1,h2,h3,h4,dd,dt,figcaption,blockquote,label,small,b,strong,em,span,a{overflow-wrap:break-word}
+pre,code{white-space:pre-wrap;word-break:break-word}
+/* Tablas: se desplazan dentro de su caja, no de la página */
+table{max-width:100%}
+/* Decorativos posicionados: nunca generan barra de desplazamiento */
+[class*="glow"],[class*="halo"],[class*="sweep"],[class*="particles"]{max-width:100vw;pointer-events:none}
+@media(max-width:900px){
+  /* Rejillas anchas pasan a una columna en pantallas chicas */
+  [style*="grid-template-columns:repeat(3"],[style*="grid-template-columns:repeat(4"]{grid-template-columns:1fr !important}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CAPA B · MÁS AIRE EN CELULAR
+   Menos amontonamiento, sin achicar la letra.
+   ══════════════════════════════════════════════════════════════ */
+@media(max-width:640px){
+  body{font-size:15.5px;line-height:1.75}
+  h1{line-height:1.1}
+  h2,h3{line-height:1.2}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CAPA D · MENÚ SIEMPRE LEGIBLE
+   ══════════════════════════════════════════════════════════════ */
+@media(max-width:820px){
+  .links{
+    background:#0C0B0C;                 /* opaco: no se transparenta al bajar */
+    border-top:1px solid var(--line-soft);
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.9);
+    max-height:calc(100vh - 70px);overflow-y:auto;
+  }
+  .links a{color:rgba(247,244,240,.88);border-bottom:1px solid var(--line-soft)}
+  .links a:last-child{border-bottom:none}
+  body.menu-abierto{overflow:hidden}
+}
+.nav.solid{background:rgba(10,10,10,.92)}
+@supports (backdrop-filter:blur(1px)){ .nav.solid{background:rgba(10,10,10,.8)} }
+</style>
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true"><defs>
+<g id="i-arr"><path d="M5 12h14M13 6l6 6-6 6"/></g>
+<g id="i-check"><path d="M20 6 9 17l-5-5"/></g>
+<g id="i-x"><path d="M18 6 6 18M6 6l12 12"/></g>
+<g id="i-play"><path d="M7 4v16l13-8z"/></g>
+<g id="i-cam"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4z"/></g>
+<g id="i-users"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/></g>
+<g id="i-home"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></g>
+<g id="i-cap"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 11.5V17c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/></g>
+<g id="i-cert"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-2.5 5 2.5-1.5-7"/></g>
+<g id="i-star"><path d="m12 3 2.7 5.7 6.3.9-4.6 4.4 1.1 6.2-5.5-2.9-5.5 2.9 1.1-6.2L3 9.6l6.3-.9z"/></g>
+<g id="i-doc"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></g>
+<g id="i-dl"><path d="M12 3v13M7 12l5 5 5-5M4 21h16"/></g>
+<g id="i-chat"><path d="M21 11.5A8.5 8.5 0 0 1 8.6 19L3 21l2-5.4A8.5 8.5 0 1 1 21 11.5z"/></g>
+<g id="i-cal"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></g>
+<g id="i-spark"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></g>
+<g id="i-brief"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></g>
+<g id="i-money"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.8 1.8 0 0 1 0 3.6h-3a1.8 1.8 0 0 0 0 3.6h4"/></g>
+<g id="i-lock"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></g>
+<g id="i-clock"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g>
+<g id="i-heart"><path d="M12 20s-7-4.4-7-9.4A4 4 0 0 1 12 7a4 4 0 0 1 7 3.6c0 5-7 9.4-7 9.4z"/></g>
+<g id="i-mail"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></g>
+</defs></svg>
+
+<div id="toasts"></div>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="index.html" class="brand">
+      <img src="logo-bs-mark.png" alt="Beauty Shop" onerror="this.style.display='none'">
+      <span><b>Academia BS</b><small>Escuela de belleza</small></span>
+    </a>
+    <div class="links" id="links">
+      <a href="#ruta">Ruta</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#modalidades">Modalidades</a>
+      <a href="#instructoras">Instructoras</a>
+      <a href="#comunidad">Comunidad</a>
+      <a href="#planes">Planes</a>
+      <a href="index.html">Volver al salón</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn out sm" id="aulaBtn">Aula virtual</button>
+      <a href="#planes" class="btn gold sm"><span>Inscríbete</span></a>
+      <button class="burger" id="burger" aria-label="Menú"><i></i></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero" id="top">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1600&q=64" alt="" fetchpriority="high"></div>
+  <div class="wrap hero-in">
+    <span class="eb c">Academia Beauty Shop · Cuernavaca</span>
+    <h1>Aprende el oficio<em>vive de tu talento</em></h1>
+    <p class="lead">Formación profesional en belleza con práctica real, aula virtual, mentoría personalizada y una comunidad que no te suelta al terminar el curso.</p>
+    <div class="hero-cta">
+      <a href="#cursos" class="btn gold">Ver cursos</a>
+      <button class="btn out" id="aulaBtn2">Entrar al aula virtual</button>
+    </div>
+    <div class="hero-stats">
+      <div><b>+420</b><small>Egresadas</small></div>
+      <div><b>18</b><small>Programas</small></div>
+      <div><b>92%</b><small>Colocación</small></div>
+      <div><b>4.9</b><small>Satisfacción</small></div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ RUTA ═══════════ -->
+<section class="sec" id="ruta">
+  <div class="wrap">
+    <div class="sec-h rev">
+      <span class="eb c">Tu camino</span>
+      <h2>De cero a <span class="ital">profesional independiente</span></h2>
+      <p>Cuatro etapas diseñadas para llevarte del primer día al negocio propio. Puedes entrar en la etapa que corresponda a tu nivel.</p>
+    </div>
+    <div class="ruta rev" data-d="1">
+      <div class="ruta-i">
+        <div class="n">01</div><h3>Fundamentos</h3>
+        <p>Higiene, anatomía, diagnóstico, manejo de herramientas y atención a la clienta. La base que nadie te enseña bien.</p>
+        <div class="meta"><span class="chip">4 semanas</span><span class="chip in">Principiante</span></div>
+      </div>
+      <div class="ruta-i">
+        <div class="n">02</div><h3>Especialización</h3>
+        <p>Eliges tu área: color, uñas, facial, maquillaje o extensiones. Práctica intensiva sobre modelo real.</p>
+        <div class="meta"><span class="chip">8 semanas</span><span class="chip g">Intermedio</span></div>
+      </div>
+      <div class="ruta-i">
+        <div class="n">03</div><h3>Maestría</h3>
+        <p>Técnicas avanzadas, tendencias y trabajo editorial. Portafolio profesional fotografiado en estudio.</p>
+        <div class="meta"><span class="chip">6 semanas</span><span class="chip pl">Avanzado</span></div>
+      </div>
+      <div class="ruta-i">
+        <div class="n">04</div><h3>Negocio</h3>
+        <p>Precios, redes, agenda, fidelización y finanzas. Sales con tu marca lista y tus primeras clientas.</p>
+        <div class="meta"><span class="chip">4 semanas</span><span class="chip ok">Emprende</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CURSOS ═══════════ -->
+<section class="sec" id="cursos" style="background:var(--black-2);border-block:1px solid var(--line-soft)">
+  <div class="wrap">
+    <div class="sec-h rev">
+      <span class="eb c">Catálogo</span>
+      <h2>Programas <span class="ital">y certificaciones</span></h2>
+      <p>Cada programa incluye materiales, práctica sobre modelo, acceso al aula virtual de por vida y certificado con validez ante la industria.</p>
+    </div>
+    <div class="filtros rev" id="filtros">
+      <button class="on" data-f="todos">Todos</button>
+      <button data-f="cabello">Cabello</button>
+      <button data-f="unas">Uñas</button>
+      <button data-f="facial">Facial</button>
+      <button data-f="makeup">Maquillaje</button>
+      <button data-f="negocio">Negocio</button>
+    </div>
+    <div class="cursos rev" data-d="1" id="cursosGrid"></div>
+  </div>
+</section>
+
+<!-- ═══════════ MODALIDADES ═══════════ -->
+<section class="sec" id="modalidades">
+  <div class="wrap">
+    <div class="sec-h rev">
+      <span class="eb c">Cómo estudias</span>
+      <h2>Tres formas de <span class="ital">llevar tu ritmo</span></h2>
+    </div>
+    <div class="mods">
+      <article class="mod rev" data-d="1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-home"/></svg></div>
+        <h3>Presencial</h3>
+        <p>En nuestro atelier de Cuernavaca, con estación propia y modelo real desde la primera semana.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Grupos de máximo 8 alumnas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Kit profesional incluido</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Prácticas en el salón</li>
+        </ul>
+      </article>
+      <article class="mod rev" data-d="2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cam"/></svg></div>
+        <h3>En línea</h3>
+        <p>Lecciones grabadas en 4K, guías descargables y revisión de tus prácticas por video.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>A tu ritmo, acceso de por vida</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Retroalimentación en 48 h</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Sesiones en vivo cada semana</li>
+        </ul>
+      </article>
+      <article class="mod rev" data-d="3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-spark"/></svg></div>
+        <h3>Híbrida</h3>
+        <p>Teoría en línea, práctica presencial concentrada en fines de semana. Ideal si trabajas.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Un fin de semana al mes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Mentoría uno a uno</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Compatible con tu empleo</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ INSTRUCTORAS ═══════════ -->
+<section class="sec" id="instructoras" style="background:var(--black-2);border-block:1px solid var(--line-soft)">
+  <div class="wrap">
+    <div class="sec-h rev">
+      <span class="eb c">Quién te enseña</span>
+      <h2>Maestras <span class="ital">en activo</span></h2>
+      <p>No son teóricas. Todas atienden clientas cada semana en el salón.</p>
+    </div>
+    <div class="profes" id="profesGrid"></div>
+  </div>
+</section>
+
+<!-- ═══════════ COMUNIDAD ═══════════ -->
+<section class="sec" id="comunidad">
+  <div class="wrap comu">
+    <div class="comu-l rev">
+      <span class="eb">La red BS</span>
+      <h2 style="font-size:clamp(28px,3.6vw,42px);margin-bottom:18px">El curso termina.<br><span class="ital">La comunidad no.</span></h2>
+      <p class="lead">Al inscribirte entras a una red de más de 420 egresadas que se recomiendan trabajo, comparten proveedores y resuelven dudas todos los días.</p>
+      <ul>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-chat"/></svg></span>
+          <div><b>Grupo privado activo</b><p>Dudas técnicas resueltas por instructoras y compañeras, sin límite de tiempo.</p></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-users"/></svg></span>
+          <div><b>Bolsa de trabajo</b><p>Salones aliados publican vacantes exclusivas para egresadas certificadas.</p></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-money"/></svg></span>
+          <div><b>Programa de referidos</b><p>Recomienda la academia y gana comisión por cada alumna inscrita con tu código.</p></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span>
+          <div><b>Masterclass mensuales</b><p>Tendencias, invitadas internacionales y actualización técnica, gratis de por vida.</p></div></li>
+      </ul>
+    </div>
+    <div class="comu-r rev" data-d="2">
+      <div class="mock">
+        <div class="mock-h"><div class="dots"><i></i><i></i><i></i></div><span>Comunidad · Generación 2026</span></div>
+        <div class="mock-b">
+          <div class="mock-msg"><div class="avt">DL</div>
+            <div><b>Daniela L. <time style="font-weight:300;margin-left:6px">10:12</time></b><p>¿Alguien tiene proveedor de tinte sin amoniaco en Cuernavaca? 🙏</p></div></div>
+          <div class="mock-msg"><div class="avt" style="background:rgba(127,191,155,.14);color:var(--ok)">MI</div>
+            <div><b>Mtra. Isabel <time style="font-weight:300;margin-left:6px">10:18</time></b><p>Sí Dani, te paso el contacto de Distribuidora Sol. Diles que vas de la academia y te dan precio.</p></div></div>
+          <div class="mock-msg"><div class="avt" style="background:rgba(185,155,209,.14);color:var(--plum)">RC</div>
+            <div><b>Regina C. <time style="font-weight:300;margin-left:6px">11:04</time></b><p>Chicas, busco quien me cubra el sábado en mi estudio. Pago por día 👀</p></div></div>
+          <div class="mock-msg"><div class="avt" style="background:rgba(212,185,140,.16);color:var(--gold)">AB</div>
+            <div><b>Academia BS <time style="font-weight:300;margin-left:6px">12:00</time></b><p>📌 Masterclass del jueves: <b style="font-weight:500;color:var(--gold)">Balayage de invierno</b>. Cupo abierto en el aula virtual.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PLANES ═══════════ -->
+<section class="sec" id="planes" style="background:var(--black-2);border-block:1px solid var(--line-soft)">
+  <div class="wrap">
+    <div class="sec-h rev">
+      <span class="eb c">Inversión</span>
+      <h2>Elige <span class="ital">cómo empezar</span></h2>
+      <p>Todos los planes incluyen aula virtual, comunidad y certificado. Meses sin intereses disponibles.</p>
+    </div>
+    <div class="planes">
+      <article class="plan rev" data-d="1">
+        <h3>Curso suelto</h3>
+        <p class="sub">Una especialidad, sin compromiso</p>
+        <div class="price">$4,800<small> MXN</small></div>
+        <div class="per">Pago único</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Un curso a elegir</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Materiales incluidos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Aula virtual de por vida</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Certificado digital</li>
+        </ul>
+        <button class="btn out sm" style="width:100%" data-plan="Curso suelto">Inscribirme</button>
+      </article>
+      <article class="plan pop rev" data-d="2">
+        <h3>Diplomado</h3>
+        <p class="sub">La ruta completa en 6 meses</p>
+        <div class="price">$3,200<small> MXN</small></div>
+        <div class="per">al mes · 6 meses</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Las 4 etapas de la ruta</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Kit profesional completo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Mentoría uno a uno</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Portafolio en estudio</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Bolsa de trabajo prioritaria</li>
+        </ul>
+        <button class="btn gold sm" style="width:100%" data-plan="Diplomado">Inscribirme</button>
+      </article>
+      <article class="plan rev" data-d="3">
+        <h3>Membresía Maestra</h3>
+        <p class="sub">Actualización permanente</p>
+        <div class="price">$890<small> MXN</small></div>
+        <div class="per">al mes · cancela cuando quieras</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Todos los cursos en línea</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Masterclass mensuales</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Descuento en presenciales</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#i-check"/></svg>Comunidad y proveedores</li>
+        </ul>
+        <button class="btn out sm" style="width:100%" data-plan="Membresía Maestra">Suscribirme</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TESTIMONIOS ═══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h rev">
+      <span class="eb c">Resultados</span>
+      <h2>Ellas ya <span class="ital">viven de esto</span></h2>
+    </div>
+    <div class="testis" id="testisGrid"></div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="sec" style="background:var(--black-2);border-block:1px solid var(--line-soft)">
+  <div class="wrap">
+    <div class="sec-h rev"><span class="eb c">Dudas</span><h2>Preguntas <span class="ital">frecuentes</span></h2></div>
+    <div class="faq rev" data-d="1" id="faq"></div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-f">
+  <div class="wrap rev">
+    <span class="eb c">Siguiente generación</span>
+    <h2>Inicia el <span class="ital">14 de septiembre</span></h2>
+    <p class="lead" style="margin:0 auto 34px;text-align:center">Cupo limitado a 8 alumnas por grupo. Aparta tu lugar con el 20%.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <button class="btn gold" data-plan="Diplomado">Apartar mi lugar</button>
+      <button class="btn out" id="asesorBtn">Hablar con una asesora</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-g">
+      <div>
+        <a href="index.html" class="brand" style="margin-bottom:20px">
+          <img src="logo-bs-mark.png" alt="" onerror="this.style.display='none'">
+          <span><b>Academia BS</b><small>Escuela de belleza</small></span>
+        </a>
+        <p style="max-width:34ch">Formación profesional en belleza. Av. Río Mayo 120, Cuernavaca, Morelos.</p>
+      </div>
+      <div><h4>Academia</h4><a href="#ruta">Ruta de aprendizaje</a><a href="#cursos">Cursos</a><a href="#modalidades">Modalidades</a><a href="#planes">Planes</a></div>
+      <div><h4>Alumnas</h4><a href="#" id="aulaBtn3">Aula virtual</a><a href="#comunidad">Comunidad</a><a href="#">Bolsa de trabajo</a><a href="#">Certificados</a></div>
+      <div><h4>Contacto</h4><a href="tel:7771234567">777 123 4567</a><a href="mailto:academia@beautyshop.mx">academia@beautyshop.mx</a><a href="index.html">Volver al salón</a></div>
+    </div>
+    <div class="foot-b">
+      <span>© <span id="year"></span> Academia BS Beauty Shop · Todos los derechos reservados</span>
+      <span>Cuernavaca, México</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ AULA VIRTUAL ═══════════ -->
+<div class="scrim" id="scrim"></div>
+<section class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheet-top">
+    <b>Aula virtual</b>
+    <span class="chip g" id="aulaChip">Demostración</span>
+    <button class="close-x" id="sheetX" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="aula">
+    <aside class="aula-side">
+      <div class="prog-card">
+        <div class="t">
+          <img src="avatar-01.jpg" alt="" onerror="this.style.display='none'">
+          <div><b>Valeria Ortega</b><small>Diplomado · Etapa 2</small></div>
+        </div>
+        <div class="bar"><i id="progBar" style="width:0%"></i></div>
+        <div style="display:flex;justify-content:space-between;margin-top:9px;font-size:11px;color:var(--muted)">
+          <span id="progTxt">0 de 8 lecciones</span><b style="color:var(--gold)" id="progPct">0%</b>
+        </div>
+      </div>
+      <span class="eb" style="margin-bottom:14px">Colorimetría aplicada</span>
+      <div id="lecList"></div>
+    </aside>
+    <main class="aula-main">
+      <div class="tabs" id="aulaTabs">
+        <button class="on" data-t="leccion">Lección</button>
+        <button data-t="logros">Logros</button>
+        <button data-t="certificado">Certificado</button>
+      </div>
+      <div id="aulaBody"></div>
+    </main>
+  </div>
+</section>
+
+<div id="modal"><div class="modal-c" id="modalC"></div></div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   ACADEMIA BS · demostración
+   ════════════════════════════════════════════════════════════ */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const ico=n=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-${n}"/></svg>`;
+const mx=n=>'$'+(n||0).toLocaleString('es-MX');
+$('#year').textContent=new Date().getFullYear();
+
+function toast(m,i='check'){
+  const d=document.createElement('div'); d.className='toast'; d.innerHTML=ico(i)+`<span>${esc(m)}</span>`;
+  $('#toasts').appendChild(d); setTimeout(()=>{d.classList.add('out');setTimeout(()=>d.remove(),400)},3200);
+}
+function openModal(h){ $('#modalC').innerHTML=h; $('#modal').classList.add('on'); }
+function closeModal(){ $('#modal').classList.remove('on'); }
+$('#modal').onclick=e=>{ if(e.target.id==='modal') closeModal(); };
+
+/* ─── Datos ─── */
+const CURSOS=[
+  {t:'Colorimetría profesional',c:'cabello',n:'Intermedio',d:'Teoría del color, corrección de tonos indeseados, decoloración segura y fórmulas que sí se repiten.',h:'48 h',p:6800,img:'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=62',pr:'Isabel Márquez',pav:'avatar-04.jpg',hot:1},
+  {t:'Balayage y mechas de autor',c:'cabello',n:'Avanzado',d:'Técnicas de barrido a mano alzada, mapeo del rostro y acabados de salón editorial.',h:'32 h',p:7400,img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=62',pr:'Isabel Márquez',pav:'avatar-04.jpg'},
+  {t:'Uñas acrílicas y gel',c:'unas',n:'Principiante',d:'Preparación, esculpido, formas, nivelación y acabado profesional que no se levanta.',h:'40 h',p:5200,img:'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=62',pr:'Renata Solís',pav:'avatar-07.jpg',hot:1},
+  {t:'Nail art y diseño',c:'unas',n:'Intermedio',d:'Encapsulados, French invertido, pedrería y tendencias que sí se cobran caras.',h:'24 h',p:4200,img:'https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=800&q=62',pr:'Renata Solís',pav:'avatar-07.jpg'},
+  {t:'Facial clínico y ácidos',c:'facial',n:'Avanzado',d:'Diagnóstico de piel, protocolos con ácidos, aparatología y manejo de reacciones.',h:'56 h',p:8900,img:'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=62',pr:'Paola Sandoval',pav:'avatar-09.jpg'},
+  {t:'Limpieza facial profunda',c:'facial',n:'Principiante',d:'Higiene, extracción segura, mascarillas y rutina de mantenimiento para tu clienta.',h:'28 h',p:4600,img:'https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=800&q=62',pr:'Paola Sandoval',pav:'avatar-09.jpg'},
+  {t:'Maquillaje social y novias',c:'makeup',n:'Intermedio',d:'Piel impecable de larga duración, visagismo y el timing real de un día de boda.',h:'36 h',p:6200,img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=62',pr:'Karla Domínguez',pav:'avatar-06.jpg',hot:1},
+  {t:'Maquillaje editorial',c:'makeup',n:'Avanzado',d:'Construcción de personaje, trabajo con fotógrafo y dirección de arte para portafolio.',h:'30 h',p:6900,img:'https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=62',pr:'Karla Domínguez',pav:'avatar-06.jpg'},
+  {t:'Tu marca y tu negocio',c:'negocio',n:'Emprende',d:'Precios que dejan margen, agenda llena, redes que venden y finanzas sin sustos.',h:'26 h',p:4900,img:'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=62',pr:'Ismael Ríos',pav:'avatar-03.jpg'}
+];
+const PROFES=[
+  {n:'Isabel Márquez',r:'Directora de color',d:'22 años en cabina. Formadora certificada por dos casas internacionales.',img:'avatar-04.jpg'},
+  {n:'Renata Solís',r:'Maestra de uñas',d:'Campeona nacional de nail art 2024. Su técnica de nivelación es marca de la casa.',img:'avatar-07.jpg'},
+  {n:'Paola Sandoval',r:'Cosmiatra',d:'Especialista en piel sensible y protocolos con ácidos. Clínica propia desde 2019.',img:'avatar-09.jpg'},
+  {n:'Karla Domínguez',r:'Maquillista',d:'+900 novias. Trabajo editorial publicado en revistas nacionales.',img:'avatar-06.jpg'}
+];
+const TESTIS=[
+  {q:'Entré sin saber sostener un pincel. Hoy tengo mi estudio con agenda llena tres semanas por delante.',n:'Daniela López',r:'Egresada 2025 · Estudio propio',img:'avatar-01.jpg'},
+  {q:'Lo que más me sirvió fue el módulo de negocio. Subí mis precios 40% y no perdí una sola clienta.',n:'Regina Cortés',r:'Egresada 2024 · Nail artist',img:'avatar-08.jpg'},
+  {q:'La comunidad vale el curso completo. Sigo preguntando cosas dos años después y siempre me responden.',n:'Mariana Cruz',r:'Egresada 2023 · Colorista',img:'avatar-10.jpg'}
+];
+const FAQS=[
+  ['¿Necesito experiencia previa?','No. La etapa de Fundamentos está diseñada para empezar desde cero. Si ya trabajas en belleza, hacemos una evaluación y entras directo a la etapa que te corresponde.'],
+  ['¿El certificado tiene validez?','Sí. Emitimos certificado digital verificable con folio único, reconocido por los salones de nuestra red de bolsa de trabajo. Incluye el desglose de horas y competencias.'],
+  ['¿Los materiales están incluidos?','En el Diplomado sí, kit profesional completo. En cursos sueltos se incluyen los consumibles de práctica; las herramientas personales se pueden comprar con descuento de alumna.'],
+  ['¿Puedo pagar en mensualidades?','Sí. Manejamos meses sin intereses con tarjeta y un plan interno de pagos quincenales. Apartas tu lugar con el 20% y liquidas antes de terminar el programa.'],
+  ['¿Qué pasa si falto a una clase?','Toda sesión presencial se graba y queda en tu aula virtual. Además tienes derecho a reponer hasta dos prácticas con otro grupo sin costo.'],
+  ['¿Ayudan a conseguir trabajo?','Sí. Al certificarte entras a la bolsa de trabajo con vacantes exclusivas de salones aliados, y el módulo de negocio te prepara para independizarte si prefieres esa ruta.']
+];
+const LECCIONES=[
+  {t:'Bienvenida y materiales',d:'6 min',done:1},
+  {t:'La rueda cromática en la práctica',d:'18 min',done:1},
+  {t:'Niveles y subtonos: leer el cabello',d:'24 min',done:1},
+  {t:'Neutralización de indeseados',d:'21 min',done:0},
+  {t:'Decoloración segura paso a paso',d:'32 min',done:0},
+  {t:'Formulación: la regla del 1:1',d:'19 min',done:0},
+  {t:'Corrección de color quemado',d:'27 min',done:0},
+  {t:'Examen práctico y portafolio',d:'45 min',done:0}
+];
+
+/* ─── Render del catálogo ─── */
+function pintarCursos(f='todos'){
+  const list=f==='todos'?CURSOS:CURSOS.filter(c=>c.c===f);
+  $('#cursosGrid').innerHTML=list.map(c=>`
+    <article class="curso" data-curso="${esc(c.t)}">
+      <div class="curso-img">
+        ${c.hot?'<span class="chip g tag">Más solicitado</span>':''}
+        <span class="dur">${c.h}</span>
+        <img src="${c.img}" alt="${esc(c.t)}" loading="lazy" decoding="async">
+      </div>
+      <div class="curso-b">
+        <div class="curso-meta"><span class="chip">${c.n}</span></div>
+        <h3>${esc(c.t)}</h3>
+        <p class="d">${esc(c.d)}</p>
+        <div class="curso-prof">
+          <img src="${c.pav}" alt="" onerror="this.style.display='none'"><span>${esc(c.pr)}</span>
+        </div>
+        <div class="curso-f">
+          <div class="p">${mx(c.p)}<small>Inversión total</small></div>
+          <span class="go">Ver temario ${ico('arr')}</span>
+        </div>
+      </div>
+    </article>`).join('')||'<p class="mut" style="text-align:center;grid-column:1/-1">Pronto abriremos programas en esta categoría.</p>';
+  $$('[data-curso]').forEach(el=>el.onclick=()=>abrirCurso(el.dataset.curso));
+}
+function abrirCurso(t){
+  const c=CURSOS.find(x=>x.t===t); if(!c) return;
+  openModal(`
+    <span class="eb">${c.n} · ${c.h}</span>
+    <h3>${esc(c.t)}</h3>
+    <p class="sub">${esc(c.d)}</p>
+    <div style="display:grid;gap:11px;margin-bottom:26px">
+      ${['Diagnóstico y teoría aplicada','Práctica sobre modelo real','Protocolo profesional paso a paso','Errores comunes y cómo corregirlos','Precio, tiempo y rentabilidad del servicio']
+        .map((x,i)=>`<div style="display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:var(--smoke)">
+          <b style="font-family:var(--display);color:var(--gold);min-width:24px">0${i+1}</b><span>${x}</span></div>`).join('')}
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--line);border-radius:var(--r);margin-bottom:24px">
+      <img src="${c.pav}" alt="" style="width:40px;height:40px;border-radius:50%;object-fit:cover" onerror="this.style.display='none'">
+      <div style="flex:1"><b style="font-size:13px;display:block">${esc(c.pr)}</b><small class="mut" style="font-size:11.5px">Instructora titular</small></div>
+      <div style="text-align:right"><b style="font-family:var(--display);font-size:22px;display:block">${mx(c.p)}</b><small class="mut" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase">Total</small></div>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn out sm" onclick="closeModal()">Cerrar</button>
+      <button class="btn gold sm" style="flex:1" onclick="closeModal();inscribir('${esc(c.t)}')">Quiero inscribirme</button>
+    </div>`);
+}
+function inscribir(plan){
+  openModal(`
+    <span class="eb">Inscripción</span>
+    <h3>${esc(plan)}</h3>
+    <p class="sub">Te contactamos en menos de 24 horas para apartar tu lugar.</p>
+    <label class="field"><span>Nombre completo</span><input id="iN" placeholder="Tu nombre"></label>
+    <label class="field"><span>WhatsApp</span><input id="iT" placeholder="777 000 0000" inputmode="tel"></label>
+    <label class="field"><span>Correo</span><input id="iM" type="email" placeholder="tu@correo.com"></label>
+    <label class="field"><span>Modalidad preferida</span>
+      <select id="iMod"><option>Presencial</option><option>En línea</option><option>Híbrida</option></select></label>
+    <label class="field"><span>¿Tienes código de referida?</span><input id="iC" placeholder="Opcional · ej. BS-KARLA"></label>
+    <div style="display:flex;gap:10px;margin-top:6px">
+      <button class="btn out sm" onclick="closeModal()">Cancelar</button>
+      <button class="btn gold sm" style="flex:1" id="iGo">Enviar solicitud</button>
+    </div>`);
+  $('#iGo').onclick=()=>{
+    const n=$('#iN').value.trim();
+    if(!n) return toast('Escribe tu nombre para continuar','x');
+    closeModal(); toast('¡Listo '+n.split(' ')[0]+'! Una asesora te escribe hoy mismo.','heart');
+  };
+}
+pintarCursos();
+$$('#filtros button').forEach(b=>b.onclick=()=>{
+  $$('#filtros button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); pintarCursos(b.dataset.f);
+});
+
+/* ─── Instructoras y testimonios ─── */
+$('#profesGrid').innerHTML=PROFES.map((p,i)=>`
+  <article class="profe rev" data-d="${i+1}">
+    <div class="ph"><img src="${p.img}" alt="${esc(p.n)}" loading="lazy" onerror="this.parentElement.style.background='rgba(212,185,140,.1)'"></div>
+    <h3>${esc(p.n)}</h3><small>${esc(p.r)}</small><p>${esc(p.d)}</p>
+  </article>`).join('');
+$('#testisGrid').innerHTML=TESTIS.map((t,i)=>`
+  <article class="testi rev" data-d="${i+1}">
+    <div class="stars">${'<svg viewBox="0 0 24 24"><use href="#i-star"/></svg>'.repeat(5)}</div>
+    <q>${esc(t.q)}</q>
+    <div class="who"><img src="${t.img}" alt="" loading="lazy" onerror="this.style.display='none'">
+      <div><b>${esc(t.n)}</b><small>${esc(t.r)}</small></div></div>
+  </article>`).join('');
+$('#faq').innerHTML=FAQS.map(([q,a])=>`
+  <div class="faq-i"><button class="faq-q"><b>${esc(q)}</b><span class="pm"></span></button>
+  <div class="faq-a"><p>${esc(a)}</p></div></div>`).join('');
+$$('.faq-q').forEach(b=>b.onclick=()=>{
+  const i=b.parentElement, a=i.querySelector('.faq-a'), open=i.classList.contains('on');
+  $$('.faq-i').forEach(x=>{x.classList.remove('on');x.querySelector('.faq-a').style.maxHeight=null});
+  if(!open){ i.classList.add('on'); a.style.maxHeight=a.scrollHeight+'px'; }
+});
+
+/* ─── Aula virtual ─── */
+let LEC=3, TAB='leccion';
+function pintarLecciones(){
+  $('#lecList').innerHTML=LECCIONES.map((l,i)=>`
+    <button class="lec ${l.done?'done':''} ${i===LEC?'on':''}" data-lec="${i}">
+      <span class="n">${l.done?'✓':i+1}</span>
+      <span class="t"><b>${esc(l.t)}</b><small>${l.d}</small></span>
+    </button>`).join('');
+  $$('[data-lec]').forEach(b=>b.onclick=()=>{LEC=+b.dataset.lec;pintarLecciones();pintarAula()});
+  const done=LECCIONES.filter(l=>l.done).length, pct=Math.round(done/LECCIONES.length*100);
+  $('#progBar').style.width=pct+'%';
+  $('#progTxt').textContent=`${done} de ${LECCIONES.length} lecciones`;
+  $('#progPct').textContent=pct+'%';
+}
+function pintarAula(){
+  const l=LECCIONES[LEC];
+  const vistas={
+    leccion:`
+      ${(()=>{const sig=LECCIONES.findIndex(x=>!x.done);
+        return sig<0?`<div class="next-card"><span class="ic">${ico('cert')}</span>
+          <span style="flex:1"><b>Completaste el programa</b><small>Descarga tu certificado en la pestaña de arriba.</small></span>
+          <button class="btn gold sm" onclick="document.querySelector('#aulaTabs [data-t=certificado]').click()">Ver certificado</button></div>`
+        :`<div class="next-card"><span class="ic">${ico('play')}</span>
+          <span style="flex:1"><b>Continúa aquí: lección ${sig+1}</b><small>${esc(LECCIONES[sig].t)} · ${LECCIONES[sig].d}</small></span>
+          <button class="btn gold sm" id="irSig">Continuar</button></div>`})()}
+      ${(()=>{const L=LIVE();return `<div class="live">
+        <span class="pulse"></span>
+        <span class="t"><b>Clase en vivo · ${esc(L.tema)}</b><small>${esc(L.cuando)} · Google Meet</small></span>
+        <a class="btn gold sm" href="${esc(L.url)}" target="_blank" rel="noopener">${ico('cam')}Entrar a clase</a>
+      </div>`})()}
+      <div class="player">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=60" alt="">
+        <button class="play" id="playBtn" aria-label="Reproducir"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></button>
+        <div class="pl-b"><b style="font-family:var(--display);font-size:18px;font-weight:400;display:block">Lección ${LEC+1} · ${esc(l.t)}</b>
+          <small class="mut" style="font-size:11.5px">${l.d} · Colorimetría aplicada</small></div>
+      </div>
+      <h3 style="font-size:24px;margin-bottom:10px">${esc(l.t)}</h3>
+      <p class="lead" style="font-size:14.5px">En esta lección trabajamos el procedimiento completo sobre modelo, con las tres variantes que más vas a encontrar en cabina y cómo cobrar cada una.</p>
+      <span class="eb" style="margin:30px 0 14px;display:flex">Recursos de la lección</span>
+      <div class="recursos">
+        <a class="rec" href="#" onclick="event.preventDefault();toast('Descargando guía PDF','dl')">${ico('doc')}<span><b>Guía en PDF</b><small>18 páginas</small></span></a>
+        <a class="rec" href="#" onclick="event.preventDefault();toast('Descargando plantilla','dl')">${ico('dl')}<span><b>Ficha de diagnóstico</b><small>Imprimible</small></span></a>
+        <a class="rec" href="#" onclick="event.preventDefault();toast('Abriendo foro de la lección','chat')">${ico('chat')}<span><b>Preguntas</b><small>14 respuestas</small></span></a>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:28px;flex-wrap:wrap">
+        <button class="btn out sm" id="prevLec">Anterior</button>
+        <button class="btn gold sm" id="doneLec">${l.done?'Lección completada':'Marcar como vista'}</button>
+        <button class="btn out sm" id="nextLec">Siguiente lección</button>
+      </div>`,
+    logros:`
+      <h3 style="font-size:24px;margin-bottom:8px">Tus logros</h3>
+      <p class="lead" style="font-size:14px;margin-bottom:26px">Las insignias se desbloquean con tu avance y te dan prioridad en la bolsa de trabajo.</p>
+      <div class="badge-g">
+        ${[['Primera lección','spark',1],['Racha de 7 días','heart',1],['Módulo 1 completo','check',1],['Práctica evaluada','cert',0],
+           ['Portafolio subido','brief',0],['Examen aprobado','star',0],['Certificada','cert',0],['Mentora junior','users',0]]
+          .map(([n,i,on])=>`<div class="badge ${on?'':'off'}"><div class="ic">${ico(i)}</div><b>${n}</b><small>${on?'Desbloqueada':'Bloqueada'}</small></div>`).join('')}
+      </div>
+      <div style="margin-top:30px;padding:22px;border:1px solid var(--line);border-radius:var(--r);background:rgba(255,255,255,.02)">
+        <span class="eb" style="margin-bottom:12px;display:flex">Ranking de tu generación</span>
+        ${[['Regina C.',94],['Valeria O.',68],['Daniela L.',61],['Mariana C.',54]].map((r,i)=>`
+          <div style="display:flex;align-items:center;gap:12px;padding:9px 0">
+            <b style="font-family:var(--display);color:${i===1?'var(--gold)':'var(--muted)'};min-width:22px">${i+1}</b>
+            <span style="flex:1;font-size:13px;${i===1?'color:var(--gold)':''}">${r[0]}${i===1?' · tú':''}</span>
+            <div class="bar" style="width:110px"><i style="width:${r[1]}%"></i></div>
+            <b style="font-size:11.5px;color:var(--muted);min-width:34px;text-align:right">${r[1]}%</b>
+          </div>`).join('')}
+      </div>`,
+    certificado:`
+      <div class="cert">
+        <span class="eb c">Academia BS Beauty Shop</span>
+        <h3>Certificado de aptitud profesional</h3>
+        <p class="mut" style="font-size:13px">Se otorga el presente reconocimiento a</p>
+        <div class="nm">Valeria Ortega Ramírez</div>
+        <div class="ln"></div>
+        <p style="font-size:13.5px;color:var(--smoke);max-width:46ch;margin:0 auto">Por concluir satisfactoriamente el programa <b style="color:var(--gold);font-weight:400">Colorimetría profesional</b>, con una carga de 48 horas teórico-prácticas.</p>
+        <div style="display:flex;justify-content:center;gap:44px;margin-top:32px;flex-wrap:wrap">
+          <div><b style="display:block;font-family:var(--display);font-size:15px">Isabel Márquez</b><small class="mut" style="font-size:10px;letter-spacing:.2em;text-transform:uppercase">Directora académica</small></div>
+          <div><b style="display:block;font-family:var(--display);font-size:15px">Folio BS-2026-0148</b><small class="mut" style="font-size:10px;letter-spacing:.2em;text-transform:uppercase">Verificable en línea</small></div>
+        </div>
+      </div>
+      <p class="mut" style="text-align:center;font-size:12.5px;margin:22px 0">Disponible al completar el 100% del programa y aprobar el examen práctico.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="btn out sm" onclick="toast('Vista previa del certificado','cert')">Ver ejemplo completo</button>
+        <button class="btn gold sm" onclick="toast('Te faltan 5 lecciones para desbloquearlo','clock')">Descargar</button>
+      </div>`
+  };
+  $('#aulaBody').innerHTML=vistas[TAB];
+  if(TAB==='leccion'){
+    $('#playBtn').onclick=()=>toast('Reproduciendo lección '+(LEC+1),'play');
+    const ir=$('#irSig'); if(ir) ir.onclick=()=>{
+      const sig=LECCIONES.findIndex(x=>!x.done);
+      if(sig>=0){ LEC=sig; pintarLecciones(); pintarAula(); }
+    };
+    $('#prevLec').onclick=()=>{ if(LEC>0){LEC--;pintarLecciones();pintarAula();} };
+    $('#nextLec').onclick=()=>{ if(LEC<LECCIONES.length-1){LEC++;pintarLecciones();pintarAula();} };
+    $('#doneLec').onclick=()=>{
+      LECCIONES[LEC].done=1; pintarLecciones(); pintarAula(); toast('Lección marcada como vista','check');
+    };
+  }
+}
+$$('#aulaTabs button').forEach(b=>b.onclick=()=>{
+  $$('#aulaTabs button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); TAB=b.dataset.t; pintarAula();
+});
+/* ═══════════ CUENTA · ONBOARDING GUIADO ═══════════ */
+const CLAVE='bs_alumna';
+let YO=(()=>{ try{ return JSON.parse(localStorage.getItem(CLAVE))||null }catch(e){ return null } })();
+const guardarYo=()=>{ try{ localStorage.setItem(CLAVE,JSON.stringify(YO)) }catch(e){} };
+const activa=()=>YO&&YO.rol==='Miembro Activo';
+
+/* El enlace de la clase en vivo lo actualiza el administrador desde el panel */
+function LIVE(){
+  let d={}; try{ d=JSON.parse(localStorage.getItem('bs_live'))||{} }catch(e){}
+  return {
+    tema:  d.tema   || 'Balayage de invierno',
+    cuando:d.cuando || 'Jueves 24 de julio · 18:00',
+    url:   d.url    || 'https://meet.google.com/abc-defg-hij'
+  };
+}
+
+const PASOS=['Tu cuenta','Tu programa','Membresía','¡Listo!'];
+let PASO=0, ELEGIDO=null;
+
+function wizard(){
+  const pct=Math.round(PASO/(PASOS.length-1)*100);
+  openModal(`<div class="wiz">
+    <div class="wiz-top">
+      <div class="wiz-bar"><i style="width:${pct}%"></i></div>
+      <div class="wiz-steps">${PASOS.map((n,i)=>`
+        <div class="${i<PASO?'ok':i===PASO?'on':''}">
+          <div class="n">${i<PASO?'✓':i+1}</div><small>${n}</small></div>`).join('')}</div>
+    </div>
+    <div id="wizBody"></div>
+  </div>`);
+  pintarPaso();
+}
+function pintarPaso(){
+  const b=$('#wizBody');
+  if(PASO===0){
+    b.innerHTML=`
+      <div class="wiz-art">${ico('users')}</div>
+      <h3>Paso 1 · Crea tu cuenta</h3>
+      <p class="d">Un solo clic con Google. Sin contraseñas nuevas que recordar.</p>
+      <button class="gbtn" id="wGoogle">
+        <svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.6 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.2 17.6 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.2-3.2-.5-4.6H24v9.1h12.4c-.5 2.9-2.2 5.4-4.7 7l7.6 5.9c4.4-4.1 6.8-10.1 6.8-17.4z"/><path fill="#FBBC05" d="M10.4 28.7a14.5 14.5 0 0 1 0-9.4l-7.8-6.1a24 24 0 0 0 0 21.6z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.4 0-11.7-3.7-13.6-9.9l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>
+        Continuar con Google
+      </button>
+      <div class="divisor">o con tu correo</div>
+      <label class="field"><span>Tu nombre</span><input id="wN" placeholder="Como quieres que te llamemos"></label>
+      <label class="field"><span>Correo</span><input id="wE" type="email" placeholder="tu@correo.com"></label>
+      <div class="wiz-nav"><button class="btn gold sm" style="flex:1" id="wSig">Continuar</button></div>`;
+    $('#wGoogle').onclick=()=>{
+      YO={nombre:'Valeria Ortega',correo:'valeria.ortega@gmail.com',rol:'Visitante',via:'Google'};
+      guardarYo(); toast('Cuenta creada con Google','check'); PASO=1; wizard();
+    };
+    $('#wSig').onclick=()=>{
+      const n=$('#wN').value.trim(); if(!n) return toast('Escribe tu nombre para continuar','x');
+      YO={nombre:n,correo:$('#wE').value.trim(),rol:'Visitante',via:'Correo'};
+      guardarYo(); PASO=1; wizard();
+    };
+  }
+  if(PASO===1){
+    b.innerHTML=`
+      <div class="wiz-art">${ico('cap')}</div>
+      <h3>Paso 2 · Elige tu programa</h3>
+      <p class="d">Puedes cambiarlo después. Nada queda cerrado.</p>
+      ${[['Diplomado completo','Las 4 etapas · 6 meses',19200,'cert'],
+         ['Un curso a elegir','Una especialidad · 8 semanas',6800,'star'],
+         ['Membresía Maestra','Todo en línea · mensual',890,'spark']]
+        .map(([n,d,p,i])=>`<button class="opt ${ELEGIDO===n?'on':''}" data-opt="${n}" data-p="${p}">
+          <span class="ic">${ico(i)}</span><span class="t"><b>${n}</b><small>${d}</small></span>
+          <span class="pr">${mx(p)}</span></button>`).join('')}
+      <div class="wiz-nav">
+        <button class="btn out sm" id="wAtras">Atrás</button>
+        <button class="btn gold sm" style="flex:1" id="wSig">Continuar</button></div>`;
+    $$('[data-opt]').forEach(o=>o.onclick=()=>{
+      ELEGIDO=o.dataset.opt; YO.plan=ELEGIDO; YO.precio=+o.dataset.p; guardarYo();
+      $$('[data-opt]').forEach(x=>x.classList.remove('on')); o.classList.add('on');
+    });
+    $('#wAtras').onclick=()=>{PASO=0;wizard()};
+    $('#wSig').onclick=()=>{ if(!ELEGIDO) return toast('Elige un programa para continuar','x'); PASO=2; wizard(); };
+  }
+  if(PASO===2){
+    b.innerHTML=`
+      <div class="wiz-art">${ico('lock')}</div>
+      <h3>Paso 3 · Activa tu membresía</h3>
+      <p class="d">En cuanto se confirme el pago, tu contenido se desbloquea solo. No tienes que avisarnos.</p>
+      <div class="opt" style="cursor:default">
+        <span class="ic">${ico('cap')}</span>
+        <span class="t"><b>${esc(ELEGIDO||'Programa')}</b><small>${YO&&YO.correo?esc(YO.correo):'tu cuenta'}</small></span>
+        <span class="pr">${mx((YO&&YO.precio)||0)}</span></div>
+      <div style="display:grid;gap:10px;margin:18px 0">
+        ${['Tarjeta de crédito o débito','Meses sin intereses','Transferencia SPEI'].map((m,i)=>`
+          <button class="opt ${i===0?'on':''}" data-pago="${m}" style="padding:13px 16px">
+            <span class="ic" style="width:32px;height:32px">${ico('money')}</span>
+            <span class="t"><b style="font-size:13px">${m}</b></span></button>`).join('')}
+      </div>
+      <div class="wiz-nav">
+        <button class="btn out sm" id="wAtras">Atrás</button>
+        <button class="btn gold sm" style="flex:1" id="wPagar">Activar mi acceso</button></div>
+      <p class="mut" style="text-align:center;font-size:11.5px;margin-top:16px">Demostración · no se realiza ningún cargo.</p>`;
+    $$('[data-pago]').forEach(o=>o.onclick=()=>{$$('[data-pago]').forEach(x=>x.classList.remove('on'));o.classList.add('on')});
+    $('#wAtras').onclick=()=>{PASO=1;wizard()};
+    $('#wPagar').onclick=()=>{
+      const btn=$('#wPagar'); btn.textContent='Confirmando pago…'; btn.disabled=true;
+      setTimeout(()=>{
+        YO.rol='Miembro Activo'; YO.desde='2026-07-22'; guardarYo();
+        PASO=3; wizard();
+      },900);
+    };
+  }
+  if(PASO===3){
+    b.innerHTML=`
+      <div class="done-ring">${ico('check')}</div>
+      <h3>¡Listo, ${esc((YO&&YO.nombre||'').split(' ')[0])}!</h3>
+      <p class="d">Tu acceso quedó activo. Todo el contenido de tu programa ya está abierto.</p>
+      <div style="display:grid;gap:9px;margin-bottom:24px">
+        ${[['Aula virtual desbloqueada','Videos, guías y prácticas','cap'],
+           ['Clases en vivo','Tu enlace de Google Meet ya aparece en el aula','cam'],
+           ['Comunidad','Te agregamos al grupo privado hoy mismo','chat']]
+          .map(([a,c,i])=>`<div class="opt" style="cursor:default"><span class="ic">${ico(i)}</span>
+            <span class="t"><b>${a}</b><small>${c}</small></span>${ico('check')}</div>`).join('')}
+      </div>
+      <button class="btn gold sm" style="width:100%" id="wEntrar">Entrar a mi aula</button>`;
+    refrescarAcceso();
+    $('#wEntrar').onclick=()=>{ closeModal(); abrirAula(); toast('Bienvenida a la academia','heart'); };
+  }
+}
+
+function abrirAula(){
+  if(!activa()){ PASO=YO?1:0; ELEGIDO=YO&&YO.plan||null; return wizard(); }
+  $('#sheet').classList.add('on'); $('#scrim').classList.add('on');
+  $('#sheet').setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  $('#aulaChip').textContent=YO.rol;
+  const q=$('.prog-card b'); if(q) q.textContent=YO.nombre;
+  pintarLecciones(); pintarAula();
+}
+function cerrarAula(){
+  $('#sheet').classList.remove('on'); $('#scrim').classList.remove('on');
+  $('#sheet').setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+['#aulaBtn','#aulaBtn2','#aulaBtn3'].forEach(s=>{ const b=$(s); if(b) b.onclick=e=>{e.preventDefault();abrirAula()}; });
+function refrescarAcceso(){
+  const b=$('#aulaBtn'); if(!b) return;
+  if(activa()){ b.textContent='Mi aula'; b.classList.remove('out'); b.classList.add('gold'); }
+  else{ b.textContent='Empezar'; }
+}
+refrescarAcceso();
+/* Ventana de bienvenida, sólo la primera vez */
+if(!localStorage.getItem('bs_bienvenida')){
+  setTimeout(()=>{
+    openModal(`<div style="text-align:center">
+      <div class="wiz-art">${ico('heart')}</div>
+      <h3 style="font-size:26px;font-weight:300;letter-spacing:-.03em;margin-bottom:10px">Bienvenida a la Academia</h3>
+      <p class="mut" style="font-size:14px;max-width:38ch;margin:0 auto 26px">Te llevamos de la mano en tres pasos: creas tu cuenta, eliges tu programa y entras a tu aula. Nada más.</p>
+      <div style="display:grid;gap:9px;margin-bottom:24px;text-align:left">
+        ${[['1','Crea tu cuenta','Con Google, en un clic'],
+           ['2','Elige tu programa','Puedes cambiarlo después'],
+           ['3','Entra a tu aula','Todo se desbloquea solo']]
+          .map(([n,a,c])=>`<div class="opt" style="cursor:default"><span class="ic">${n}</span>
+            <span class="t"><b>${a}</b><small>${c}</small></span></div>`).join('')}
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn out sm" onclick="closeModal()">Sólo estoy viendo</button>
+        <button class="btn gold sm" style="flex:1" id="bvGo">Empezar ahora</button>
+      </div></div>`);
+    $('#bvGo').onclick=()=>{ closeModal(); setTimeout(abrirAula,260); };
+    try{ localStorage.setItem('bs_bienvenida','1') }catch(e){}
+  },1600);
+}
+$('#sheetX').onclick=cerrarAula;
+$('#scrim').onclick=cerrarAula;
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){cerrarAula();closeModal();} });
+
+/* ─── Interacciones generales ─── */
+$$('[data-plan]').forEach(b=>b.onclick=()=>inscribir(b.dataset.plan));
+$('#asesorBtn').onclick=()=>inscribir('Asesoría personalizada');
+$('#burger').onclick=()=>{
+  const abierto=$('#links').classList.toggle('open');
+  document.body.classList.toggle('menu-abierto',abierto);
+  $('#burger').setAttribute('aria-expanded',abierto);
+};
+$$('#links a').forEach(a=>a.onclick=()=>{
+  $('#links').classList.remove('open'); document.body.classList.remove('menu-abierto');
+});
+addEventListener('scroll',()=>$('#nav').classList.toggle('solid',scrollY>40),{passive:true});
+
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)} }),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  const observar=()=>$$('.rev:not(.in)').forEach(el=>io.observe(el));
+  observar();
+  if('MutationObserver' in window) new MutationObserver(observar).observe(document.body,{childList:true,subtree:true});
+}else{
+  $$('.rev').forEach(el=>el.classList.add('in'));
+}
+</script>
+</body>
+</html>
